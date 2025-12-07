@@ -14,7 +14,7 @@ public class Slot : MonoBehaviour
         TypeModels[(int)type].gameObject.SetActive(true);
     }
 
-    public void SetShooter(ISlotObj slotObj)
+    public void SetObj(ISlotObj slotObj)
     {
         Obj = slotObj;
         if (slotObj != null)
@@ -25,6 +25,10 @@ public class Slot : MonoBehaviour
             // shooter.SetSlot(this);
             // shooter.transform.position = transform.position;
         }
+    }
+    public ISlotObj GetObj()
+    {
+        return Obj;
     }
 
     public bool IsFree()

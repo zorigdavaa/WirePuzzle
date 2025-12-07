@@ -669,9 +669,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Slots: []
-  shooterPF: {fileID: 8687491582788897390, guid: dae35941773274241afa484df95aa552, type: 3}
+  SlotPF: {fileID: 8687491582788897390, guid: dae35941773274241afa484df95aa552, type: 3}
   X: 6
   Y: 8
+  toBottom: 0.3
 --- !u!4 &769855395
 Transform:
   m_ObjectHideFlags: 0

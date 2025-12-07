@@ -12,8 +12,8 @@ using Dreamteck.Splines;
 
 public class Player : Mb
 {
-    Slot lastSelectedSlot;
-    public List<Slot> selectedSlots;
+    GridNode lastSelectedSlot;
+    public List<GridNode> selectedSlots;
     SplineComputer computer;
     [SerializeField] GameObject ConnectPF;
     Camera cam;
@@ -151,7 +151,7 @@ public class Player : Mb
         mousePos.z = cam.transform.position.y;
         Vector3 worldMouse = cam.ScreenToWorldPoint(mousePos).SwitchYZ();
         // print(worldMouse);
-        Slot foundSlot = gridController.Grid.GetGridObject(worldMouse);
+        GridNode foundSlot = gridController.Grid.GetGridObject(worldMouse);
         if (foundSlot != lastSelectedSlot && foundSlot != null && !selectedSlots.Contains(foundSlot))
         {
             if (lastSelectedSlot != null)
@@ -181,8 +181,8 @@ public class Player : Mb
     {
         if (selectedSlots.Count >= 2)
         {
-            Slot lastOne = selectedSlots[^1];
-            Slot lastTwo = selectedSlots[^2];
+            GridNode lastOne = selectedSlots[^1];
+            GridNode lastTwo = selectedSlots[^2];
             initialDir = (lastOne.transform.position - lastTwo.transform.position).normalized;
             currentDir = (foundSlot.transform.position - lastOne.transform.position).normalized;
             if (initialDir != currentDir)
