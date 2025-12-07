@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Unity.Mathematics;
 using UnityEngine;
 using ZPackage.Utility;
 
@@ -11,22 +12,14 @@ namespace ZPackage
     {
         [SerializeField] List<GameObject> Levels;
         [SerializeField] GameObject Man;
-        [SerializeField] GameObject Scores;
-        List<Vector3> points;
 
-        float lastMultPos = 35;
-        private void Start()
+        public void InitializeLevel()
         {
-            // InstantiateBot(10);
+            int levelIndex = (GameManager.Instance.Level - 1) % Levels.Count;
+            GameObject level = Levels[levelIndex];
+            Instantiate(level, transform.position, Quaternion.identity, transform);
         }
-        private void InstantiateBot(int v)
-        {
-            for (int i = 0; i < v; i++)
-            {
-                Instantiate(Man, new Vector3(0, 2, lastMultPos), Quaternion.identity, transform);
-                lastMultPos += 60;
-            }
-        }
+
     }
 }
 

@@ -104,7 +104,7 @@ namespace ZPackage
                 Z.CanM.HudScore(value.ToString());
             }
         }
-        
+
         private int throwCount;
         public int ThrowCount
         {
@@ -146,6 +146,7 @@ namespace ZPackage
             QualitySettings.vSyncCount = 0;  // VSync must be disabled
             Application.targetFrameRate = 60;
             CreateGitIgnore();
+            Z.LS.InitializeLevel();
         }
         void PopulatePlayerPrefs()
         {

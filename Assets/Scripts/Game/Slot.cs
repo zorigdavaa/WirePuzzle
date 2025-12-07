@@ -11,6 +11,15 @@ public class Slot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+    }
+    public void SetType(SlotType type)
+    {
+        foreach (var item in TypeModels)
+        {
+            item.gameObject.SetActive(false);
+        }
+        this.type = type;
         TypeModels[(int)type].gameObject.SetActive(true);
     }
 

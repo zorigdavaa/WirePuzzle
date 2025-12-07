@@ -81,8 +81,6 @@ public class GridController : MonoBehaviour
         {
             Undo.DestroyObjectImmediate(transform.GetChild(i).gameObject);
         }
-
-        EditorUtility.SetDirty(transform);
         CreateGrid();
 
 #if UNITY_EDITOR
