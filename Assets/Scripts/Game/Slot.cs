@@ -6,7 +6,7 @@ using UnityEngine;
 public class Slot : MonoBehaviour
 {
     public SlotType type;
-    public ISlotObj Obj;
+    ISlotObj Obj;
     public List<GameObject> TypeModels;
     // Start is called before the first frame update
     void Start()
@@ -43,6 +43,16 @@ public class Slot : MonoBehaviour
     public bool IsFree()
     {
         return Obj == null;
+    }
+
+    public void DestoyObj()
+    {
+        if (Obj != null)
+        {
+            Destroy(Obj.gameObject);
+            Obj = null;
+            Debug.Log("destoyed");
+        }
     }
 }
 

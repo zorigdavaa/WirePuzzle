@@ -16,9 +16,8 @@ public class GridController : MonoBehaviour
     public int X;
     public int Y;
     [SerializeField] float toBottom = 0.3f;
-    // public
-    // Start is called before the first frame update
-    void Start()
+
+    public void Init()
     {
         Slots.Clear();
         CreateGrid();
@@ -50,9 +49,10 @@ public class GridController : MonoBehaviour
         freeSlots = new List<Slot>();
         foreach (var item in selectedPiece.GetNodes())
         {
-            print(item.transform.position);
-            Slot slot = Grid.GetGridObject(item.transform.position.SwitchYZ()).GetComponent<Slot>();
-            if (slot != null && slot.IsFree())
+            // print(item.transform.position);
+            GridNode node = Grid.GetGridObject(item.transform.position.SwitchYZ());
+            Slot slot = node?.GetComponent<Slot>();
+            if (node != null && slot.IsFree())
             {
                 freeSlots.Add(slot);
             }
@@ -71,6 +71,7 @@ public class GridController : MonoBehaviour
         {
             freeSlots[i].SetObj(nodes[i]);
         }
+
     }
     [ContextMenu("Place Slots")]
     public void PlaceSlots()
@@ -125,9 +126,9 @@ public class GridController : MonoBehaviour
         return dstX + dstY;
     }
 
-    public List<Vector3> FindPath(GridNode startPos, GridNode targetPos)
+    public List<GridNode> FindPath(GridNode startPos, GridNode targetPos)
     {
-        List<Vector3> path = new List<Vector3>();
+        List<GridNode> path = new List<GridNode>();
         // Create lists for open and closed nodes
         List<GridNode> openList = new List<GridNode>();
         HashSet<GridNode> closedSet = new HashSet<GridNode>();
@@ -201,20 +202,37 @@ public class GridController : MonoBehaviour
         return path;
     }
 
-    private List<Vector3> RetracePath(GridNode startNode, GridNode endNode)
+    private List<GridNode> RetracePath(GridNode startNode, GridNode endNode)
     {
-        List<Vector3> path = new List<Vector3>();
+        List<GridNode> path = new List<GridNode>();
         GridNode currentNode = endNode;
-        path.Add(Grid.GetWorldPosition(currentNode.X, currentNode.Y));
+        path.Add(currentNode);
         while (currentNode != startNode)
         {
             // path.Add(currentNode.Position);
-            path.Add(Grid.GetWorldPosition(currentNode.X, currentNode.Y));
+            path.Add(currentNode);
             // print(" Position was " + currentBusStop.Grid.GetWorldPosition(currentNode.X, currentNode.Y));
             currentNode = currentNode.Parent;
         }
+        path.Add(startNode);
         path.Reverse();
         return path;
     }
+    // private List<Vector3> RetracePath(GridNode startNode, GridNode endNode)
+    // {
+    //     List<Vector3> path = new List<Vector3>();
+    //     GridNode currentNode = endNode;
+    //     path.Add(Grid.GetWorldPosition(currentNode.X, currentNode.Y));
+    //     while (currentNode != startNode)
+    //     {
+    //         // path.Add(currentNode.Position);
+    //         path.Add(Grid.GetWorldPosition(currentNode.X, currentNode.Y));
+    //         // print(" Position was " + currentBusStop.Grid.GetWorldPosition(currentNode.X, currentNode.Y));
+    //         currentNode = currentNode.Parent;
+    //     }
+    //     path.Reverse();
+    //     return path;
+    // }
+
 }
 

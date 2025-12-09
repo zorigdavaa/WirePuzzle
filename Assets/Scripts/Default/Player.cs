@@ -85,7 +85,7 @@ public class Player : Mb
         }
         if (IsUp)
         {
-            Debug.Log("up");
+            // Debug.Log("up");
             if (selectedPiece != null)
             {
                 // float pressedDuration = Time.time - pressStartTime;
@@ -103,6 +103,7 @@ public class Player : Mb
                         gridController.Place(selectedPiece, freeSlots);
                         pieceController.NotifyPlaced(selectedPiece);
                         Destroy(selectedPiece.gameObject);
+                        Z.LS.CurrentLevel.CheckConnected();
                     }
                     else
                     {

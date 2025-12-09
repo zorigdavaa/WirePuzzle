@@ -12,12 +12,13 @@ namespace ZPackage
     {
         [SerializeField] List<GameObject> Levels;
         [SerializeField] GameObject Man;
+        public Level CurrentLevel;
 
         public void InitializeLevel()
         {
             int levelIndex = (GameManager.Instance.Level - 1) % Levels.Count;
             GameObject level = Levels[levelIndex];
-            Instantiate(level, transform.position, Quaternion.identity, transform);
+            CurrentLevel = Instantiate(level, transform.position, Quaternion.identity, transform).GetComponent<Level>();
         }
 
     }
