@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "WirePuzzle.sln"
+    "dotnet.defaultSolution": "ConnectWire.sln"
 }

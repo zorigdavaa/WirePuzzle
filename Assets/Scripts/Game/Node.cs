@@ -22,4 +22,25 @@ public class Node : MonoBehaviour, ISlotObj
         ModelIndex++;
         Models[ModelIndex].SetActive(true);
     }
+    public void Shine()
+    {
+        StartCoroutine(LocalCor());
+    }
+    IEnumerator LocalCor()
+    {
+        float t = 0f;
+        float time = 0f;
+        float duration = 1.0f;
+        MeshRenderer render = GetComponent<MeshRenderer>();
+        Color initColor = render.material.color;
+        Color toColor = Color.red;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            t = time / duration;
+            render.material.color = Color.Lerp(initColor, toColor, t);
+            yield return null;
+        }
+    }
 }

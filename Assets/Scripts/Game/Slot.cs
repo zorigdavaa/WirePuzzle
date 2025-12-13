@@ -49,9 +49,10 @@ public class Slot : MonoBehaviour
     {
         if (Obj != null)
         {
-            Destroy(Obj.gameObject);
-            Obj = null;
+            Destroy(Obj.gameObject, 1f);
             Debug.Log("destoyed");
+            Obj.transform.GetComponent<Node>().Shine();
+            Obj = null;
         }
     }
 }
