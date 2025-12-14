@@ -37,15 +37,14 @@ public class PieceController : MonoBehaviour
         List<Piece> neededPieces = Z.LS.CurrentLevel.gridController.GetNeededPiece(PiecesPf);
         for (int i = 0; i < pieceSlots.Count; i++)
         {
-            // if (Z.LS.CurrentLevel.isInitialized)
-            // {
-            newItems.Add(neededPieces[Random.Range(0, neededPieces.Count)]);
-            // }
-            // else
-            // {
-
-            // }
-            // newItems.Add(PiecesPf[Random.Range(0, PiecesPf.Count)]);
+            if (i < 2 && neededPieces.Count > 0)
+            {
+                newItems.Add(neededPieces[Random.Range(0, neededPieces.Count)]);
+            }
+            else
+            {
+                newItems.Add(PiecesPf[Random.Range(0, PiecesPf.Count)]);
+            }
         }
         for (int i = 0; i < pieceSlots.Count; i++)
         {
@@ -56,6 +55,10 @@ public class PieceController : MonoBehaviour
             // newObj.SetPieceSlot(pieceSlots[i]);
             newObj.SetColor(pieceMaterials[Random.Range(0, pieceMaterials.Count)]);
             newObj.StartDrag(false);
+        }
+        if (neededPieces.Count == 0)
+        {
+            Z.GM.GameOver(this, EventArgs.Empty);
         }
     }
 
@@ -117,7 +120,7 @@ public class PieceController : MonoBehaviour
         {
             CurrentSlotObj[foundKey] = null;
         }
-        if (CurrentSlotObj.Values.Where(x => x == null).Count() == CurrentSlotObj.Keys.Count)
+        if (CurrentSlotObj.Values.Count(x => x == null) == CurrentSlotObj.Keys.Count)
         {
             Populate();
         }
