@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +7,11 @@ using ZPackage;
 public class Level : MonoBehaviour
 {
     public LevelData Data;
-    GridController gridController;
+    public GridController gridController;
     public List<Slot> ChargerPoses;
     public List<Slot> ConnectPoses;
     public List<Slot> Blocked;
+    public bool isInitialized = false;
 
     // public slot
     void Start()
@@ -34,6 +36,8 @@ public class Level : MonoBehaviour
             node.GetComponent<Slot>().SetType(SlotType.Blocked);
             Blocked.Add(node.GetComponent<Slot>());
         }
+        Z.LS.PieceController.Init();
+        isInitialized = true;
     }
     public void CheckConnected()
     {

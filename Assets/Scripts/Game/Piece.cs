@@ -53,6 +53,33 @@ public class Piece : Mb
         }
         return Nodes;
     }
+    public List<Vector2> GetNodesAsOffset()
+    {
+        var nodes = GetNodes();
+        var result = new List<Vector2>();
+        // Debug.Log($"Getting offsets for piece {nodes.Count} nodes");
+        if (nodes == null || nodes.Count == 0)
+            return result;
+
+        Transform first = nodes[0].transform;
+        //Skip first node
+        for (int i = 1; i < nodes.Count; i++)
+        {
+            Vector3 localPos = first.InverseTransformPoint(nodes[i].transform.position).SwitchYZ();
+            result.Add(new Vector2(
+                Mathf.RoundToInt(localPos.x),
+                Mathf.RoundToInt(localPos.y)
+            ));
+        }
+
+        // foreach (var item in nodes)
+        // {
+
+        // }
+
+        return result;
+    }
+
 
     internal void StartDrag(bool v)
     {
@@ -63,6 +90,15 @@ public class Piece : Mb
         else
         {
             transform.localScale = Vector3.one * 0.5f;
+        }
+    }
+
+    public void SetColor(Material material)
+    {
+        foreach (var item in GetNodes())
+        {
+
+            item.GetComponent<Renderer>().material = material;
         }
     }
 }

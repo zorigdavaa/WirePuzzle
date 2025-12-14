@@ -6,7 +6,7 @@ using UnityEngine;
 public class Slot : MonoBehaviour
 {
     public SlotType type;
-    ISlotObj Obj;
+    public Node Obj; //ISlotObj type
     public List<GameObject> TypeModels;
     // Start is called before the first frame update
     void Start()
@@ -25,19 +25,19 @@ public class Slot : MonoBehaviour
 
     public void SetObj(ISlotObj slotObj)
     {
-        Obj = slotObj;
+        Obj = slotObj.gameObject.GetComponent<Node>();
         if (slotObj != null)
         {
-            Obj.Slot = this;
+            slotObj.Slot = this;
             Obj.transform.position = transform.position;
             Obj.transform.SetParent(transform);
             // shooter.SetSlot(this);
             // shooter.transform.position = transform.position;
         }
     }
-    public ISlotObj GetObj()
+    public Node GetObj()
     {
-        return Obj;
+        return Obj.GetComponent<Node>();
     }
 
     public bool IsFree()

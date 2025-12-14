@@ -3,29 +3,58 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityUtilities;
+using ZPackage;
+using Random = UnityEngine.Random;
 
 public class PieceController : MonoBehaviour
 {
     public List<Piece> PiecesPf;
+    // public List<Piece> PiecesPfCopy;
     public List<Transform> pieceSlots;
-    public RandomBag<Piece> bag;
+    public List<Material> pieceMaterials;
+    // public RandomBag<Piece> bag;
     public Dictionary<Transform, Piece> CurrentSlotObj = new Dictionary<Transform, Piece>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Init()
     {
-        bag = new RandomBag<Piece>(PiecesPf.ToArray(), pieceSlots.Count);
+        List<Piece> InstantiatedPieces = new List<Piece>();
+        foreach (var item in PiecesPf)
+        {
+            var instObh = Instantiate(item, transform.position, Quaternion.identity, transform);
+            instObh.gameObject.SetActive(false);
+            InstantiatedPieces.Add(instObh);
+        }
+        PiecesPf = InstantiatedPieces;
+        // bag = new RandomBag<
+        // Piece>(PiecesPf.ToArray(), pieceSlots.Count);
         Populate();
     }
 
     private void Populate()
     {
-        var newItems = bag.PopRandomItems(pieceSlots.Count);
+        // var newItems = bag.PopRandomItems(pieceSlots.Count);
+        var newItems = new List<Piece>();
+        List<Piece> neededPieces = Z.LS.CurrentLevel.gridController.GetNeededPiece(PiecesPf);
+        for (int i = 0; i < pieceSlots.Count; i++)
+        {
+            // if (Z.LS.CurrentLevel.isInitialized)
+            // {
+            newItems.Add(neededPieces[Random.Range(0, neededPieces.Count)]);
+            // }
+            // else
+            // {
+
+            // }
+            // newItems.Add(PiecesPf[Random.Range(0, PiecesPf.Count)]);
+        }
         for (int i = 0; i < pieceSlots.Count; i++)
         {
             var newObj = Instantiate(newItems[i], pieceSlots[i].transform.position, Quaternion.identity);
+            newObj.gameObject.SetActive(true);
             // newItems[i].transform.position = pieceSlots[i].transform.position;
             CurrentSlotObj[pieceSlots[i]] = newObj;
             // newObj.SetPieceSlot(pieceSlots[i]);
+            newObj.SetColor(pieceMaterials[Random.Range(0, pieceMaterials.Count)]);
             newObj.StartDrag(false);
         }
     }

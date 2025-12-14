@@ -218,6 +218,44 @@ public class GridController : MonoBehaviour
         path.Reverse();
         return path;
     }
+
+    internal List<Piece> GetNeededPiece(List<Piece> piecesPf)
+    {
+        List<GridNode> FreeNodes = Slots.Where(s => s.IsFree()).Select(s => s.GetComponent<GridNode>()).ToList();
+        List<Piece> neededPieces = new List<Piece>();
+        // List<Piece> UnneccessaryPieces = new List<Piece>();
+
+        foreach (var item in piecesPf)
+        {
+            var itemNodes = item.GetNodesAsOffset();
+            // print($"Offsets Count: {itemNodes.Count}");
+            foreach (var freeNode in FreeNodes)
+            {
+                Vector2 basePos = new Vector2(freeNode.X, freeNode.Y);
+                bool canPlace = true;
+
+                foreach (var offset in itemNodes)
+                {
+                    Vector2 checkPos = basePos + offset;
+                    GridNode checkNode = Grid.GetGridObject((int)checkPos.x, (int)checkPos.y);
+                    if (checkNode == null || !checkNode.GetComponent<Slot>().IsFree())
+                    {
+                        canPlace = false;
+                        break;
+                    }
+                }
+                if (canPlace)
+                {
+                    print($"Can place at {basePos.x}, {basePos.y} and found {item.name}");
+                    neededPieces.Add(item);
+                    break;
+                }
+            }
+        }
+        print($"Free Nodes Count: {FreeNodes.Count}");
+        print($"Needed Pieces Count: {neededPieces.Count}");
+        return neededPieces;
+    }
     // private List<Vector3> RetracePath(GridNode startNode, GridNode endNode)
     // {
     //     List<Vector3> path = new List<Vector3>();
