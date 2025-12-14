@@ -925,11 +925,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PiecesPf:
   - {fileID: 4637198259214586481, guid: ee973e26ac1ab43c3a4d11e7cbce1dce, type: 3}
-  - {fileID: 4637198259214586481, guid: b8e3120c1a4f34daf8d9cd8d5287bab9, type: 3}
+  - {fileID: 4637198259214586481, guid: 316ce36a8867d40919423bfe2ffd8091, type: 3}
+  - {fileID: 4637198259214586481, guid: 94b2f35d706b1480497da0cf739bbb82, type: 3}
   - {fileID: 4637198259214586481, guid: e1d5d6d4c86d4421f9d04b6d0daf40c9, type: 3}
+  - {fileID: 4637198259214586481, guid: 8d31754e4da6f461eb88ac557a8cb870, type: 3}
+  - {fileID: 4637198259214586481, guid: d95c20ea1de564376b4caa7eda98a744, type: 3}
+  - {fileID: 4637198259214586481, guid: fe0416942a9e74ea79dd249c444aa173, type: 3}
+  - {fileID: 4637198259214586481, guid: b8e3120c1a4f34daf8d9cd8d5287bab9, type: 3}
   - {fileID: 4637198259214586481, guid: 7421f058f918349caaf0e46e7159a2c1, type: 3}
+  - {fileID: 4637198259214586481, guid: 0d11b950b85234b0e9ce7e7741f11ac5, type: 3}
   - {fileID: 4637198259214586481, guid: a7dfac721aedb467db8ec78888ea0c95, type: 3}
   - {fileID: 4637198259214586481, guid: f058e06d5724d4756bd88b088f978947, type: 3}
+  - {fileID: 4637198259214586481, guid: bcad98116691842e285cb9adf0b512a6, type: 3}
   pieceSlots:
   - {fileID: 152273323}
   - {fileID: 655702407}
@@ -1285,6 +1292,7 @@ MonoBehaviour:
   Levels:
   - {fileID: 8007251741595809806, guid: 0c38c028b8fc044c78b38d2e55543b26, type: 3}
   Man: {fileID: 679859225261197072, guid: 76ef128fc38b5a447b16610298566b11, type: 3}
+  CurrentLevel: {fileID: 0}
 --- !u!1001 &1903593998
 PrefabInstance:
   m_ObjectHideFlags: 0
