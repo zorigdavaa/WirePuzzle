@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityUtilities;
 using ZPackage;
@@ -124,7 +125,12 @@ public class PieceController : MonoBehaviour
         {
             Populate();
         }
-
+        var valuesList = CurrentSlotObj.Values.Where(x => x != null).ToList();
+        var placeAblePieces = Z.LS.CurrentLevel.gridController.GetNeededPiece(valuesList);
+        if (placeAblePieces.Count == 0)
+        {
+            Z.GM.GameOver(this, EventArgs.Empty);
+        }
     }
 
 

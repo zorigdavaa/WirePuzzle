@@ -224,38 +224,82 @@ public class GridController : MonoBehaviour
         List<GridNode> FreeNodes = Slots.Where(s => s.IsFree()).Select(s => s.GetComponent<GridNode>()).ToList();
         List<Piece> neededPieces = new List<Piece>();
         // List<Piece> UnneccessaryPieces = new List<Piece>();
-
         foreach (var item in piecesPf)
         {
-            var itemNodes = item.GetNodesAsOffset();
-            // print($"Offsets Count: {itemNodes.Count}");
-            foreach (var freeNode in FreeNodes)
+            if (IsPlaceAbleSomeWhere(item, FreeNodes))
             {
-                Vector2 basePos = new Vector2(freeNode.X, freeNode.Y);
-                bool canPlace = true;
-
-                foreach (var offset in itemNodes)
-                {
-                    Vector2 checkPos = basePos + offset;
-                    GridNode checkNode = Grid.GetGridObject((int)checkPos.x, (int)checkPos.y);
-                    if (checkNode == null || !checkNode.GetComponent<Slot>().IsFree())
-                    {
-                        canPlace = false;
-                        break;
-                    }
-                }
-                if (canPlace)
-                {
-                    print($"Can place at {basePos.x}, {basePos.y} and found {item.name}");
-                    neededPieces.Add(item);
-                    break;
-                }
+                neededPieces.Add(item);
             }
         }
+
+        // foreach (var item in piecesPf)
+        // {
+        //     var itemNodes = item.GetNodesAsOffset();
+        //     // print($"Offsets Count: {itemNodes.Count}");
+        //     foreach (var freeNode in FreeNodes)
+        //     {
+        //         Vector2 basePos = new Vector2(freeNode.X, freeNode.Y);
+        //         bool canPlace = true;
+
+        //         foreach (var offset in itemNodes)
+        //         {
+        //             Vector2 checkPos = basePos + offset;
+        //             GridNode checkNode = Grid.GetGridObject((int)checkPos.x, (int)checkPos.y);
+        //             if (checkNode == null || !checkNode.GetComponent<Slot>().IsFree())
+        //             {
+        //                 canPlace = false;
+        //                 break;
+        //             }
+        //         }
+        //         if (canPlace)
+        //         {
+        //             print($"Can place at {basePos.x}, {basePos.y} and found {item.name}");
+        //             neededPieces.Add(item);
+        //             break;
+        //         }
+        //     }
+        // }
         print($"Free Nodes Count: {FreeNodes.Count}");
         print($"Needed Pieces Count: {neededPieces.Count}");
         return neededPieces;
     }
+
+    public bool IsPlaceAbleSomeWhere(Piece value, List<GridNode> CheckNodes = null)
+    {
+        if (CheckNodes == null)
+        {
+            CheckNodes = Slots
+                .Where(s => s.IsFree())
+                .Select(s => s.GetComponent<GridNode>())
+                .ToList();
+        }
+
+        var offsets = value.GetNodesAsOffset();
+
+        foreach (var node in CheckNodes)
+        {
+            Vector2 basePos = new Vector2(node.X, node.Y);
+            bool canPlaceHere = true;
+
+            foreach (var offset in offsets)
+            {
+                Vector2 checkPos = basePos + offset;
+                GridNode checkNode = Grid.GetGridObject((int)checkPos.x, (int)checkPos.y);
+
+                if (checkNode == null || !checkNode.GetComponent<Slot>().IsFree())
+                {
+                    canPlaceHere = false;
+                    break;
+                }
+            }
+
+            if (canPlaceHere)
+                return true;
+        }
+
+        return false;
+    }
+
     // private List<Vector3> RetracePath(GridNode startNode, GridNode endNode)
     // {
     //     List<Vector3> path = new List<Vector3>();

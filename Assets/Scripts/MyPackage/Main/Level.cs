@@ -50,7 +50,7 @@ public class Level : MonoBehaviour
                 GridNode end = charger.GetComponent<GridNode>();
                 if (start.IsTraversable && end.IsTraversable)
                 {
-                    print($"Searching {Light.GetComponent<GridNode>().X} and {Light.GetComponent<GridNode>().Y} to {charger.GetComponent<GridNode>().X} {charger.GetComponent<GridNode>().Y}");
+                    // print($"Searching {Light.GetComponent<GridNode>().X} and {Light.GetComponent<GridNode>().Y} to {charger.GetComponent<GridNode>().X} {charger.GetComponent<GridNode>().Y}");
                     var foundPaht = gridController.FindPath(Light.GetComponent<GridNode>(), charger.GetComponent<GridNode>());
                     if (foundPaht.Count > 0)
                     {
@@ -59,7 +59,7 @@ public class Level : MonoBehaviour
                 }
             }
         }
-        print($"found {paths.Count}");
+        // print($"found {paths.Count}");
         foreach (var path in paths)
         {
             foreach (var node in path)
