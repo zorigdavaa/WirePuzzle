@@ -27,7 +27,7 @@ public class Player : Mb
     private float pressStartTime;
     [SerializeField] bool isDragging = false;
     [SerializeField] bool pressed = false;
-    public float holdTime = 0.15f;    // how long before it becomes a "hold"
+    public float holdTime = 0.1f;    // how long before it becomes a "hold"
     float moveHeight = 0.5f;     // height while dragging
     void Start()
     {
@@ -41,81 +41,86 @@ public class Player : Mb
     // Update is called once per frame
     void Update()
     {
-        // Old();
-        if (IsDown)
+        if (IsPlaying)
         {
-            pressed = true;
-            pressStartTime = Time.time;
-
-            // Raycast to find object
-            ray = cam.ScreenPointToRay(MP);
-            if (Physics.Raycast(ray, out hit, 30, rayMask))
+            // Old();
+            if (IsDown)
             {
-                if (hit.collider.attachedRigidbody != null && hit.collider.attachedRigidbody.GetComponent<Piece>())
-                {
+                pressed = true;
+                pressStartTime = Time.time;
 
-                    selectedPiece = hit.collider.attachedRigidbody.GetComponent<Piece>();
+                // Raycast to find object
+                ray = cam.ScreenPointToRay(MP);
+                if (Physics.Raycast(ray, out hit, 30, rayMask))
+                {
+                    if (hit.collider.attachedRigidbody != null && hit.collider.attachedRigidbody.GetComponent<Piece>())
+                    {
+
+                        selectedPiece = hit.collider.attachedRigidbody.GetComponent<Piece>();
+                    }
                 }
             }
-        }
-        // Holding logic
-        else if (pressed && selectedPiece != null)
-        {
-            float pressedDuration = Time.time - pressStartTime;
-
-            // Once hold threshold passed → begin dragging
-            if (!isDragging && pressedDuration > holdTime)
+            // Holding logic
+            else if (pressed && selectedPiece != null)
             {
-                isDragging = true;
+                float pressedDuration = Time.time - pressStartTime;
+
+                // Once hold threshold passed → begin dragging
+                if (!isDragging && pressedDuration > holdTime)
+                {
+                    isDragging = true;
+                    pressed = false;
+                    selectedPiece.StartDrag(true);
+                }
+            }
+            else if (isDragging && selectedPiece != null)
+            {
+                ray = cam.ScreenPointToRay(MP);
+                Plane ground = new Plane(Vector3.up, Vector3.zero);
+
+                if (ground.Raycast(ray, out float dist))
+                {
+                    Vector3 point = ray.GetPoint(dist);
+                    point.y = moveHeight;  // floating while dragging
+                    selectedPiece.transform.position = point;
+                }
+            }
+            if (IsUp)
+            {
+                // Debug.Log("up");
+                if (selectedPiece != null)
+                {
+                    // // float pressedDuration = Time.time - pressStartTime;
+
+                    // // if (!isDragging && pressedDuration < holdTime)
+                    // if (!isDragging)
+                    // {
+                    //     // TAP → ROTATE
+                    //     selectedPiece.GetComponent<Piece>().Rotate();
+                    // }
+                    // else 
+                    if (isDragging)
+                    {
+                        if (gridController.IsPlaceAble(selectedPiece, out List<Slot> freeSlots))
+                        {
+                            gridController.Place(selectedPiece, freeSlots);
+                            pieceController.NotifyPlaced(selectedPiece);
+                            Destroy(selectedPiece.gameObject);
+                            Z.LS.CurrentLevel.CheckConnected();
+                        }
+                        else
+                        {
+                            PlaceObject();
+                        }
+                    }
+                }
+                // ClearLine();
                 pressed = false;
-                selectedPiece.StartDrag(true);
+                isDragging = false;
+                selectedPiece = null;
             }
         }
-        else if (isDragging && selectedPiece != null)
-        {
-            ray = cam.ScreenPointToRay(MP);
-            Plane ground = new Plane(Vector3.up, Vector3.zero);
 
-            if (ground.Raycast(ray, out float dist))
-            {
-                Vector3 point = ray.GetPoint(dist);
-                point.y = moveHeight;  // floating while dragging
-                selectedPiece.transform.position = point;
-            }
-        }
-        if (IsUp)
-        {
-            // Debug.Log("up");
-            if (selectedPiece != null)
-            {
-                // float pressedDuration = Time.time - pressStartTime;
-
-                // if (!isDragging && pressedDuration < holdTime)
-                if (!isDragging)
-                {
-                    // TAP → ROTATE
-                    selectedPiece.GetComponent<Piece>().Rotate();
-                }
-                else if (isDragging)
-                {
-                    if (gridController.IsPlaceAble(selectedPiece, out List<Slot> freeSlots))
-                    {
-                        gridController.Place(selectedPiece, freeSlots);
-                        pieceController.NotifyPlaced(selectedPiece);
-                        Destroy(selectedPiece.gameObject);
-                        Z.LS.CurrentLevel.CheckConnected();
-                    }
-                    else
-                    {
-                        PlaceObject();
-                    }
-                }
-            }
-            // ClearLine();
-            pressed = false;
-            isDragging = false;
-            selectedPiece = null;
-        }
     }
 
     private void ClearLine()

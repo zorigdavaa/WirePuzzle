@@ -937,6 +937,11 @@ MonoBehaviour:
   - {fileID: 4637198259214586481, guid: a7dfac721aedb467db8ec78888ea0c95, type: 3}
   - {fileID: 4637198259214586481, guid: f058e06d5724d4756bd88b088f978947, type: 3}
   - {fileID: 4637198259214586481, guid: bcad98116691842e285cb9adf0b512a6, type: 3}
+  - {fileID: 4637198259214586481, guid: e444358da8c90448ab16e9ff5c533e44, type: 3}
+  - {fileID: 4637198259214586481, guid: 12659d09d839c4668922b3717f821b67, type: 3}
+  - {fileID: 4637198259214586481, guid: 4dada780bea9f43b888bbfc4c24358c2, type: 3}
+  - {fileID: 4637198259214586481, guid: 13b987bd605d74430a3d9cf6e682e50d, type: 3}
+  - {fileID: 4637198259214586481, guid: 738a0c49e978a409ca0ed4f5b971a37d, type: 3}
   pieceSlots:
   - {fileID: 152273323}
   - {fileID: 655702407}
@@ -1302,7 +1307,7 @@ MonoBehaviour:
   mp: {x: 0, y: 0, z: 0}
   Levels:
   - {fileID: 8007251741595809806, guid: 0c38c028b8fc044c78b38d2e55543b26, type: 3}
-  Man: {fileID: 679859225261197072, guid: 76ef128fc38b5a447b16610298566b11, type: 3}
+  PieceController: {fileID: 0}
   CurrentLevel: {fileID: 0}
 --- !u!1001 &1903593998
 PrefabInstance:
