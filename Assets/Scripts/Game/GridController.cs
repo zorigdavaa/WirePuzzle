@@ -37,11 +37,11 @@ public class GridController : MonoBehaviour
 
         GridNode insObj = Instantiate(SlotPF, grid.GetWorldPLacement(x, y).SwitchYZ(), Quaternion.identity, transform).GetComponent<GridNode>();
         // insObj.transform.localPosition = new Vector3(x + 0.5f, 0, y + 0.5f);
-        Slots.Add(insObj.GetComponent<Slot>());
-        insObj.GetComponent<GridNode>().X = x;
-        insObj.GetComponent<GridNode>().Y = y;
-        insObj.GetComponent<GridNode>().OwnGrid = grid;
-        return insObj.GetComponent<GridNode>();
+        Slots.Add(insObj.Slot);
+        insObj.X = x;
+        insObj.Y = y;
+        insObj.OwnGrid = grid;
+        return insObj;
     }
 
     public bool IsPlaceAble(Piece selectedPiece, out List<Slot> freeSlots)
@@ -51,7 +51,7 @@ public class GridController : MonoBehaviour
         {
             // print(item.transform.position);
             GridNode node = Grid.GetGridObject(item.transform.position.SwitchYZ());
-            Slot slot = node?.GetComponent<Slot>();
+            Slot slot = node?.Slot;
             if (node != null && slot.IsFree())
             {
                 freeSlots.Add(slot);
@@ -298,6 +298,53 @@ public class GridController : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void ColumnRowCheck()
+    {
+        List<GridNode> destroyedNodes = new List<GridNode>();
+        for (int x = 0; x < X; x++)
+        {
+            if (!IsColumnFull(x))
+                continue;
+
+            for (int y = 0; y < Y; y++)
+            {
+                destroyedNodes.Add(Grid.GetGridObject(x, y));
+            }
+        }
+        for (int y = 0; y < Y; y++)
+        {
+            if (!IsRowFull(y))
+                continue;
+
+            for (int x = 0; x < X; x++)
+            {
+                destroyedNodes.Add(Grid.GetGridObject(x, y));
+            }
+        }
+        foreach (var item in destroyedNodes.Distinct())
+        {
+            item.Slot.DestoyObj();
+        }
+    }
+    bool IsColumnFull(int x)
+    {
+        for (int y = 0; y < Y; y++)
+        {
+            if (Grid.GetGridObject(x, y).Slot.IsFree())
+                return false;
+        }
+        return true;
+    }
+    bool IsRowFull(int y)
+    {
+        for (int x = 0; x < X; x++)
+        {
+            if (Grid.GetGridObject(x, y).Slot.IsFree())
+                return false;
+        }
+        return true;
     }
 
     // private List<Vector3> RetracePath(GridNode startNode, GridNode endNode)

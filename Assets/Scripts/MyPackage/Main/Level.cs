@@ -41,6 +41,7 @@ public class Level : MonoBehaviour
     }
     public void CheckConnected()
     {
+        gridController.ColumnRowCheck();
         List<List<GridNode>> paths = new List<List<GridNode>>();
         foreach (var Light in ConnectPoses)
         {
