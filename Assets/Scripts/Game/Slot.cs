@@ -55,6 +55,17 @@ public class Slot : MonoBehaviour
             Obj = null;
         }
     }
+
+    public void ScaledDestroy()
+    {
+        if (Obj != null)
+        {
+
+            Debug.Log("destoyed");
+            Obj.transform.GetComponent<Node>().Scale();
+            Obj = null;
+        }
+    }
 }
 
 public enum SlotType

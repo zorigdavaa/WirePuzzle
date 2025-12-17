@@ -302,7 +302,7 @@ public class GridController : MonoBehaviour
 
     public void ColumnRowCheck()
     {
-        List<GridNode> destroyedNodes = new List<GridNode>();
+        HashSet<GridNode> destroyedNodes = new HashSet<GridNode>();
         for (int x = 0; x < X; x++)
         {
             if (!IsColumnFull(x))
@@ -323,9 +323,9 @@ public class GridController : MonoBehaviour
                 destroyedNodes.Add(Grid.GetGridObject(x, y));
             }
         }
-        foreach (var item in destroyedNodes.Distinct())
+        foreach (var item in destroyedNodes)
         {
-            item.Slot.DestoyObj();
+            item.Slot.ScaledDestroy();
         }
     }
     bool IsColumnFull(int x)
