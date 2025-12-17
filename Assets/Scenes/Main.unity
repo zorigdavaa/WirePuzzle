@@ -981,7 +981,6 @@ MonoBehaviour:
   - {fileID: 1283717763}
   - {fileID: 1903593999}
   pieceMaterials:
-  - {fileID: 2100000, guid: e50e1cf6494094aee9a0040aabc53469, type: 2}
   - {fileID: 2100000, guid: 9d8bc8dcedd89482bb91c3eacf82a66e, type: 2}
   - {fileID: 2100000, guid: 9e131e575af8f4e32b177f00bd9d2f5b, type: 2}
   - {fileID: 2100000, guid: 580a09da67ae745f7a2416988bed0fbb, type: 2}
@@ -991,6 +990,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: ddbee1e7e1607425289976af687434bf, type: 2}
   - {fileID: 2100000, guid: 5b8438e905a484226b8408510e620b6c, type: 2}
   - {fileID: 2100000, guid: 09f374a3352b14af6b6bbacf8e9b83c9, type: 2}
+  - {fileID: 2100000, guid: e50e1cf6494094aee9a0040aabc53469, type: 2}
 --- !u!1 &1101162092
 GameObject:
   m_ObjectHideFlags: 0

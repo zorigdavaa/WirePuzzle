@@ -30,6 +30,7 @@ public class PieceController : MonoBehaviour
         // Piece>(PiecesPf.ToArray(), pieceSlots.Count);
         Populate();
     }
+    int materialIndex = 0;
 
     private void Populate()
     {
@@ -54,8 +55,9 @@ public class PieceController : MonoBehaviour
             // newItems[i].transform.position = pieceSlots[i].transform.position;
             CurrentSlotObj[pieceSlots[i]] = newObj;
             // newObj.SetPieceSlot(pieceSlots[i]);
-            newObj.SetColor(pieceMaterials[Random.Range(0, pieceMaterials.Count)]);
+            newObj.SetColor(pieceMaterials[materialIndex % pieceMaterials.Count]);
             newObj.StartDrag(false);
+            materialIndex++;
         }
         if (neededPieces.Count == 0)
         {

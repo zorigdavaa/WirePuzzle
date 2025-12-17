@@ -74,7 +74,8 @@ public class Level : MonoBehaviour
 
         if (paths.Count > 0)
         {
-            SetGridByData();
+            Invoke(nameof(SetGridByData), 1f);
+            // SetGridByData();
         }
     }
     public void ClearCurrentPath()
@@ -86,7 +87,7 @@ public class Level : MonoBehaviour
         {
             foreach (var node in path)
             {
-                node.GetComponent<Slot>().DestroyWithNicoin();
+                node.GetComponent<Slot>().DestroyWithNoCoin();
             }
         }
     }

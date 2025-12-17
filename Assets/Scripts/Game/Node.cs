@@ -32,8 +32,9 @@ public class Node : MonoBehaviour, ISlotObj
             float time = 0f;
             float duration = 1.0f;
             MeshRenderer render = GetComponent<MeshRenderer>();
-            Color initColor = render.material.color;
-            Color toColor = Color.red;
+            // Color initColor = render.material.color;
+            Color initColor = Color.cyan;
+            Color toColor = Color.yellow;
 
             while (time < duration)
             {
@@ -57,7 +58,7 @@ public class Node : MonoBehaviour, ISlotObj
             Vector3 initScale = transform.localScale;
             Vector3 toScale = initScale * 0.05f;
             Vector3 initPos = transform.position;
-            Vector3 toPos = initPos + new Vector3(Random.value, 0, Random.value).normalized * Random.value;
+            Vector3 toPos = initPos + new Vector3(Random.value, 0, Random.value).normalized * Random.value * 3;
 
             while (time < duration)
             {

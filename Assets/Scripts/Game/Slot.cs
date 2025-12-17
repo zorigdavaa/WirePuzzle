@@ -20,6 +20,10 @@ public class Slot : MonoBehaviour
         {
             item.gameObject.SetActive(false);
         }
+        if (type == SlotType.Blocked)
+        {
+            DestroyWithNoCoin();
+        }
         this.type = type;
         TypeModels[(int)type].gameObject.SetActive(true);
     }
@@ -67,14 +71,14 @@ public class Slot : MonoBehaviour
         }
     }
 
-    internal void DestroyWithNicoin()
+    internal void DestroyWithNoCoin()
     {
         if (Obj != null)
         {
 
             Destroy(Obj.gameObject);
             Obj = null;
-            Z.GM.Coin++;
+            // Z.GM.Coin++;
         }
     }
 }
