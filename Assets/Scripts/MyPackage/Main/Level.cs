@@ -6,42 +6,93 @@ using ZPackage;
 
 public class Level : MonoBehaviour
 {
-    public LevelData Data;
+    public List<LevelData> LevelDatas;
     public GridController gridController;
     public List<Slot> ChargerPoses;
     public List<Slot> ConnectPoses;
     public List<Slot> Blocked;
     public bool isInitialized = false;
+    public int DataIndex = 0;
 
     // public slot
     void Start()
     {
         gridController = transform.GetComponentInChildren<GridController>();
         gridController.Init();
-        foreach (var item in Data.ChargerPoses)
+        SetGridByData();
+        Z.LS.PieceController.Init();
+        isInitialized = true;
+    }
+
+    private void SetGridByData()
+    {
+        if (DataIndex >= LevelDatas.Count)
+        {
+            Z.GM.LevelComplete(this, 0);
+            return;
+        }
+        gridController.ResetSlotTypes();
+        ConnectPoses.Clear();
+        ChargerPoses.Clear();
+        Blocked.Clear();
+        foreach (var item in LevelDatas[DataIndex].ChargerPoses)
         {
             GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
             node.GetComponent<Slot>().SetType(SlotType.Power);
             ChargerPoses.Add(node.GetComponent<Slot>());
         }
-        foreach (var item in Data.ConnectPoses)
+        foreach (var item in LevelDatas[DataIndex].ConnectPoses)
         {
             GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
             node.GetComponent<Slot>().SetType(SlotType.Light);
             ConnectPoses.Add(node.GetComponent<Slot>());
         }
-        foreach (var item in Data.Blocked)
+        foreach (var item in LevelDatas[DataIndex].Blocked)
         {
             GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
             node.GetComponent<Slot>().SetType(SlotType.Blocked);
             Blocked.Add(node.GetComponent<Slot>());
         }
-        Z.LS.PieceController.Init();
-        isInitialized = true;
+        ClearCurrentPath();
+        DataIndex++;
     }
+
     public void CheckConnected()
     {
         gridController.ColumnRowCheck();
+        List<List<GridNode>> paths = FindConnection();
+        // print($"found {paths.Count}");
+        foreach (var path in paths)
+        {
+            foreach (var node in path)
+            {
+
+                node.GetComponent<Slot>().DestoyObjWithShine();
+
+            }
+        }
+
+        if (paths.Count > 0)
+        {
+            SetGridByData();
+        }
+    }
+    public void ClearCurrentPath()
+    {
+        gridController.ColumnRowCheck();
+        List<List<GridNode>> paths = FindConnection();
+        // print($"found {paths.Count}");
+        foreach (var path in paths)
+        {
+            foreach (var node in path)
+            {
+                node.GetComponent<Slot>().DestroyWithNicoin();
+            }
+        }
+    }
+
+    private List<List<GridNode>> FindConnection()
+    {
         List<List<GridNode>> paths = new List<List<GridNode>>();
         foreach (var Light in ConnectPoses)
         {
@@ -60,15 +111,7 @@ public class Level : MonoBehaviour
                 }
             }
         }
-        // print($"found {paths.Count}");
-        foreach (var path in paths)
-        {
-            foreach (var node in path)
-            {
 
-                node.GetComponent<Slot>().DestoyObj();
-
-            }
-        }
+        return paths;
     }
 }

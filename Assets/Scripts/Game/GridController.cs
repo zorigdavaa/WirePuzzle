@@ -347,6 +347,14 @@ public class GridController : MonoBehaviour
         return true;
     }
 
+    public void ResetSlotTypes()
+    {
+        foreach (var item in Slots)
+        {
+            item.SetType(SlotType.None);
+        }
+    }
+
     // private List<Vector3> RetracePath(GridNode startNode, GridNode endNode)
     // {
     //     List<Vector3> path = new List<Vector3>();

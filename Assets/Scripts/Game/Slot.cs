@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ZPackage;
 
 public class Slot : MonoBehaviour
 {
@@ -42,17 +43,17 @@ public class Slot : MonoBehaviour
 
     public bool IsFree()
     {
-        return Obj == null;
+        return Obj == null && type != SlotType.Blocked;
     }
 
-    public void DestoyObj()
+    public void DestoyObjWithShine()
     {
         if (Obj != null)
         {
             Destroy(Obj.gameObject, 1f);
-            Debug.Log("destoyed");
-            Obj.transform.GetComponent<Node>().Shine();
+            Obj.GetComponent<Node>().Shine();
             Obj = null;
+            Z.GM.Coin++;
         }
     }
 
@@ -60,10 +61,20 @@ public class Slot : MonoBehaviour
     {
         if (Obj != null)
         {
-
-            Debug.Log("destoyed");
-            Obj.transform.GetComponent<Node>().Scale();
+            Obj.GetComponent<Node>().Scale();
             Obj = null;
+            Z.GM.Coin++;
+        }
+    }
+
+    internal void DestroyWithNicoin()
+    {
+        if (Obj != null)
+        {
+
+            Destroy(Obj.gameObject);
+            Obj = null;
+            Z.GM.Coin++;
         }
     }
 }
