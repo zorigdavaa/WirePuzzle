@@ -54,6 +54,10 @@ public class Slot : MonoBehaviour
     {
         if (Obj != null)
         {
+            if (type == SlotType.Light)
+            {
+                TypeModels[(int)type].GetComponent<Bulb>().TurnOn();
+            }
             Destroy(Obj.gameObject, 1f);
             Obj.GetComponent<Node>().Shine();
             Obj = null;
