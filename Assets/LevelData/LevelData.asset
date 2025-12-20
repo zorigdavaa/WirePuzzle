@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79ad2a8b752b4db8b3b318c370d4e09, type: 3}
   m_Name: LevelData
   m_EditorClassIdentifier: 
-  ChargerPoses:
-  - {x: 0, y: 0}
-  ConnectPoses:
-  - {x: 5, y: 5}
+  LevelConnectDatas:
+  - ChargerPoses:
+    - {x: 0, y: 0}
+    ConnectPoses:
+    - {x: 1, y: 0}
+    Blocked: []
+  X: 0
+  Y: 0
+  Pieces: []

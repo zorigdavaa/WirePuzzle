@@ -6,7 +6,7 @@ using ZPackage;
 
 public class Level : MonoBehaviour
 {
-    public List<LevelData> LevelDatas;
+    public LevelData LevelDatas;
     public GridController gridController;
     public List<Slot> ChargerPoses;
     public List<Slot> ConnectPoses;
@@ -26,7 +26,7 @@ public class Level : MonoBehaviour
 
     private void SetGridByData()
     {
-        if (DataIndex >= LevelDatas.Count)
+        if (DataIndex >= LevelDatas.LevelConnectDatas.Count)
         {
             Z.GM.LevelComplete(this, 0);
             return;
@@ -35,19 +35,19 @@ public class Level : MonoBehaviour
         ConnectPoses.Clear();
         ChargerPoses.Clear();
         Blocked.Clear();
-        foreach (var item in LevelDatas[DataIndex].ChargerPoses)
+        foreach (var item in LevelDatas.LevelConnectDatas[DataIndex].ChargerPoses)
         {
             GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
             node.GetComponent<Slot>().SetType(SlotType.Power);
             ChargerPoses.Add(node.GetComponent<Slot>());
         }
-        foreach (var item in LevelDatas[DataIndex].ConnectPoses)
+        foreach (var item in LevelDatas.LevelConnectDatas[DataIndex].ConnectPoses)
         {
             GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
             node.GetComponent<Slot>().SetType(SlotType.Light);
             ConnectPoses.Add(node.GetComponent<Slot>());
         }
-        foreach (var item in LevelDatas[DataIndex].Blocked)
+        foreach (var item in LevelDatas.LevelConnectDatas[DataIndex].Blocked)
         {
             GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
             node.GetComponent<Slot>().SetType(SlotType.Blocked);
