@@ -237,7 +237,7 @@ namespace ZPackage
 
         public void ReloadGround()
         {
-            Floor[] tiles = FindObjectsOfType<Floor>();
+            Floor[] tiles = FindObjectsByType<Floor>(FindObjectsSortMode.None);
             foreach (var tile in tiles)
             {
                 Destroy(tile.gameObject);

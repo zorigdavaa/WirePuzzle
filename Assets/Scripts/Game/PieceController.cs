@@ -7,7 +7,7 @@ using UnityUtilities;
 using ZPackage;
 using Random = UnityEngine.Random;
 
-public class PieceController : MonoBehaviour
+public class PieceController : Mb
 {
     public List<Piece> PiecesPf;
     // public List<Piece> PiecesPfCopy;
@@ -142,7 +142,18 @@ public class PieceController : MonoBehaviour
         var placeAblePieces = Z.LS.CurrentLevel.gridController.GetNeededPiece(valuesList);
         if (placeAblePieces.Count == 0)
         {
-            Z.GM.GameOver(this, EventArgs.Empty);
+            if (IsPlaying)
+            {
+                // if player draggin item it will go to its slot first
+                foreach (var item in CurrentSlotObj)
+                {
+                    if (item.Value != null)
+                    {
+                        GotoSlot(item.Value);
+                    }
+                }
+                Z.GM.GameOver(this, EventArgs.Empty);
+            }
         }
         gameOverCoroutine = null;
     }

@@ -768,7 +768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
+  m_RenderShadows: 0
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
@@ -956,6 +956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb8686923b44ca4af55ed899e95835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mp: {x: 0, y: 0, z: 0}
   PiecesPf:
   - {fileID: 4637198259214586481, guid: ee973e26ac1ab43c3a4d11e7cbce1dce, type: 3}
   - {fileID: 4637198259214586481, guid: 316ce36a8867d40919423bfe2ffd8091, type: 3}
