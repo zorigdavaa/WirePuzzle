@@ -13,6 +13,7 @@ public class PieceController : MonoBehaviour
     // public List<Piece> PiecesPfCopy;
     public List<Transform> pieceSlots;
     public List<Material> pieceMaterials;
+    public GameObject singlePiecePF;
     // public RandomBag<Piece> bag;
     public Dictionary<Transform, Piece> CurrentSlotObj = new Dictionary<Transform, Piece>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -135,5 +136,8 @@ public class PieceController : MonoBehaviour
         }
     }
 
-
+    public GameObject GetSinglePiece()
+    {
+        return singlePiecePF;
+    }
 }

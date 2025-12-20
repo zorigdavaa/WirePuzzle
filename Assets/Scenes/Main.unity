@@ -304,8 +304,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 109974084}
-  - component: {fileID: 109974085}
   - component: {fileID: 109974086}
+  - component: {fileID: 109974087}
   m_Layer: 0
   m_Name: URPPostProcess
   m_TagString: Untagged
@@ -328,7 +328,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 963194228}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &109974085
+--- !u!114 &109974086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109974083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8188777f874fb35479c83268e0cf50c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &109974087
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -345,18 +357,6 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 39aeacffdcfd8804ca6ec4f4c1d2171a, type: 2}
---- !u!114 &109974086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109974083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8188777f874fb35479c83268e0cf50c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &152273323 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 863592464475527039, guid: cbb42e47389d446f687385ee4b6a42fc, type: 3}
@@ -678,7 +678,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.129361, g: 0.16037738, b: 0.15158182, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 1
   m_FOVAxisMode: 0
@@ -991,6 +991,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 5b8438e905a484226b8408510e620b6c, type: 2}
   - {fileID: 2100000, guid: 09f374a3352b14af6b6bbacf8e9b83c9, type: 2}
   - {fileID: 2100000, guid: e50e1cf6494094aee9a0040aabc53469, type: 2}
+  singlePiecePF: {fileID: 7835654537060563356, guid: 738a0c49e978a409ca0ed4f5b971a37d, type: 3}
 --- !u!1 &1101162092
 GameObject:
   m_ObjectHideFlags: 0

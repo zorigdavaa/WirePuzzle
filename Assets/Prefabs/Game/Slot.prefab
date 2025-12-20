@@ -202,8 +202,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 175468645257660005}
-  - {fileID: 6726702569153209622}
   - {fileID: 7669255506522077660}
+  - {fileID: 6726702569153209622}
   - {fileID: 2411344691674383324}
   m_Father: {fileID: 8687491582788897389}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -768,8 +768,8 @@ MonoBehaviour:
   Obj: {fileID: 0}
   TypeModels:
   - {fileID: 7447875882069818181}
-  - {fileID: 8899574583191181689}
   - {fileID: 7000137069108700006}
+  - {fileID: 8899574583191181689}
   - {fileID: 4119014996123180602}
 --- !u!114 &-2294417995361781202
 MonoBehaviour:
@@ -797,6 +797,10 @@ PrefabInstance:
     - target: {fileID: 6153364543155146141, guid: bab83795f3d5248d2a1487bcb1467343, type: 3}
       propertyPath: m_Name
       value: Bulb
+      objectReference: {fileID: 0}
+    - target: {fileID: 6153364543155146141, guid: bab83795f3d5248d2a1487bcb1467343, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8340257240629785074, guid: bab83795f3d5248d2a1487bcb1467343, type: 3}
       propertyPath: m_LocalPosition.x
@@ -863,7 +867,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 152536b5f97b14582a66ef00320e3b02, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 152536b5f97b14582a66ef00320e3b02, type: 3}
       propertyPath: m_LocalPosition.y

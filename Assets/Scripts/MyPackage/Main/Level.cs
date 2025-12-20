@@ -115,4 +115,14 @@ public class Level : MonoBehaviour
 
         return paths;
     }
+
+    internal void FillSlot(Vector3 position)
+    {
+        GridNode node = gridController.Grid.GetGridObject(position);
+        if (node && node.Slot.IsFree())
+        {
+            var instPiece = Instantiate(Z.LS.PieceController.GetSinglePiece(), node.transform.position, Quaternion.identity);
+            gridController.Place(instPiece.GetComponent<Piece>(), new List<Slot> { node.Slot });
+        }
+    }
 }

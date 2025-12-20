@@ -9,6 +9,7 @@ public class Slot : MonoBehaviour
     public SlotType type;
     public Node Obj; //ISlotObj type
     public List<GameObject> TypeModels;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +26,7 @@ public class Slot : MonoBehaviour
             DestroyWithNoCoin();
         }
         this.type = type;
-        TypeModels[(int)type].gameObject.SetActive(true);
+        GetModel().gameObject.SetActive(true);
     }
 
     public void SetObj(ISlotObj slotObj)
@@ -56,7 +57,7 @@ public class Slot : MonoBehaviour
         {
             if (type == SlotType.Light)
             {
-                TypeModels[(int)type].GetComponent<Bulb>().TurnOn();
+                GetModel().GetComponent<Bulb>().TurnOn();
             }
             Destroy(Obj.gameObject, 1f);
             Obj.GetComponent<Node>().Shine();
@@ -74,7 +75,10 @@ public class Slot : MonoBehaviour
             Z.GM.Coin++;
         }
     }
-
+    public GameObject GetModel()
+    {
+        return TypeModels[(int)type];
+    }
     internal void DestroyWithNoCoin()
     {
         if (Obj != null)

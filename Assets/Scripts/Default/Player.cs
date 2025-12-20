@@ -9,6 +9,7 @@ using UnityEngine.Pool;
 using ZPackage.Utility;
 using System.Linq;
 using Dreamteck.Splines;
+using UnityEngine.InputSystem;
 
 public class Player : Mb
 {
@@ -29,13 +30,58 @@ public class Player : Mb
     [SerializeField] bool pressed = false;
     public float holdTime = 0.1f;    // how long before it becomes a "hold"
     float moveHeight = 0.5f;     // height while dragging
+    private static InputAction fKeyAction;
+    public static InputAction FKeyAction
+    {
+        get
+        {
+            if (fKeyAction == null)
+            {
+                fKeyAction = InputSystem.actions.FindAction("F");
+                fKeyAction.Enable();
+            }
+            return fKeyAction;
+        }
+    }
+    private static InputAction mouse2Action;
+    public static InputAction Mouse2Action
+    {
+        get
+        {
+            if (mouse2Action == null)
+            {
+                mouse2Action = InputSystem.actions.FindAction("Mouse2");
+                mouse2Action.Enable();
+            }
+            return mouse2Action;
+        }
+    }
+
     void Start()
     {
         gridController = FindAnyObjectByType<GridController>();
         pieceController = FindAnyObjectByType<PieceController>();
-        cam = FindAnyObjectByType<Camera>();
+        cam = Camera.main;
         rayMask = LayerMask.GetMask("Piece");
+        InitializeKeyActions();
         // computer = Instantiate(ConnectPF, transform.position, Quaternion.identity).GetComponent<SplineComputer>();
+    }
+
+    private void InitializeKeyActions()
+    {
+        FKeyAction.performed += ctx =>
+        {
+            Debug.Log("F key pressed - CheckConnected called");
+            Z.LS.CurrentLevel.CheckConnected();
+        };
+        Mouse2Action.performed += ctx =>
+        {
+            Debug.Log("Mouse2 button pressed - ClearLine called");
+            Vector3 mousePos = MP;
+            mousePos.z = cam.transform.position.y;
+            Vector3 worldMouse = cam.ScreenToWorldPoint(mousePos).SwitchYZ();
+            Z.LS.CurrentLevel.FillSlot(worldMouse);
+        };
     }
 
     // Update is called once per frame

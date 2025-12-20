@@ -33,8 +33,9 @@ public class Node : MonoBehaviour, ISlotObj
             float duration = 1.0f;
             MeshRenderer render = GetComponent<MeshRenderer>();
             // Color initColor = render.material.color;
-            Color initColor = Color.cyan;
+            Color initColor = Color.white;
             Color toColor = Color.yellow;
+            render.material.EnableKeyword("_EMISSION");
 
             while (time < duration)
             {
