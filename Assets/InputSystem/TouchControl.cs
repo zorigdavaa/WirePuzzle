@@ -145,6 +145,15 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""B"",
+                    ""type"": ""Button"",
+                    ""id"": ""8732d933-fdc9-4425-a4c8-134eea7a1be1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -213,6 +222,17 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
                     ""action"": ""Mouse2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""352c8268-15cf-49e0-bd94-44c6f8ec2320"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""B"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -227,6 +247,7 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
         m_Player_E = m_Player.FindAction("E", throwIfNotFound: true);
         m_Player_F = m_Player.FindAction("F", throwIfNotFound: true);
         m_Player_Mouse2 = m_Player.FindAction("Mouse2", throwIfNotFound: true);
+        m_Player_B = m_Player.FindAction("B", throwIfNotFound: true);
     }
 
     ~@TouchControl()
@@ -313,6 +334,7 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_E;
     private readonly InputAction m_Player_F;
     private readonly InputAction m_Player_Mouse2;
+    private readonly InputAction m_Player_B;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -348,6 +370,10 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Mouse2".
         /// </summary>
         public InputAction @Mouse2 => m_Wrapper.m_Player_Mouse2;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/B".
+        /// </summary>
+        public InputAction @B => m_Wrapper.m_Player_B;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -392,6 +418,9 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
             @Mouse2.started += instance.OnMouse2;
             @Mouse2.performed += instance.OnMouse2;
             @Mouse2.canceled += instance.OnMouse2;
+            @B.started += instance.OnB;
+            @B.performed += instance.OnB;
+            @B.canceled += instance.OnB;
         }
 
         /// <summary>
@@ -421,6 +450,9 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
             @Mouse2.started -= instance.OnMouse2;
             @Mouse2.performed -= instance.OnMouse2;
             @Mouse2.canceled -= instance.OnMouse2;
+            @B.started -= instance.OnB;
+            @B.performed -= instance.OnB;
+            @B.canceled -= instance.OnB;
         }
 
         /// <summary>
@@ -503,5 +535,12 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMouse2(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "B" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnB(InputAction.CallbackContext context);
     }
 }

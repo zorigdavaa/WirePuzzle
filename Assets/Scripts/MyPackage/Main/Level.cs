@@ -74,7 +74,7 @@ public class Level : MonoBehaviour
 
         if (paths.Count > 0)
         {
-            Invoke(nameof(SetGridByData), 1f);
+            Invoke(nameof(SetGridByData), 1.5f);
             // SetGridByData();
         }
     }
@@ -123,6 +123,15 @@ public class Level : MonoBehaviour
         {
             var instPiece = Instantiate(Z.LS.PieceController.GetSinglePiece(), node.transform.position, Quaternion.identity);
             gridController.Place(instPiece.GetComponent<Piece>(), new List<Slot> { node.Slot });
+        }
+    }
+
+    internal void Block(Vector3 worldMouse)
+    {
+        GridNode node = gridController.Grid.GetGridObject(worldMouse);
+        if (node)
+        {
+            node.Slot.SetType(SlotType.Blocked);
         }
     }
 }

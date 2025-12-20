@@ -56,12 +56,29 @@ public class Player : Mb
             return mouse2Action;
         }
     }
+    private static InputAction bKeyAction;
+    public static InputAction BKeyAction
+    {
+        get
+        {
+            if (bKeyAction == null)
+            {
+                bKeyAction = InputSystem.actions.FindAction("B");
+                bKeyAction.Enable();
+            }
+            return bKeyAction;
+        }
+    }
+    void OnEnable()
+    {
+        cam = FindFirstObjectByType<Camera>();
+    }
 
     void Start()
     {
         gridController = FindAnyObjectByType<GridController>();
         pieceController = FindAnyObjectByType<PieceController>();
-        cam = Camera.main;
+        // cam = Camera.main;
         rayMask = LayerMask.GetMask("Piece");
         InitializeKeyActions();
         // computer = Instantiate(ConnectPF, transform.position, Quaternion.identity).GetComponent<SplineComputer>();
@@ -81,6 +98,14 @@ public class Player : Mb
             mousePos.z = cam.transform.position.y;
             Vector3 worldMouse = cam.ScreenToWorldPoint(mousePos).SwitchYZ();
             Z.LS.CurrentLevel.FillSlot(worldMouse);
+        };
+        BKeyAction.performed += ctx =>
+        {
+            Debug.Log("B key pressed - ClearCurrentPath called");
+            Vector3 mousePos = MP;
+            mousePos.z = cam.transform.position.y;
+            Vector3 worldMouse = cam.ScreenToWorldPoint(mousePos).SwitchYZ();
+            Z.LS.CurrentLevel.Block(worldMouse);
         };
     }
 

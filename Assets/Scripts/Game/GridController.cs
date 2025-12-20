@@ -286,7 +286,7 @@ public class GridController : MonoBehaviour
                 Vector2 checkPos = basePos + offset;
                 GridNode checkNode = Grid.GetGridObject((int)checkPos.x, (int)checkPos.y);
 
-                if (checkNode == null || !checkNode.GetComponent<Slot>().IsFree())
+                if (checkNode == null || !checkNode.Slot.IsFree())
                 {
                     canPlaceHere = false;
                     break;

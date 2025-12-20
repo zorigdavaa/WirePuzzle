@@ -50,6 +50,10 @@ public class Slot : MonoBehaviour
     {
         return Obj == null && type != SlotType.Blocked;
     }
+    public bool IsFilled()
+    {
+        return Obj != null;
+    }
 
     public void DestoyObjWithShine()
     {
@@ -64,6 +68,7 @@ public class Slot : MonoBehaviour
             Obj = null;
             Z.GM.Coin++;
         }
+        Debug.Log(GetComponent<GridNode>().X + " " + GetComponent<GridNode>().Y + " destroyed");
     }
 
     public void ScaledDestroy()
