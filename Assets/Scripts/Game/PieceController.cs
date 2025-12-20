@@ -1,7 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityUtilities;
 using ZPackage;
@@ -128,12 +128,23 @@ public class PieceController : MonoBehaviour
         {
             Populate();
         }
+        if (gameOverCoroutine != null)
+        {
+            StopCoroutine(gameOverCoroutine);
+        }
+        gameOverCoroutine = StartCoroutine(CheckGameOver());
+    }
+    Coroutine gameOverCoroutine;
+    private IEnumerator CheckGameOver()
+    {
+        yield return new WaitForSeconds(2f);
         var valuesList = CurrentSlotObj.Values.Where(x => x != null).ToList();
         var placeAblePieces = Z.LS.CurrentLevel.gridController.GetNeededPiece(valuesList);
         if (placeAblePieces.Count == 0)
         {
             Z.GM.GameOver(this, EventArgs.Empty);
         }
+        gameOverCoroutine = null;
     }
 
     public GameObject GetSinglePiece()
