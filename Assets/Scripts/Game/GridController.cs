@@ -17,8 +17,10 @@ public class GridController : MonoBehaviour
     public int Y;
     [SerializeField] float toBottom = 0.3f;
 
-    public void Init()
+    public void Init(int X , int Y)
     {
+        this.X = X;
+        this.Y = Y;
         Slots.Clear();
         CreateGrid();
     }

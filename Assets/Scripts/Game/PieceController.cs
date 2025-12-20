@@ -10,6 +10,7 @@ using Random = UnityEngine.Random;
 public class PieceController : Mb
 {
     public List<Piece> PiecesPf;
+    public List<Piece> LevelPiecesPf;
     // public List<Piece> PiecesPfCopy;
     public List<Transform> pieceSlots;
     public List<Material> pieceMaterials;
@@ -37,7 +38,8 @@ public class PieceController : Mb
     {
         // var newItems = bag.PopRandomItems(pieceSlots.Count);
         var newItems = new List<Piece>();
-        List<Piece> neededPieces = Z.LS.CurrentLevel.gridController.GetNeededPiece(PiecesPf);
+        // List<Piece> neededPieces = Z.LS.CurrentLevel.gridController.GetNeededPiece(PiecesPf);
+        List<Piece> neededPieces = Z.GridController.GetNeededPiece(PiecesPf);
         for (int i = 0; i < pieceSlots.Count; i++)
         {
             if (i < 2 && neededPieces.Count > 0)
@@ -139,7 +141,7 @@ public class PieceController : Mb
     {
         yield return new WaitForSeconds(2f);
         var valuesList = CurrentSlotObj.Values.Where(x => x != null).ToList();
-        var placeAblePieces = Z.LS.CurrentLevel.gridController.GetNeededPiece(valuesList);
+        var placeAblePieces = Z.GridController.GetNeededPiece(valuesList);
         if (placeAblePieces.Count == 0)
         {
             if (IsPlaying)
@@ -161,5 +163,10 @@ public class PieceController : Mb
     public GameObject GetSinglePiece()
     {
         return singlePiecePF;
+    }
+
+    internal void SetLevelPieces(List<Piece> pieces)
+    {
+        LevelPiecesPf = pieces;
     }
 }

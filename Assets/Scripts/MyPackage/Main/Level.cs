@@ -17,11 +17,7 @@ public class Level : MonoBehaviour
     // public slot
     void Start()
     {
-        gridController = transform.GetComponentInChildren<GridController>();
-        gridController.Init();
-        SetGridByData();
-        Z.LS.PieceController.Init();
-        isInitialized = true;
+
     }
 
     private void SetGridByData()
@@ -133,5 +129,15 @@ public class Level : MonoBehaviour
         {
             node.Slot.SetType(SlotType.Blocked);
         }
+    }
+
+    public void SetData(LevelData levelData)
+    {
+        LevelDatas = levelData;
+        gridController = transform.GetComponentInChildren<GridController>();
+        gridController.Init(LevelDatas.X, LevelDatas.Y);
+        SetGridByData();
+        Z.PieceController.Init();
+        isInitialized = true;
     }
 }

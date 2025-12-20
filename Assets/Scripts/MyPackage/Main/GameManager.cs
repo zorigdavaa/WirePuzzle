@@ -146,7 +146,8 @@ namespace ZPackage
             QualitySettings.vSyncCount = 0;  // VSync must be disabled
             Application.targetFrameRate = 60;
             CreateGitIgnore();
-            Z.LS.InitializeLevel();
+            // Z.LS.InitializeLevel();
+            Z.LS.InitializeLevelWithData();
         }
         void PopulatePlayerPrefs()
         {

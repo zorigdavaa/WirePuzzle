@@ -155,7 +155,7 @@
             "id": "a64b4113-959c-4856-9028-9b31754347ad",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "QQ",
                     "type": "Button",
                     "id": "6f83157d-41e8-4fc4-994c-a37f20171e38",
                     "expectedControlType": "",
@@ -168,11 +168,11 @@
                 {
                     "name": "",
                     "id": "9b13f66d-da13-490f-a13d-41cd69b9b7d8",
-                    "path": "",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "QQ",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

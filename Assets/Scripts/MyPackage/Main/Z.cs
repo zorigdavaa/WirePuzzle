@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
 
 namespace ZPackage
@@ -10,6 +11,28 @@ namespace ZPackage
         public static CameraController CamC => CameraController.Instance;
         public static CanvasManager CanM => CanvasManager.Instance;
         public static LevelSpawner LS => LevelSpawner.Instance;
+        public static GridController GridController
+        {
+            get
+            {
+                if (LevelSpawner.Instance)
+                {
+                    return LevelSpawner.Instance.CurrentLevel.gridController;
+                }
+                return LevelEditor.Instance.CurrentLevel.gridController;
+            }
+        }
+        public static PieceController PieceController
+        {
+            get
+            {
+                if (LevelSpawner.Instance)
+                {
+                    return LevelSpawner.Instance.PieceController;
+                }
+                return LevelEditor.Instance.PieceController;
+            }
+        }
         private static Player _player;
         public static Player Player
         {

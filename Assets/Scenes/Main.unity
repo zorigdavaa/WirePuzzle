@@ -976,6 +976,7 @@ MonoBehaviour:
   - {fileID: 4637198259214586481, guid: 4dada780bea9f43b888bbfc4c24358c2, type: 3}
   - {fileID: 4637198259214586481, guid: 13b987bd605d74430a3d9cf6e682e50d, type: 3}
   - {fileID: 4637198259214586481, guid: 738a0c49e978a409ca0ed4f5b971a37d, type: 3}
+  LevelPiecesPf: []
   pieceSlots:
   - {fileID: 152273323}
   - {fileID: 655702407}
@@ -1105,6 +1106,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 863592464475527039, guid: cbb42e47389d446f687385ee4b6a42fc, type: 3}
   m_PrefabInstance: {fileID: 1283717762}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1317399480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1317399482}
+  - component: {fileID: 1317399481}
+  m_Layer: 0
+  m_Name: Input
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1317399481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317399480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 3c246447829a64a869cce6736520e443, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!4 &1317399482
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317399480}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: 0, z: -0.37371206}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1365797686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1343,7 +1406,10 @@ MonoBehaviour:
   Levels:
   - {fileID: 8007251741595809806, guid: 74df424c6e254401592506c780177136, type: 3}
   - {fileID: 8007251741595809806, guid: 0c38c028b8fc044c78b38d2e55543b26, type: 3}
+  LevelDatas:
+  - {fileID: 11400000, guid: 44fa71a4976014086bddf5835f83d078, type: 2}
   PieceController: {fileID: 0}
+  BaseLevel: {fileID: 5477432975358735235, guid: 5bbf9648fc19245bb9e681bd592e8c84, type: 3}
   CurrentLevel: {fileID: 0}
 --- !u!1001 &1903593998
 PrefabInstance:
@@ -1646,3 +1712,4 @@ SceneRoots:
   - {fileID: 963194228}
   - {fileID: 998107824}
   - {fileID: 1924241068}
+  - {fileID: 1317399482}

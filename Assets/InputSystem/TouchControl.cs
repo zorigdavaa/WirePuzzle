@@ -241,7 +241,7 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
             ""id"": ""a64b4113-959c-4856-9028-9b31754347ad"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""QQ"",
                     ""type"": ""Button"",
                     ""id"": ""6f83157d-41e8-4fc4-994c-a37f20171e38"",
                     ""expectedControlType"": """",
@@ -254,11 +254,11 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9b13f66d-da13-490f-a13d-41cd69b9b7d8"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""QQ"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -278,7 +278,7 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
         m_Player_B = m_Player.FindAction("B", throwIfNotFound: true);
         // LevelEditor
         m_LevelEditor = asset.FindActionMap("LevelEditor", throwIfNotFound: true);
-        m_LevelEditor_Newaction = m_LevelEditor.FindAction("New action", throwIfNotFound: true);
+        m_LevelEditor_QQ = m_LevelEditor.FindAction("QQ", throwIfNotFound: true);
     }
 
     ~@TouchControl()
@@ -522,7 +522,7 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
     // LevelEditor
     private readonly InputActionMap m_LevelEditor;
     private List<ILevelEditorActions> m_LevelEditorActionsCallbackInterfaces = new List<ILevelEditorActions>();
-    private readonly InputAction m_LevelEditor_Newaction;
+    private readonly InputAction m_LevelEditor_QQ;
     /// <summary>
     /// Provides access to input actions defined in input action map "LevelEditor".
     /// </summary>
@@ -535,9 +535,9 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
         /// </summary>
         public LevelEditorActions(@TouchControl wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "LevelEditor/Newaction".
+        /// Provides access to the underlying input action "LevelEditor/QQ".
         /// </summary>
-        public InputAction @Newaction => m_Wrapper.m_LevelEditor_Newaction;
+        public InputAction @QQ => m_Wrapper.m_LevelEditor_QQ;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -564,9 +564,9 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_LevelEditorActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_LevelEditorActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @QQ.started += instance.OnQQ;
+            @QQ.performed += instance.OnQQ;
+            @QQ.canceled += instance.OnQQ;
         }
 
         /// <summary>
@@ -578,9 +578,9 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
         /// <seealso cref="LevelEditorActions" />
         private void UnregisterCallbacks(ILevelEditorActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @QQ.started -= instance.OnQQ;
+            @QQ.performed -= instance.OnQQ;
+            @QQ.canceled -= instance.OnQQ;
         }
 
         /// <summary>
@@ -679,11 +679,11 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
     public interface ILevelEditorActions
     {
         /// <summary>
-        /// Method invoked when associated input action "New action" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "QQ" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnQQ(InputAction.CallbackContext context);
     }
 }

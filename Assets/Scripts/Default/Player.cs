@@ -86,6 +86,8 @@ public class Player : Mb
 
     private void InitializeKeyActions()
     {
+        var input = FindAnyObjectByType<PlayerInput>();
+        input.SwitchCurrentActionMap("Player");
         FKeyAction.performed += ctx =>
         {
             Debug.Log("F key pressed - CheckConnected called");

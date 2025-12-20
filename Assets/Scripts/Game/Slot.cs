@@ -94,6 +94,12 @@ public class Slot : MonoBehaviour
             // Z.GM.Coin++;
         }
     }
+
+    public void ChangeTypeToNext()
+    {
+        int nextType = ((int)type + 1) % Enum.GetNames(typeof(SlotType)).Length;
+        SetType((SlotType)nextType);
+    }
 }
 
 public enum SlotType
