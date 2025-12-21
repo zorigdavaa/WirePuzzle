@@ -140,4 +140,25 @@ public class Level : MonoBehaviour
         Z.PieceController.Init();
         isInitialized = true;
     }
+    public LevelConnectData GetConnectData()
+    {
+        LevelConnectData levelConnectData = new LevelConnectData();
+        foreach (var item in gridController.Slots)
+        {
+            GridNode node = item.GetComponent<GridNode>();
+            if (item.type == SlotType.Light)
+            {
+                levelConnectData.ConnectPoses.Add(new Vector2(node.X, node.Y));
+            }
+            else if (item.type == SlotType.Power)
+            {
+                levelConnectData.ChargerPoses.Add(new Vector2(node.X, node.Y));
+            }
+            else if (item.type == SlotType.Blocked)
+            {
+                levelConnectData.Blocked.Add(new Vector2(node.X, node.Y));
+            }
+        }
+        return levelConnectData;
+    }
 }

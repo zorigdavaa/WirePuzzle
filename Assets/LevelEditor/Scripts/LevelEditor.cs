@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using ZPackage;
 
@@ -8,11 +11,15 @@ public class LevelEditor : GenericSingleton<LevelEditor>
     public Level CurrentLevel;
     public LevelData LevelData;
     public PieceController PieceController;
-    public void CreateLevel()
+    const string folder = "Assets/Levels";
+    const string baseName = "Level_";
+    public void CreateLevel(int x, int y)
     {
         CurrentLevel = Instantiate(BaseLevel);
         LevelData = ScriptableObject.CreateInstance<LevelData>();
         LevelData.DefaultValues();
+        LevelData.X = x;
+        LevelData.Y = y;
         CurrentLevel.SetData(LevelData);
         PieceController.SetLevelPieces(LevelData.Pieces);
         // PieceController.Init();
@@ -25,7 +32,27 @@ public class LevelEditor : GenericSingleton<LevelEditor>
 
     public void SaveLevel()
     {
-        throw new NotImplementedException();
+        if (LevelData != null)
+        {
+            List<LevelConnectData> connectDatas = new List<LevelConnectData>();
+            
+            LevelData.Pieces = PieceController.LevelPiecesPf;
+            string path = AssetDatabase.GetAssetPath(LevelData);
+            if (string.IsNullOrEmpty(path))
+            {
+                path = GetNextPath();
+                Save(LevelData, path);
+            }
+            else
+            {
+                EditorUtility.SetDirty(LevelData);
+                AssetDatabase.SaveAssets();
+            }
+        }
+        else
+        {
+            Debug.LogError("No Level Data to Save");
+        }
     }
     public int PositionIndex = 0;
     public void Before()
@@ -49,15 +76,31 @@ public class LevelEditor : GenericSingleton<LevelEditor>
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static void Save(LevelData data, string path)
     {
-
+        AssetDatabase.CreateAsset(data, path);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
     }
-
-    // Update is called once per frame
-    void Update()
+    public static string GetNextPath()
     {
 
+
+        if (!AssetDatabase.IsValidFolder(folder))
+        {
+            AssetDatabase.CreateFolder("Assets", "Levels");
+        }
+
+        int index = 1;
+        string path;
+
+        do
+        {
+            path = $"{folder}/{baseName}{index:D3}.asset";
+            index++;
+        }
+        while (AssetDatabase.AssetPathExists(path));
+
+        return path;
     }
 }

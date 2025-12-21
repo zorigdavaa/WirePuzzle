@@ -10,6 +10,8 @@ public class LECanvas : MonoBehaviour
     public Button SaveLevelButton;
     public Button BeforeButton;
     public Button NextButton;
+    public Slider XSlider;
+    public Slider YSlider;
     LevelEditor LevelEditor;
     public Camera cam;
     void OnEnable()
@@ -42,7 +44,7 @@ public class LECanvas : MonoBehaviour
     {
         CreateLevelButton.onClick.AddListener(() =>
         {
-            LevelEditor.CreateLevel();
+            LevelEditor.CreateLevel((int)XSlider.value, (int)YSlider.value);
             CreateLevelButton.transform.parent.gameObject.SetActive(false);
         });
         LoadLevelButton.onClick.AddListener(() =>
