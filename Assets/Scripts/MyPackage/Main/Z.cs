@@ -46,6 +46,18 @@ namespace ZPackage
             }
         }
 
+        public static bool IsPlaying
+        {
+            get
+            {
+                if (GM && GM.State == GameState.Playing)
+                {
+                    return true;
+
+                }
+                return false;
+            }
+        }
     }
 }
 

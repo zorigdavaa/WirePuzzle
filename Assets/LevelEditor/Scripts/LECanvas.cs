@@ -3,13 +3,15 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using ZPackage;
 
-public class LECanvas : MonoBehaviour
+public class LECanvas : GenericSingleton<LECanvas>
 {
     public Button CreateLevelButton;
     public Button LoadLevelButton;
     public Button SaveLevelButton;
     public Button BeforeButton;
     public Button NextButton;
+    public Button SaveCurrent;
+    public Button AddCurrent;
     public Slider XSlider;
     public Slider YSlider;
     LevelEditor LevelEditor;
@@ -64,6 +66,14 @@ public class LECanvas : MonoBehaviour
         NextButton.onClick.AddListener(() =>
         {
             LevelEditor.Next();
+        });
+        SaveCurrent.onClick.AddListener(() =>
+        {
+            LevelEditor.SaveCurrent();
+        });
+        AddCurrent.onClick.AddListener(() =>
+        {
+            LevelEditor.AddCurrent();
         });
     }
 

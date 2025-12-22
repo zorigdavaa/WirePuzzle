@@ -11,8 +11,40 @@ public class LevelEditor : GenericSingleton<LevelEditor>
     public Level CurrentLevel;
     public LevelData LevelData;
     public PieceController PieceController;
-    const string folder = "Assets/Levels";
+    const string folder = "Assets/LevelData";
     const string baseName = "Level_";
+    public int CDIndex = 0;
+    void Start()
+    {
+
+    }
+    public void CheckLDCButtons()
+    {
+        if (LevelData == null || LevelData.LevelConnectDatas.Count == 0)
+        {
+            LECanvas.Instance.BeforeButton.gameObject.SetActive(false);
+            LECanvas.Instance.NextButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            if (CDIndex == 0)
+            {
+                LECanvas.Instance.BeforeButton.gameObject.SetActive(false);
+                LECanvas.Instance.NextButton.gameObject.SetActive(true);
+            }
+            else if (CDIndex == LevelData.LevelConnectDatas.Count - 1)
+            {
+                LECanvas.Instance.BeforeButton.gameObject.SetActive(true);
+                LECanvas.Instance.NextButton.gameObject.SetActive(false);
+            }
+            else
+            {
+                LECanvas.Instance.BeforeButton.gameObject.SetActive(true);
+                LECanvas.Instance.NextButton.gameObject.SetActive(true);
+            }
+        }
+
+    }
     public void CreateLevel(int x, int y)
     {
         CurrentLevel = Instantiate(BaseLevel);
@@ -34,19 +66,20 @@ public class LevelEditor : GenericSingleton<LevelEditor>
     {
         if (LevelData != null)
         {
-            List<LevelConnectData> connectDatas = new List<LevelConnectData>();
-            
+            SaveCurrent();
             LevelData.Pieces = PieceController.LevelPiecesPf;
             string path = AssetDatabase.GetAssetPath(LevelData);
             if (string.IsNullOrEmpty(path))
             {
                 path = GetNextPath();
                 Save(LevelData, path);
+                Debug.LogError($"Saved Data to {path}");
             }
             else
             {
                 EditorUtility.SetDirty(LevelData);
                 AssetDatabase.SaveAssets();
+                Debug.LogError($"Updated Data to {path}");
             }
         }
         else
@@ -54,26 +87,31 @@ public class LevelEditor : GenericSingleton<LevelEditor>
             Debug.LogError("No Level Data to Save");
         }
     }
-    public int PositionIndex = 0;
+
     public void Before()
     {
-        if (CurrentLevel && CurrentLevel.ConnectPoses.Count > 0)
+        Debug.Log("Before is clicked");
+        if (CurrentLevel && LevelData.LevelConnectDatas.Count > 0)
         {
-            PositionIndex--;
-            if (PositionIndex < 0)
+            CDIndex--;
+            if (CDIndex < 0)
             {
-                PositionIndex = 0;
+                CDIndex = 0;
             }
+            CurrentLevel.SetGridByData(CDIndex);
         }
+        CheckLDCButtons();
     }
 
     public void Next()
     {
-        if (CurrentLevel && CurrentLevel.ConnectPoses.Count < PositionIndex)
+        Debug.Log("Next is clicked");
+        if (CurrentLevel && CurrentLevel && CDIndex < LevelData.LevelConnectDatas.Count - 1)
         {
-            PositionIndex++;
-
+            CDIndex++;
+            CurrentLevel.SetGridByData(CDIndex);
         }
+        CheckLDCButtons();
     }
 
     public static void Save(LevelData data, string path)
@@ -102,5 +140,29 @@ public class LevelEditor : GenericSingleton<LevelEditor>
         while (AssetDatabase.AssetPathExists(path));
 
         return path;
+    }
+
+    public void SaveCurrent()
+    {
+        Debug.Log("Save is clicked");
+        if (LevelData && CurrentLevel)
+        {
+            LevelConnectData connectData = CurrentLevel.GetConnectData();
+            LevelData.LevelConnectDatas[CDIndex] = connectData;
+        }
+        CheckLDCButtons();
+    }
+
+    internal void AddCurrent()
+    {
+        Debug.Log("Add is clicked");
+        SaveCurrent();
+        if (CurrentLevel && LevelData)
+        {
+            CDIndex = LevelData.LevelConnectDatas.Count;
+            LevelData.LevelConnectDatas.Add(new());
+            CurrentLevel.ClearConnects();
+        }
+        CheckLDCButtons();
     }
 }

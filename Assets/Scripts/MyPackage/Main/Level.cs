@@ -22,35 +22,43 @@ public class Level : MonoBehaviour
 
     private void SetGridByData()
     {
-        if (DataIndex >= LevelDatas.LevelConnectDatas.Count)
+        SetGridByData(DataIndex);
+        DataIndex++;
+    }
+    public void SetGridByData(int Index)
+    {
+        if (Index >= LevelDatas.LevelConnectDatas.Count)
         {
-            Z.GM.LevelComplete(this, 0);
+            if (Z.IsPlaying)
+            {
+                Z.GM.LevelComplete(this, 0);
+            }
             return;
         }
         gridController.ResetSlotTypes();
         ConnectPoses.Clear();
         ChargerPoses.Clear();
         Blocked.Clear();
-        foreach (var item in LevelDatas.LevelConnectDatas[DataIndex].ChargerPoses)
+        foreach (var item in LevelDatas.LevelConnectDatas[Index].ChargerPoses)
         {
             GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
             node.GetComponent<Slot>().SetType(SlotType.Power);
             ChargerPoses.Add(node.GetComponent<Slot>());
         }
-        foreach (var item in LevelDatas.LevelConnectDatas[DataIndex].ConnectPoses)
+        foreach (var item in LevelDatas.LevelConnectDatas[Index].ConnectPoses)
         {
             GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
             node.GetComponent<Slot>().SetType(SlotType.Light);
             ConnectPoses.Add(node.GetComponent<Slot>());
         }
-        foreach (var item in LevelDatas.LevelConnectDatas[DataIndex].Blocked)
+        foreach (var item in LevelDatas.LevelConnectDatas[Index].Blocked)
         {
             GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
             node.GetComponent<Slot>().SetType(SlotType.Blocked);
             Blocked.Add(node.GetComponent<Slot>());
         }
         ClearCurrentPath();
-        DataIndex++;
+
     }
 
     public void CheckConnected()
@@ -160,5 +168,14 @@ public class Level : MonoBehaviour
             }
         }
         return levelConnectData;
+    }
+
+    public void ClearConnects()
+    {
+        foreach (var item in gridController.Slots)
+        {
+            GridNode node = item.GetComponent<GridNode>();
+            node.Slot.SetType(SlotType.None);
+        }
     }
 }

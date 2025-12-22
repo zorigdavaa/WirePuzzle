@@ -7,4 +7,10 @@ public class LevelConnectData
     public List<Vector2> ChargerPoses;
     public List<Vector2> ConnectPoses;
     public List<Vector2> Blocked;
+    public LevelConnectData()
+    {
+        ChargerPoses = new();
+        ConnectPoses = new();
+        Blocked = new();
+    }
 }
