@@ -70,13 +70,16 @@ public class Level : MonoBehaviour
         {
             foreach (var node in path)
             {
-
+                if (node.Slot.type == SlotType.Light)
+                {
+                    ConnectPoses.Remove(node.Slot);
+                }
                 node.GetComponent<Slot>().DestoyObjWithShine();
 
             }
         }
 
-        if (paths.Count > 0)
+        if (paths.Count > 0 && ConnectPoses.Count == 0)
         {
             Invoke(nameof(SetGridByData), 1.5f);
             // SetGridByData();
@@ -91,7 +94,7 @@ public class Level : MonoBehaviour
         {
             foreach (var node in path)
             {
-                node.GetComponent<Slot>().DestroyWithNoCoin();
+                node.Slot.DestroyWithNoCoin();
             }
         }
     }
