@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -17,11 +19,21 @@ public class Bulb : MonoBehaviour
         // Renderer = gameObject.GetComponentInChildren<MeshRenderer>();
     }
     [ContextMenu("Turn On")]
-    public void TurnOn()
+    public void TurnOn(bool on)
     {
-        Light.enabled = true;
-        Renderer.material.EnableKeyword("_EMISSION");
-        // Implementation for turning on the bulb
-        Debug.Log("Bulb is turned on.");
+        if (on)
+        {
+            Light.enabled = true;
+            Renderer.material.EnableKeyword("_EMISSION");
+            // Implementation for turning on the bulb
+            Debug.Log("Bulb is turned on.");
+        }
+        else
+        {
+            Light.enabled = false;
+            Renderer.material.DisableKeyword("_EMISSION");
+        }
+
+
     }
 }

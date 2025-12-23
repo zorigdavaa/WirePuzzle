@@ -61,14 +61,24 @@ public class Slot : MonoBehaviour
         {
             if (type == SlotType.Light)
             {
-                GetModel().GetComponent<Bulb>().TurnOn();
+                // GetModel().GetComponent<Bulb>().TurnOn();
+                StartCoroutine(LightCor());
             }
             Destroy(Obj.gameObject, 1f);
             Obj.GetComponent<Node>().Shine();
             Obj = null;
-            Z.GM.Coin++;
         }
         Debug.Log(GetComponent<GridNode>().X + " " + GetComponent<GridNode>().Y + " destroyed");
+    }
+
+    IEnumerator LightCor()
+    {
+        Bulb bulb = GetModel().GetComponent<Bulb>();
+        bulb.TurnOn(true);
+        CoinManager.Instance.GetCoin(transform.position);
+        yield return new WaitForSeconds(3);
+        bulb.TurnOn(false);
+        SetType(SlotType.None);
     }
 
     public void ScaledDestroy()
