@@ -5,7 +5,7 @@ using ZPackage;
 
 public class CoinManager : GenericSingleton<CoinManager>
 {
-    public GameObject CoinPF;
+    // public GameObject CoinPF;
     Camera cam;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,7 +15,7 @@ public class CoinManager : GenericSingleton<CoinManager>
 
     public void GetCoin(Vector3 worldPos)
     {
-        GameObject Coin = Instantiate(CoinPF, worldPos + Vector3.up, Quaternion.identity, transform);
+        GameObject Coin = Instantiate(Prefabs.Instance.CoinPF, worldPos + Vector3.up, Quaternion.identity, transform);
         StartCoroutine(LocalCor(Coin));
 
     }

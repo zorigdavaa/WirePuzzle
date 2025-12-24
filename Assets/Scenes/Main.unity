@@ -1106,6 +1106,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 863592464475527039, guid: cbb42e47389d446f687385ee4b6a42fc, type: 3}
   m_PrefabInstance: {fileID: 1283717762}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1285662950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1285662951}
+  - component: {fileID: 1285662952}
+  m_Layer: 0
+  m_Name: Pfs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1285662951
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285662950}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1285662952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285662950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4260031788ad548d1ba1100955093eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mp: {x: 0, y: 0, z: 0}
+  FireWork: {fileID: 2058194415668385605, guid: 2907aed3fb823453799b4568fb645f2a, type: 3}
+  CoinPF: {fileID: 5076642301061011366, guid: 787b15b9028cc6745a08b25a6b26da90, type: 3}
 --- !u!1 &1308671105
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,7 +1198,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mp: {x: 0, y: 0, z: 0}
-  CoinPF: {fileID: 5076642301061011366, guid: 787b15b9028cc6745a08b25a6b26da90, type: 3}
 --- !u!1 &1317399480
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,3 +1806,4 @@ SceneRoots:
   - {fileID: 1924241068}
   - {fileID: 1317399482}
   - {fileID: 1308671106}
+  - {fileID: 1285662951}
