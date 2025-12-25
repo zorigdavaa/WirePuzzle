@@ -17,7 +17,7 @@ public class GridController : MonoBehaviour
     public int Y;
     [SerializeField] float toBottom = 0.3f;
 
-    public void Init(int X , int Y)
+    public void Init(int X, int Y)
     {
         this.X = X;
         this.Y = Y;
@@ -305,6 +305,8 @@ public class GridController : MonoBehaviour
     public void ColumnRowCheck()
     {
         HashSet<GridNode> destroyedNodes = new HashSet<GridNode>();
+        HashSet<int> xLinesToDestroy = new HashSet<int>();
+        HashSet<int> yLinesToDestroy = new HashSet<int>();
         for (int x = 0; x < X; x++)
         {
             if (!IsColumnFull(x))
@@ -314,6 +316,7 @@ public class GridController : MonoBehaviour
             {
                 destroyedNodes.Add(Grid.GetGridObject(x, y));
             }
+            xLinesToDestroy.Add(x);
         }
         for (int y = 0; y < Y; y++)
         {
@@ -324,10 +327,19 @@ public class GridController : MonoBehaviour
             {
                 destroyedNodes.Add(Grid.GetGridObject(x, y));
             }
+            yLinesToDestroy.Add(y);
         }
         foreach (var item in destroyedNodes)
         {
             item.Slot.ScaledDestroy();
+        }
+        foreach (var item in xLinesToDestroy)
+        {
+            Prefabs.Instance.CreateFireWork(item, RowCol.Row, Grid);
+        }
+        foreach (var item in yLinesToDestroy)
+        {
+            Prefabs.Instance.CreateFireWork(item, RowCol.Column, Grid);
         }
     }
     bool IsColumnFull(int x)
