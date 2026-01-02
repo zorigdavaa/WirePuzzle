@@ -104,7 +104,7 @@ public class Player : Mb
         FKeyAction.performed += ctx =>
         {
             Debug.Log("F key pressed - CheckConnected called");
-            Z.LS.CurrentLevel.CheckConnected();
+            Z.LS.CurrentLevel.CheckColumnsRows();
         };
         Mouse2Action.performed += ctx =>
         {
@@ -200,7 +200,7 @@ public class Player : Mb
                             gridController.Place(selectedPiece, freeSlots);
                             pieceController.NotifyPlaced(selectedPiece);
                             Destroy(selectedPiece.gameObject);
-                            Z.LS.CurrentLevel.CheckConnected();
+                            Z.LS.CurrentLevel.CheckColumnsRows();
                         }
                         else
                         {

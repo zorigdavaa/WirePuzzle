@@ -302,7 +302,7 @@ public class GridController : MonoBehaviour
         return false;
     }
 
-    public void ColumnRowCheck()
+    public IEnumerator ColumnRowCheck()
     {
         // HashSet<GridNode> destroyedNodes = new HashSet<GridNode>();
         HashSet<int> xLinesToDestroy = new HashSet<int>();
@@ -333,14 +333,25 @@ public class GridController : MonoBehaviour
         // {
         //     item.Slot.ScaledDestroy();
         // }
+        int Counter = 0;
         foreach (var item in xLinesToDestroy)
         {
-            Prefabs.Instance.CreateFireWork(item, RowCol.Column, Grid);
+            Counter++;
+            Prefabs.Instance.CreateFireWork(item, RowCol.Column, Grid, () =>
+            {
+                Counter--;
+            });
         }
         foreach (var item in yLinesToDestroy)
         {
-            Prefabs.Instance.CreateFireWork(item, RowCol.Row, Grid);
+            Counter++;
+            Prefabs.Instance.CreateFireWork(item, RowCol.Row, Grid, () =>
+            {
+                Counter--;
+            });
         }
+        yield return new WaitUntil(() => Counter == 0);
+        // onComplete?.Invoke();
     }
     bool IsColumnFull(int x)
     {

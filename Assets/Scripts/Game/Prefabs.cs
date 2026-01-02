@@ -10,7 +10,7 @@ public class Prefabs : GenericSingleton<Prefabs>
     public GameObject FireWork;
     public GameObject CoinPF;
 
-    public void CreateFireWork(int item, RowCol type, Grid<GridNode> grid)
+    public void CreateFireWork(int item, RowCol type, Grid<GridNode> grid, Action onComplete = null)
     {
         Debug.Log("Firework");
         // Vector3 initialPos;
@@ -73,6 +73,16 @@ public class Prefabs : GenericSingleton<Prefabs>
                     DestroyNodes[nodeIndex].Slot.ScaledDestroy();
                     nodeIndex++;
                 }
+                yield return null;
+            }
+            onComplete?.Invoke();
+            time = 0;
+            while (time < duration)
+            {
+                time += Time.deltaTime;
+                t = time / duration;
+                fireWork.transform.position = Vector3.Lerp(fireWork.transform.position, tagetPos + direction, t);
+                fireWork.transform.localScale = Vector3.Lerp(fireWork.transform.localScale, Vector3.zero, t);
                 yield return null;
             }
             Destroy(fireWork);

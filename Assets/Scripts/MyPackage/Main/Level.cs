@@ -60,10 +60,19 @@ public class Level : MonoBehaviour
         ClearCurrentPath();
 
     }
+    public void CheckColumnsRows()
+    {
+        StartCoroutine(NewMethod());
+
+        IEnumerator NewMethod()
+        {
+            yield return gridController.ColumnRowCheck();
+            CheckConnected();
+        }
+    }
 
     public void CheckConnected()
     {
-        gridController.ColumnRowCheck();
         List<List<GridNode>> paths = FindConnection();
         // print($"found {paths.Count}");
         foreach (var path in paths)
