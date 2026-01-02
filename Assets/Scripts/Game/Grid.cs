@@ -92,7 +92,7 @@ public class Grid<TGridObject>
 
     public Vector3 GetWorldPosition(int x, int y)
     {
-        return new Vector3(x, y) * cellSize + originPosition;
+        return new Vector3(x, y) * cellSize + originPosition + new Vector3(cellSize, cellSize) * .5f;
     }
     // public Vector3 GetWorldPlacement(int x, int y)
     // {

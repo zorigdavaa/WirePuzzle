@@ -55,6 +55,7 @@ namespace ZPackage
         ///<summary>Input.GetMouseButtonUp(0)</summary>
         // public static bool IsUp => Input.GetMouseButtonUp(0);
         public static bool IsUp => ClickAction.WasReleasedThisFrame();
+        public static bool IsDownMouse2 => Mouse.current?.rightButton.wasReleasedThisFrame ?? false;
 
         ///<summary>Input.mousePosition</summary>
         public static Vector3 MP => Pointer.current.position.ReadValue();

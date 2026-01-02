@@ -181,4 +181,17 @@ public class Level : MonoBehaviour
             node.Slot.SetType(SlotType.None);
         }
     }
+
+    internal void TestGrid(Vector3 worldMouse)
+    {
+        GridNode node = gridController.Grid.GetGridObject(worldMouse);
+        if (node)
+        {
+            Prefabs.Instance.CreateFireWork(node.X, RowCol.Column, gridController.Grid);
+            // GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            // Destroy(cube, 3);
+            // Vector3 position = gridController.Grid.GetWorldPosition(node.X, node.Y).SwitchYZ();
+            // cube.transform.position = position;
+        }
+    }
 }

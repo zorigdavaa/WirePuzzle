@@ -69,6 +69,19 @@ public class Player : Mb
             return bKeyAction;
         }
     }
+    private static InputAction testGridAction;
+    public static InputAction TestGridAction
+    {
+        get
+        {
+            if (testGridAction == null)
+            {
+                testGridAction = InputSystem.actions.FindAction("TestGrid");
+                testGridAction.Enable();
+            }
+            return testGridAction;
+        }
+    }
     void OnEnable()
     {
         cam = FindFirstObjectByType<Camera>();
@@ -108,6 +121,14 @@ public class Player : Mb
             mousePos.z = cam.transform.position.y;
             Vector3 worldMouse = cam.ScreenToWorldPoint(mousePos).SwitchYZ();
             Z.LS.CurrentLevel.Block(worldMouse);
+        };
+        TestGridAction.performed += ctx =>
+        {
+            Debug.Log("Test Grid key pressed");
+            Vector3 mousePos = MP;
+            mousePos.z = cam.transform.position.y;
+            Vector3 worldMouse = cam.ScreenToWorldPoint(mousePos).SwitchYZ();
+            Z.LS.CurrentLevel.TestGrid(worldMouse);
         };
     }
 
@@ -191,6 +212,10 @@ public class Player : Mb
                 pressed = false;
                 isDragging = false;
                 selectedPiece = null;
+            }
+            if (IsDownMouse2)
+            {
+                // gridController.Grid.getwo
             }
         }
 

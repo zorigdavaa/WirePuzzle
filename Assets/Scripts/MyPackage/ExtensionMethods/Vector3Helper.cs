@@ -115,12 +115,13 @@ namespace ZPackage
             tmp.x = x;
             return tmp;
         }
-        public static Vector3 SwitchYZ(this Vector3 vector)
+        public static Vector3 SwitchYZ(this Vector3 v)
         {
-            float tmp = vector.y;
-            vector.y = vector.z;
-            vector.z = tmp;
-            return vector;
+            // float tmp = vector.y;
+            // vector.y = vector.z;
+            // vector.z = tmp;
+            // return vector;
+            return new Vector3(v.x, v.z, v.y);
         }
 
         public static Vector3 ChangeY(this Vector3 vector, float y)

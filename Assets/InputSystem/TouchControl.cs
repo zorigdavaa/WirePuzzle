@@ -102,7 +102,7 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Q"",
+                    ""name"": ""TestGrid"",
                     ""type"": ""Button"",
                     ""id"": ""2c2cd16a-7c2c-4cde-8587-d76493a3ea13"",
                     ""expectedControlType"": """",
@@ -175,7 +175,7 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Q"",
+                    ""action"": ""TestGrid"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -270,7 +270,7 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Click = m_Player.FindAction("Click", throwIfNotFound: true);
-        m_Player_Q = m_Player.FindAction("Q", throwIfNotFound: true);
+        m_Player_TestGrid = m_Player.FindAction("TestGrid", throwIfNotFound: true);
         m_Player_W = m_Player.FindAction("W", throwIfNotFound: true);
         m_Player_E = m_Player.FindAction("E", throwIfNotFound: true);
         m_Player_F = m_Player.FindAction("F", throwIfNotFound: true);
@@ -361,7 +361,7 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Click;
-    private readonly InputAction m_Player_Q;
+    private readonly InputAction m_Player_TestGrid;
     private readonly InputAction m_Player_W;
     private readonly InputAction m_Player_E;
     private readonly InputAction m_Player_F;
@@ -383,9 +383,9 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Click => m_Wrapper.m_Player_Click;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Q".
+        /// Provides access to the underlying input action "Player/TestGrid".
         /// </summary>
-        public InputAction @Q => m_Wrapper.m_Player_Q;
+        public InputAction @TestGrid => m_Wrapper.m_Player_TestGrid;
         /// <summary>
         /// Provides access to the underlying input action "Player/W".
         /// </summary>
@@ -435,9 +435,9 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
             @Click.started += instance.OnClick;
             @Click.performed += instance.OnClick;
             @Click.canceled += instance.OnClick;
-            @Q.started += instance.OnQ;
-            @Q.performed += instance.OnQ;
-            @Q.canceled += instance.OnQ;
+            @TestGrid.started += instance.OnTestGrid;
+            @TestGrid.performed += instance.OnTestGrid;
+            @TestGrid.canceled += instance.OnTestGrid;
             @W.started += instance.OnW;
             @W.performed += instance.OnW;
             @W.canceled += instance.OnW;
@@ -467,9 +467,9 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
             @Click.started -= instance.OnClick;
             @Click.performed -= instance.OnClick;
             @Click.canceled -= instance.OnClick;
-            @Q.started -= instance.OnQ;
-            @Q.performed -= instance.OnQ;
-            @Q.canceled -= instance.OnQ;
+            @TestGrid.started -= instance.OnTestGrid;
+            @TestGrid.performed -= instance.OnTestGrid;
+            @TestGrid.canceled -= instance.OnTestGrid;
             @W.started -= instance.OnW;
             @W.performed -= instance.OnW;
             @W.canceled -= instance.OnW;
@@ -629,12 +629,12 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnClick(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Q" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "TestGrid" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnQ(InputAction.CallbackContext context);
+        void OnTestGrid(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "W" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

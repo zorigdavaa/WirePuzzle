@@ -304,7 +304,7 @@ public class GridController : MonoBehaviour
 
     public void ColumnRowCheck()
     {
-        HashSet<GridNode> destroyedNodes = new HashSet<GridNode>();
+        // HashSet<GridNode> destroyedNodes = new HashSet<GridNode>();
         HashSet<int> xLinesToDestroy = new HashSet<int>();
         HashSet<int> yLinesToDestroy = new HashSet<int>();
         for (int x = 0; x < X; x++)
@@ -312,10 +312,10 @@ public class GridController : MonoBehaviour
             if (!IsColumnFull(x))
                 continue;
 
-            for (int y = 0; y < Y; y++)
-            {
-                destroyedNodes.Add(Grid.GetGridObject(x, y));
-            }
+            // for (int y = 0; y < Y; y++)
+            // {
+            //     destroyedNodes.Add(Grid.GetGridObject(x, y));
+            // }
             xLinesToDestroy.Add(x);
         }
         for (int y = 0; y < Y; y++)
@@ -323,23 +323,23 @@ public class GridController : MonoBehaviour
             if (!IsRowFull(y))
                 continue;
 
-            for (int x = 0; x < X; x++)
-            {
-                destroyedNodes.Add(Grid.GetGridObject(x, y));
-            }
+            // for (int x = 0; x < X; x++)
+            // {
+            //     destroyedNodes.Add(Grid.GetGridObject(x, y));
+            // }
             yLinesToDestroy.Add(y);
         }
-        foreach (var item in destroyedNodes)
-        {
-            item.Slot.ScaledDestroy();
-        }
+        // foreach (var item in destroyedNodes)
+        // {
+        //     item.Slot.ScaledDestroy();
+        // }
         foreach (var item in xLinesToDestroy)
         {
-            Prefabs.Instance.CreateFireWork(item, RowCol.Row, Grid);
+            Prefabs.Instance.CreateFireWork(item, RowCol.Column, Grid);
         }
         foreach (var item in yLinesToDestroy)
         {
-            Prefabs.Instance.CreateFireWork(item, RowCol.Column, Grid);
+            Prefabs.Instance.CreateFireWork(item, RowCol.Row, Grid);
         }
     }
     bool IsColumnFull(int x)

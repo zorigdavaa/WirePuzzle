@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using ZPackage;
+using Random = UnityEngine.Random;
 
 public class Prefabs : GenericSingleton<Prefabs>
 {
@@ -11,38 +13,72 @@ public class Prefabs : GenericSingleton<Prefabs>
     public void CreateFireWork(int item, RowCol type, Grid<GridNode> grid)
     {
         Debug.Log("Firework");
-        Vector3 initialPos;
-        Vector3 tagetPos;
-        if (type == RowCol.Row)
+        // Vector3 initialPos;
+        // Vector3 tagetPos;
+        List<GridNode> DestroyNodes = new();
+        if (type == RowCol.Column)
         {
-            initialPos = grid.GetWorldPosition(item, 0).SwitchYZ();
-            tagetPos = grid.GetWorldPosition(item, grid.GetWidth()).SwitchYZ();
+            // initialPos = grid.GetWorldPosition(item, 0).SwitchYZ();
+            // tagetPos = grid.GetWorldPosition(item, grid.GetWidth()).SwitchYZ();
+            for (int i = 0; i < grid.GetWidth(); i++)
+            {
+                DestroyNodes.Add(grid.GetGridObject(item, i));
+            }
         }
         else
         {
-            initialPos = grid.GetWorldPosition(0, item).SwitchYZ();
-            tagetPos = grid.GetWorldPosition(grid.GetHeight(), 0).SwitchYZ();
+            // initialPos = grid.GetWorldPosition(0, item).SwitchYZ();
+            // tagetPos = grid.GetWorldPosition(grid.GetHeight(), item).SwitchYZ();
+            for (int i = 0; i < grid.GetHeight(); i++)
+            {
+                DestroyNodes.Add(grid.GetGridObject(i, item));
+            }
         }
-        Vector3 direction = tagetPos - initialPos;
-        GameObject fireWork = Instantiate(FireWork, initialPos, Quaternion.LookRotation(direction), transform);
-        StartCoroutine(LocalCor(fireWork, tagetPos));
-    }
-    IEnumerator LocalCor(GameObject firework, Vector3 target)
-    {
-        float t = 0f;
-        float time = 0f;
-        float duration = 1.0f;
-        Vector3 initial = transform.position;
-
-        while (time < duration)
+        if (Random.value > 0.5f)
         {
-            time += Time.deltaTime;
-            t = time / duration;
-            firework.transform.position = Vector3.Lerp(initial, target, t);
-            yield return null;
+            // Vector3 temp = initialPos;
+            // initialPos = tagetPos;
+            // tagetPos = temp;
+            DestroyNodes.Reverse();
         }
-        Destroy(firework);
+        // Debug.Log($"{initialPos}  and {tagetPos}");
+        // Vector3 direction = tagetPos - initialPos;
+        Vector3 direction = (DestroyNodes[^1].transform.position - DestroyNodes[0].transform.position).normalized;
+        Vector3 initialPos = DestroyNodes[0].transform.position;
+        Vector3 tagetPos = DestroyNodes[^1].transform.position;
+        GameObject fireWork = Instantiate(FireWork, Vector3.zero, Quaternion.LookRotation(direction), transform);
+        // fireWork.transform.position = initialPos;
+        StartCoroutine(LocalCor());
+        IEnumerator LocalCor()
+        {
+            float t;
+            float time = 0f;
+            float duration = 0.3f;
+
+            DestroyNodes[0].Slot.ScaledDestroy();
+            int nodeIndex = 1;
+            // Vector3 initial = transform.position;
+            while (time < duration)
+            {
+                time += Time.deltaTime;
+                t = time / duration;
+                fireWork.transform.position = Vector3.Lerp(initialPos, tagetPos, t);
+                // DestroyNodes[0].Slot.ScaledDestroy();
+                // DestroyNodes.RemoveAt(0);
+
+                int targetIndex = Mathf.FloorToInt(t * DestroyNodes.Count);
+
+                while (nodeIndex <= targetIndex && nodeIndex < DestroyNodes.Count)
+                {
+                    DestroyNodes[nodeIndex].Slot.ScaledDestroy();
+                    nodeIndex++;
+                }
+                yield return null;
+            }
+            Destroy(fireWork);
+        }
     }
+
 }
 
 public enum RowCol
