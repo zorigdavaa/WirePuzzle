@@ -64,7 +64,7 @@ public class CanvasManager : GenericSingleton<CanvasManager>
     }
     void OnDisable()
     {
-        GameManager.Instance.StateChanged -= OnGameStateChange;
+        // GameManager.Instance.StateChanged -= OnGameStateChange;
         // GameController.OnRevive -= DeactivateAllGameOver;
         // GameController.OnTryAgain -= DeactivateAllGameOver;
     }
@@ -148,7 +148,7 @@ public class CanvasManager : GenericSingleton<CanvasManager>
 
     public void UpdateLevelText()
     {
-        levelText.text = $"Level: {GameManager.Instance.Level}";
+        // levelText.text = $"Level: {GameManager.Instance.Level}";
     }
 
     public bool TryRemoveCoin(int amount)
