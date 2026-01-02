@@ -73,7 +73,7 @@ namespace ZPackage
             {
                 level = value;
                 PlayerPrefs.SetInt("level", value);
-                Z.CanM.HudLevel(value.ToString());
+                // Z.CanM.HudLevel(value.ToString());
                 // if (progressBar)
                 // {
                 //     progressBar.UpdateLevel(value);
@@ -89,7 +89,7 @@ namespace ZPackage
 
                 coin = value;
                 PlayerPrefs.SetInt("coin", value);
-                Z.CanM.HudCoin(value.ToString());
+                // Z.CanM.HudCoin(value.ToString());
             }
         }
         private int score;
@@ -101,22 +101,10 @@ namespace ZPackage
 
                 score = value;
                 // PlayerPrefs.SetInt("score", value);
-                Z.CanM.HudScore(value.ToString());
+                // Z.CanM.HudScore(value.ToString());
             }
         }
 
-        private int throwCount;
-        public int ThrowCount
-        {
-            get { return throwCount; }
-            set
-            {
-
-                throwCount = value;
-                // PlayerPrefs.SetInt("throwCount", value);
-                Z.CanM.HudThrowCount(value.ToString());
-            }
-        }
         private int nextLvlScore;
         public int NextLvlScore
         {
@@ -154,7 +142,7 @@ namespace ZPackage
             Coin = PlayerPrefs.GetInt("coin", 0);
             Level = PlayerPrefs.GetInt("level", 1);
             // Score = 0;
-            ThrowCount = 3;
+            // ThrowCount = 3;
             NextLvlScore = PlayerPrefs.GetInt("nextLevelScore", 20);
             // Score = PlayerPrefs.GetInt("score",0);
         }
@@ -235,18 +223,13 @@ namespace ZPackage
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-
-        public void ReloadGround()
+        public void TryAgain()
         {
-            Floor[] tiles = FindObjectsByType<Floor>(FindObjectsSortMode.None);
-            foreach (var tile in tiles)
-            {
-                Destroy(tile.gameObject);
-            }
-            //event subscribe hiij bolno
-            // groundSpawner.setNextSpawnPoint(Vector3.zero);
-            // groundSpawner.SpawnTiles();
-            StartGame();
+            throw new NotImplementedException();
+        }
+        public void Revive()
+        {
+
         }
         void GAStartEvent()
         {
@@ -277,6 +260,8 @@ namespace ZPackage
             GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, "level_" + Level.ToString("00000"), Score);
 #endif
         }
+
+
         #endregion
 
     }

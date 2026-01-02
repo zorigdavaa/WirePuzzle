@@ -1,0 +1,5 @@
+<dependencies>
+    <androidPackages>
+        <androidPackage spec="androidx.datastore:datastore-preferences:1.0.0" />
+    </androidPackages>
+</dependencies>
