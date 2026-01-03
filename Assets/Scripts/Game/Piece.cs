@@ -11,6 +11,7 @@ public class Piece : Mb
     Coroutine rotCor;
     Transform pieceSlot;
     List<Node> Nodes;
+    public int Order = 0;
     public void Rotate()
     {
         if (rotCor == null)
@@ -90,7 +91,7 @@ public class Piece : Mb
         else
         {
             // transform.localScale = Vector3.one * 0.5f;
-            transform.localScale = Vector3.one * Z.CurrentLevel.LevelDatas.PieceScale;
+            transform.localScale = Vector3.one * Z.CurrentLevel.Data.PieceScale;
         }
     }
 

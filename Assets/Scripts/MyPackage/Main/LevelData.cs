@@ -31,7 +31,7 @@ public class LevelData : ScriptableObject
         };
         X = 3;
         Y = 3;
-        Pieces = new List<Piece>();
+        Pieces = new();
         CamDistance = 10;
         PieceScale = 0.5f;
     }

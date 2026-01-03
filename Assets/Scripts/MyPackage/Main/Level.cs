@@ -6,7 +6,7 @@ using ZPackage;
 
 public class Level : MonoBehaviour
 {
-    public LevelData LevelDatas;
+    public LevelData Data;
     public GridController gridController;
     public List<Slot> ChargerPoses;
     public List<Slot> ConnectPoses;
@@ -27,7 +27,7 @@ public class Level : MonoBehaviour
     }
     public void SetGridByData(int Index)
     {
-        if (Index >= LevelDatas.LevelConnectDatas.Count)
+        if (Index >= Data.LevelConnectDatas.Count)
         {
             if (Z.IsPlaying)
             {
@@ -39,19 +39,19 @@ public class Level : MonoBehaviour
         ConnectPoses.Clear();
         ChargerPoses.Clear();
         Blocked.Clear();
-        foreach (var item in LevelDatas.LevelConnectDatas[Index].ChargerPoses)
+        foreach (var item in Data.LevelConnectDatas[Index].ChargerPoses)
         {
             GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
             node.GetComponent<Slot>().SetType(SlotType.Power);
             ChargerPoses.Add(node.GetComponent<Slot>());
         }
-        foreach (var item in LevelDatas.LevelConnectDatas[Index].ConnectPoses)
+        foreach (var item in Data.LevelConnectDatas[Index].ConnectPoses)
         {
             GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
             node.GetComponent<Slot>().SetType(SlotType.Light);
             ConnectPoses.Add(node.GetComponent<Slot>());
         }
-        foreach (var item in LevelDatas.LevelConnectDatas[Index].Blocked)
+        foreach (var item in Data.LevelConnectDatas[Index].Blocked)
         {
             GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
             node.GetComponent<Slot>().SetType(SlotType.Blocked);
@@ -153,11 +153,14 @@ public class Level : MonoBehaviour
 
     public void SetData(LevelData levelData)
     {
-        LevelDatas = levelData;
+        Data = levelData;
         gridController = transform.GetComponentInChildren<GridController>();
-        gridController.Init(LevelDatas.X, LevelDatas.Y);
+        gridController.Init(Data.X, Data.Y);
         SetGridByData();
-        Z.PieceController.Init();
+        if (GameManager.Instance)
+        {
+            Z.PieceController.Init();
+        }
         isInitialized = true;
     }
     public LevelConnectData GetConnectData()

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79ad2a8b752b4db8b3b318c370d4e09, type: 3}
+  m_Name: Level_003
+  m_EditorClassIdentifier: 
+  LevelConnectDatas:
+  - ChargerPoses:
+    - {x: 0, y: 0}
+    ConnectPoses:
+    - {x: 1, y: 5}
+    Blocked:
+    - {x: 0, y: 2}
+    - {x: 1, y: 2}
+    - {x: 2, y: 2}
+    - {x: 3, y: 2}
+  X: 6
+  Y: 6
+  Pieces:
+  - {fileID: 4637198259214586481, guid: f058e06d5724d4756bd88b088f978947, type: 3}
+  - {fileID: 4637198259214586481, guid: bcad98116691842e285cb9adf0b512a6, type: 3}
+  - {fileID: 4637198259214586481, guid: e444358da8c90448ab16e9ff5c533e44, type: 3}
+  - {fileID: 4637198259214586481, guid: 12659d09d839c4668922b3717f821b67, type: 3}
+  CamDistance: 10
+  PieceScale: 0.5

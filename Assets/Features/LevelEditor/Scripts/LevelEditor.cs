@@ -11,6 +11,7 @@ public class LevelEditor : GenericSingleton<LevelEditor>
     public Level CurrentLevel;
     public LevelData LevelData;
     public PieceController PieceController;
+    public LEPieces LEPieces;
     const string folder = "Assets/LevelData";
     const string baseName = "Level_";
     public int CDIndex = 0;
@@ -53,13 +54,20 @@ public class LevelEditor : GenericSingleton<LevelEditor>
         LevelData.X = x;
         LevelData.Y = y;
         CurrentLevel.SetData(LevelData);
-        PieceController.SetLevelPieces(LevelData.Pieces);
+        // PieceController.SetLevelPieces(LevelData.Pieces);
+        // LEPieces
         // PieceController.Init();
+        LEPieces.Instance.Init();
     }
 
     public void LoadLevel()
     {
-        throw new NotImplementedException();
+        if (LevelData != null)
+        {
+            CurrentLevel = Instantiate(BaseLevel);
+            CurrentLevel.SetData(LevelData);
+            LEPieces.Instance.Init();
+        }
     }
 
     public void SaveLevel()
@@ -67,7 +75,8 @@ public class LevelEditor : GenericSingleton<LevelEditor>
         if (LevelData != null)
         {
             SaveCurrent();
-            LevelData.Pieces = PieceController.LevelPiecesPf;
+            // LevelData.Pieces = PieceController.LevelPiecesPf;
+            LevelData.Pieces = LEPieces.Instance.GetGreenPieces();
             string path = AssetDatabase.GetAssetPath(LevelData);
             if (string.IsNullOrEmpty(path))
             {

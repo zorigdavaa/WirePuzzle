@@ -26,7 +26,7 @@ namespace ZPackage
         }
         public void InitializeLevelWithData()
         {
-            LevelDatas = Resources.LoadAll<LevelData>("LevelData").ToList();
+            // LevelDatas = Resources.LoadAll<LevelData>("LevelData").ToList();
             PieceController = FindAnyObjectByType<PieceController>();
             int levelIndex = (GameManager.Instance.Level - 1) % Levels.Count;
             LevelData levelData = LevelDatas[levelIndex];
