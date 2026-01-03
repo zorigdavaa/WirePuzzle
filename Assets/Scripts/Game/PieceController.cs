@@ -67,10 +67,11 @@ public class PieceController : Mb
             newObj.StartDrag(false);
             materialIndex++;
         }
-        if (neededPieces.Count == 0)
-        {
-            Z.GM.GameOver(this, EventArgs.Empty);
-        }
+        //This one has bug due to destroyed by rocked which is coroutine
+        // if (neededPieces.Count == 0)
+        // {
+        //     Z.GM.GameOver(this, EventArgs.Empty);
+        // }
     }
 
     internal void GotoSlot(Piece selectedObject)

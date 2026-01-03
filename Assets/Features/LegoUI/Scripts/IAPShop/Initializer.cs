@@ -33,3 +33,9 @@ public class Initializer : MonoBehaviour
     }
 
 }
+
+//Power Up Idead
+//Reset pieces
+// Random change Piece
+// Destroy X
+// Remove All Obj in Grid

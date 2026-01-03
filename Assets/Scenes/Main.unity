@@ -1799,6 +1799,9 @@ MonoBehaviour:
   - {fileID: 8007251741595809806, guid: 0c38c028b8fc044c78b38d2e55543b26, type: 3}
   LevelDatas:
   - {fileID: 11400000, guid: 270f3bff3f62e49cf96baf6dfc5f2fc5, type: 2}
+  - {fileID: 11400000, guid: fc4777d37249b4e9f9f6f97915afe6ca, type: 2}
+  - {fileID: 11400000, guid: f77628c5e173044f68ee254013030d70, type: 2}
+  - {fileID: 11400000, guid: 17806084ef4184d5291155408a979688, type: 2}
   PieceController: {fileID: 0}
   BaseLevel: {fileID: 5477432975358735235, guid: 5bbf9648fc19245bb9e681bd592e8c84, type: 3}
   CurrentLevel: {fileID: 0}

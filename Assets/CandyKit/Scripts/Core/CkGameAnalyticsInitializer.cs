@@ -1,7 +1,7 @@
 using UnityEngine;
-#if CANDYKIT
+// #if CANDYKIT
 using GameAnalyticsSDK;
-#endif
+// #endif
 
 public class CkGameAnalyticsInitializer : MonoBehaviour, IGameAnalyticsATTListener
 {
