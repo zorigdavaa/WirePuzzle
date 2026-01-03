@@ -26,13 +26,13 @@ public class PieceController : Mb
         }
         //It need to be Instantiated due to check its position matches
         List<Piece> InstantiatedPieces = new List<Piece>();
-        foreach (var item in PiecesPf)
+        foreach (var item in LevelPiecesPf)
         {
             var instObh = Instantiate(item, transform.position, Quaternion.identity, transform);
             instObh.gameObject.SetActive(false);
             InstantiatedPieces.Add(instObh);
         }
-        PiecesPf = InstantiatedPieces;
+        LevelPiecesPf = InstantiatedPieces;
         // bag = new RandomBag<
         // Piece>(PiecesPf.ToArray(), pieceSlots.Count);
         Populate();
@@ -44,7 +44,7 @@ public class PieceController : Mb
         // var newItems = bag.PopRandomItems(pieceSlots.Count);
         var newItems = new List<Piece>();
         // List<Piece> neededPieces = Z.LS.CurrentLevel.gridController.GetNeededPiece(PiecesPf);
-        List<Piece> neededPieces = Z.GridController.GetNeededPiece(PiecesPf);
+        List<Piece> neededPieces = Z.GridController.GetNeededPiece(LevelPiecesPf);
         for (int i = 0; i < pieceSlots.Count; i++)
         {
             if (i < 2 && neededPieces.Count > 0)
@@ -53,7 +53,7 @@ public class PieceController : Mb
             }
             else
             {
-                newItems.Add(PiecesPf[Random.Range(0, PiecesPf.Count)]);
+                newItems.Add(LevelPiecesPf[Random.Range(0, LevelPiecesPf.Count)]);
             }
         }
         for (int i = 0; i < pieceSlots.Count; i++)

@@ -159,6 +159,7 @@ public class Level : MonoBehaviour
         SetGridByData();
         if (GameManager.Instance)
         {
+            // Z.PieceController.SetLevelPieces(levelData.Pieces);
             Z.PieceController.Init();
         }
         isInitialized = true;

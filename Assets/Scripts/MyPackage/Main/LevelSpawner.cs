@@ -28,12 +28,12 @@ namespace ZPackage
         {
             // LevelDatas = Resources.LoadAll<LevelData>("LevelData").ToList();
             PieceController = FindAnyObjectByType<PieceController>();
-            int levelIndex = (GameManager.Instance.Level - 1) % Levels.Count;
+            int levelIndex = (GameManager.Instance.Level - 1) % LevelDatas.Count;
             LevelData levelData = LevelDatas[levelIndex];
             // CurrentLevel = Instantiate(level, transform.position, Quaternion.identity, transform).GetComponent<Level>();
             CurrentLevel = Instantiate(BaseLevel, transform.position, Quaternion.identity, transform).GetComponent<Level>();
-            CurrentLevel.SetData(levelData);
             PieceController.SetLevelPieces(levelData.Pieces);
+            CurrentLevel.SetData(levelData);
             Camera.main.transform.position = new Vector3(0, levelData.CamDistance, 0);
         }
     }

@@ -20,9 +20,9 @@ MonoBehaviour:
     Blocked:
     - {x: 1, y: 2}
     - {x: 2, y: 2}
-    - {x: 3, y: 2}
   X: 6
   Y: 6
-  Pieces: []
+  Pieces:
+  - {fileID: 4637198259214586481, guid: ee973e26ac1ab43c3a4d11e7cbce1dce, type: 3}
   CamDistance: 10
   PieceScale: 0.5
