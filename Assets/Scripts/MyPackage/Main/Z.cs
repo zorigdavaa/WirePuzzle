@@ -33,6 +33,17 @@ namespace ZPackage
                 return LevelEditor.Instance.PieceController;
             }
         }
+        public static Level CurrentLevel
+        {
+            get
+            {
+                if (LevelSpawner.Instance)
+                {
+                    return LevelSpawner.Instance.CurrentLevel;
+                }
+                return LevelEditor.Instance.CurrentLevel;
+            }
+        }
         private static Player _player;
         public static Player Player
         {

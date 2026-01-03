@@ -126,7 +126,7 @@ public class LevelEditor : GenericSingleton<LevelEditor>
 
         if (!AssetDatabase.IsValidFolder(folder))
         {
-            AssetDatabase.CreateFolder("Assets", "Levels");
+            AssetDatabase.CreateFolder("Assets", "LevelData");
         }
 
         int index = 1;

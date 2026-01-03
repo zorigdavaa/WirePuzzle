@@ -89,7 +89,8 @@ public class Piece : Mb
         }
         else
         {
-            transform.localScale = Vector3.one * 0.5f;
+            // transform.localScale = Vector3.one * 0.5f;
+            transform.localScale = Vector3.one * Z.CurrentLevel.LevelDatas.PieceScale;
         }
     }
 

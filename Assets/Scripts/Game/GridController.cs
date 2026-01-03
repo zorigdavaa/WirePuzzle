@@ -353,6 +353,20 @@ public class GridController : MonoBehaviour
         yield return new WaitUntil(() => Counter == 0);
         // onComplete?.Invoke();
     }
+    public IEnumerator ClearRowAndColumns()
+    {
+        int Counter = 0;
+        for (int i = 0; i < Grid.GetHeight(); i++)
+        {
+            Counter++;
+            Prefabs.Instance.CreateFireWork(i, RowCol.Column, Grid, () =>
+            {
+                Counter--;
+            });
+        }
+
+        yield return new WaitUntil(() => Counter == 0);
+    }
     bool IsColumnFull(int x)
     {
         for (int y = 0; y < Y; y++)

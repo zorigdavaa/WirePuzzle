@@ -10,17 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b79ad2a8b752b4db8b3b318c370d4e09, type: 3}
-  m_Name: Level_001
+  m_Name: Level_002
   m_EditorClassIdentifier: 
   LevelConnectDatas:
   - ChargerPoses:
-    - {x: 1, y: 4}
+    - {x: 0, y: 0}
     ConnectPoses:
-    - {x: 3, y: 1}
-    Blocked:
-    - {x: 1, y: 2}
-    - {x: 2, y: 2}
-    - {x: 3, y: 2}
+    - {x: 5, y: 5}
+    Blocked: []
   X: 6
   Y: 6
   Pieces: []

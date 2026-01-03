@@ -59,13 +59,13 @@ public class CanvasManager : GenericSingleton<CanvasManager>
     void OnEnable()
     {
         GameManager.Instance.StateChanged += OnGameStateChange;
-        // GameController.OnRevive += DeactivateAllGameOver;
+        GameManager.Instance.OnRevive += DeactivateAllGameOver;
         // GameController.OnTryAgain += DeactivateAllGameOver;
     }
     void OnDisable()
     {
         // GameManager.Instance.StateChanged -= OnGameStateChange;
-        // GameController.OnRevive -= DeactivateAllGameOver;
+        GameManager.Instance.OnRevive -= DeactivateAllGameOver;
         // GameController.OnTryAgain -= DeactivateAllGameOver;
     }
 
@@ -86,7 +86,8 @@ public class CanvasManager : GenericSingleton<CanvasManager>
         }
         else if (state == GameState.GameOver)
         {
-            LeaveUI();
+            // LeaveUI();
+            OutOfSpaceUI();
             // if (GameManager.Instance.RetryCount > 2)
             // {
 
@@ -290,7 +291,7 @@ public class CanvasManager : GenericSingleton<CanvasManager>
         powerUp.SetActive(active);
     }
 
-    public void DeactivateAllGameOver()
+    public void DeactivateAllGameOver(object sender, EventArgs e)
     {
         if (outOfSpaceGameOver != null)
             outOfSpaceGameOver.SetActive(false);

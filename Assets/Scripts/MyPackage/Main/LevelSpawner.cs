@@ -26,6 +26,7 @@ namespace ZPackage
         }
         public void InitializeLevelWithData()
         {
+            LevelDatas = Resources.LoadAll<LevelData>("LevelData").ToList();
             PieceController = FindAnyObjectByType<PieceController>();
             int levelIndex = (GameManager.Instance.Level - 1) % Levels.Count;
             LevelData levelData = LevelDatas[levelIndex];
@@ -33,8 +34,8 @@ namespace ZPackage
             CurrentLevel = Instantiate(BaseLevel, transform.position, Quaternion.identity, transform).GetComponent<Level>();
             CurrentLevel.SetData(levelData);
             PieceController.SetLevelPieces(levelData.Pieces);
+            Camera.main.transform.position = new Vector3(0, levelData.CamDistance, 0);
         }
-
     }
 }
 

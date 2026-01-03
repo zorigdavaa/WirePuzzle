@@ -26,7 +26,7 @@ namespace ZPackage
         public event EventHandler<LevelCompletedEventArgs> LevelCompleted;
         public event EventHandler GameOverEvent;
         public event EventHandler Settings;
-        public event EventHandler Flying;
+        public event EventHandler OnRevive;
         #endregion
         #region Properties
         private GameState _state;
@@ -174,11 +174,6 @@ namespace ZPackage
             State = GameState.Starting;
             GameStart?.Invoke(this, EventArgs.Empty);
         }
-        public void Fly()
-        {
-            State = GameState.Flying;
-            Flying?.Invoke(this, EventArgs.Empty);
-        }
         public async void PlayGame()
         {
             GAPlayEvent();
@@ -225,11 +220,11 @@ namespace ZPackage
         }
         public void TryAgain()
         {
-            throw new NotImplementedException();
+            RestartGame();
         }
         public void Revive()
         {
-
+            OnRevive?.Invoke(this, EventArgs.Empty);
         }
         void GAStartEvent()
         {

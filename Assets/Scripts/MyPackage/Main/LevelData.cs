@@ -9,6 +9,8 @@ public class LevelData : ScriptableObject
     public int X;
     public int Y;
     public List<Piece> Pieces;
+    public float CamDistance;
+    public float PieceScale;
 
     internal void DefaultValues()
     {
@@ -30,6 +32,8 @@ public class LevelData : ScriptableObject
         X = 3;
         Y = 3;
         Pieces = new List<Piece>();
+        CamDistance = 10;
+        PieceScale = 0.5f;
     }
 }
 

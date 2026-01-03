@@ -20,6 +20,7 @@ public class PieceController : Mb
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Init()
     {
+        //It need to be Instantiated due to check its position matches
         List<Piece> InstantiatedPieces = new List<Piece>();
         foreach (var item in PiecesPf)
         {
@@ -169,4 +170,5 @@ public class PieceController : Mb
     {
         LevelPiecesPf = pieces;
     }
+
 }
