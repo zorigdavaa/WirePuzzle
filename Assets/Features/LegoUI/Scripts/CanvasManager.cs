@@ -64,7 +64,7 @@ public class CanvasManager : GenericSingleton<CanvasManager>
     }
     void OnDisable()
     {
-        // GameManager.Instance.StateChanged -= OnGameStateChange;
+        GameManager.Instance.StateChanged -= OnGameStateChange;
         GameManager.Instance.OnRevive -= DeactivateAllGameOver;
         // GameController.OnTryAgain -= DeactivateAllGameOver;
     }

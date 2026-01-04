@@ -26,3 +26,4 @@ MonoBehaviour:
   - {fileID: 4637198259214586481, guid: ee973e26ac1ab43c3a4d11e7cbce1dce, type: 3}
   CamDistance: 10
   PieceScale: 0.5
+  PieceCount: 3

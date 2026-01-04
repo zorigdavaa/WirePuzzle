@@ -12,6 +12,7 @@ public class PieceController : Mb
     public List<Piece> PiecesPf;
     public List<Piece> LevelPiecesPf;
     // public List<Piece> PiecesPfCopy;
+    public List<GameObject> SlotsParent;
     public List<Transform> pieceSlots;
     public List<Material> pieceMaterials;
     public GameObject singlePiecePF;
@@ -20,10 +21,18 @@ public class PieceController : Mb
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Init()
     {
-        foreach (var item in pieceSlots)
+        //3-2 == 0
+        SlotsParent[Z.CurrentLevel.Data.PieceCount - 3].gameObject.SetActive(true);
+        pieceSlots.Clear();
+        foreach (Transform item in SlotsParent[Z.CurrentLevel.Data.PieceCount - 3].transform)
         {
+            pieceSlots.Add(item);
             item.transform.GetChild(0).gameObject.SetActive(false);
         }
+        // foreach (var item in pieceSlots)
+        // {
+
+        // }
         //It need to be Instantiated due to check its position matches
         List<Piece> InstantiatedPieces = new List<Piece>();
         foreach (var item in LevelPiecesPf)

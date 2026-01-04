@@ -46,3 +46,4 @@ MonoBehaviour:
   Pieces: []
   CamDistance: 13
   PieceScale: 0.5
+  PieceCount: 3
