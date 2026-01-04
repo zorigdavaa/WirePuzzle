@@ -45,10 +45,15 @@ public class Slot : MonoBehaviour
     {
         return Obj.GetComponent<Node>();
     }
-
+    private static readonly HashSet<SlotType> FreeTypes = new()
+    {
+        SlotType.None,
+        SlotType.Light,
+        SlotType.Power
+    };
     public bool IsFree()
     {
-        return Obj == null && type != SlotType.Blocked;
+        return Obj == null && FreeTypes.Contains(type);
     }
     public bool IsFilled()
     {
@@ -89,6 +94,10 @@ public class Slot : MonoBehaviour
             Obj = null;
             Z.GM.Coin++;
         }
+        else if (type == SlotType.Box)
+        {
+            SetType(SlotType.None);
+        }
     }
     public GameObject GetModel()
     {
@@ -114,5 +123,5 @@ public class Slot : MonoBehaviour
 
 public enum SlotType
 {
-    None, Power, Light, Blocked, Box
+    None, Power, Light, Blocked, Box, Ice
 }

@@ -25,16 +25,16 @@ public class CoinManager : GenericSingleton<CoinManager>
         float time = 0f;
         float duration = 1.0f;
         Vector3 initial = coin.transform.position;
-        // Vector3 screenPos = RectTransformUtility.WorldToScreenPoint(cam, Z.CanM.Coin.transform.position);
-        // screenPos.z = 50; // or desired distance
-        // Vector3 target = cam.ScreenToWorldPoint(screenPos);
+        Vector3 screenPos = RectTransformUtility.WorldToScreenPoint(cam, Z.CanM.coinText.transform.position);
+        screenPos.z = 50; // or desired distance
+        Vector3 target = cam.ScreenToWorldPoint(screenPos);
 
 
         while (time < duration)
         {
             time += Time.deltaTime;
             t = time / duration;
-            // coin.transform.position = Vector3.Lerp(initial, target, t);
+            coin.transform.position = Vector3.Lerp(initial, target, t);
             yield return null;
         }
         Destroy(coin);
