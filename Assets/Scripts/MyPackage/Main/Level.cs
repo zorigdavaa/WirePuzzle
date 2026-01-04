@@ -10,7 +10,7 @@ public class Level : MonoBehaviour
     public GridController gridController;
     public List<Slot> ChargerPoses;
     public List<Slot> ConnectPoses;
-    public List<Slot> Blocked;
+    // public List<Slot> Blocked;
     public bool isInitialized = false;
     public int DataIndex = 0;
 
@@ -38,25 +38,39 @@ public class Level : MonoBehaviour
         gridController.ResetSlotTypes();
         ConnectPoses.Clear();
         ChargerPoses.Clear();
-        Blocked.Clear();
-        foreach (var item in Data.LevelConnectDatas[Index].ChargerPoses)
+        // Blocked.Clear();
+        foreach (var item in Data.LevelConnectDatas[Index].cellDatas)
         {
-            GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
-            node.GetComponent<Slot>().SetType(SlotType.Power);
-            ChargerPoses.Add(node.GetComponent<Slot>());
+            GridNode node = gridController.Grid.GetGridObject(item.Position.x, item.Position.y);
+            node.GetComponent<Slot>().SetType(item.Type);
+            if (item.Type == SlotType.Power)
+            {
+                ChargerPoses.Add(node.GetComponent<Slot>());
+            }
+            else if (item.Type == SlotType.Light)
+            {
+                ConnectPoses.Add(node.GetComponent<Slot>());
+            }
+            // ChargerPoses.Add(node.GetComponent<Slot>());
         }
-        foreach (var item in Data.LevelConnectDatas[Index].ConnectPoses)
-        {
-            GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
-            node.GetComponent<Slot>().SetType(SlotType.Light);
-            ConnectPoses.Add(node.GetComponent<Slot>());
-        }
-        foreach (var item in Data.LevelConnectDatas[Index].Blocked)
-        {
-            GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
-            node.GetComponent<Slot>().SetType(SlotType.Blocked);
-            Blocked.Add(node.GetComponent<Slot>());
-        }
+        // foreach (var item in Data.LevelConnectDatas[Index].ChargerPoses)
+        // {
+        //     GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
+        //     node.GetComponent<Slot>().SetType(SlotType.Power);
+        //     ChargerPoses.Add(node.GetComponent<Slot>());
+        // }
+        // foreach (var item in Data.LevelConnectDatas[Index].ConnectPoses)
+        // {
+        //     GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
+        //     node.GetComponent<Slot>().SetType(SlotType.Light);
+        //     ConnectPoses.Add(node.GetComponent<Slot>());
+        // }
+        // foreach (var item in Data.LevelConnectDatas[Index].Blocked)
+        // {
+        //     GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
+        //     node.GetComponent<Slot>().SetType(SlotType.Blocked);
+        //     Blocked.Add(node.GetComponent<Slot>());
+        // }
         ClearCurrentPath();
 
     }
@@ -166,22 +180,32 @@ public class Level : MonoBehaviour
     }
     public LevelConnectData GetConnectData()
     {
-        LevelConnectData levelConnectData = new LevelConnectData();
+        LevelConnectData levelConnectData = new LevelConnectData(new());
         foreach (var item in gridController.Slots)
         {
             GridNode node = item.GetComponent<GridNode>();
-            if (item.type == SlotType.Light)
+            if (item.type != SlotType.None)
             {
-                levelConnectData.ConnectPoses.Add(new Vector2(node.X, node.Y));
+                CellData data = new CellData
+                {
+                    Position = new Vector2Int(node.X, node.Y),
+                    Type = item.type
+                };
+
+                levelConnectData.cellDatas.Add(data);
             }
-            else if (item.type == SlotType.Power)
-            {
-                levelConnectData.ChargerPoses.Add(new Vector2(node.X, node.Y));
-            }
-            else if (item.type == SlotType.Blocked)
-            {
-                levelConnectData.Blocked.Add(new Vector2(node.X, node.Y));
-            }
+            // if (item.type == SlotType.Light)
+            // {
+            //     levelConnectData.ConnectPoses.Add(new Vector2(node.X, node.Y));
+            // }
+            // else if (item.type == SlotType.Power)
+            // {
+            //     levelConnectData.ChargerPoses.Add(new Vector2(node.X, node.Y));
+            // }
+            // else if (item.type == SlotType.Blocked)
+            // {
+            //     levelConnectData.Blocked.Add(new Vector2(node.X, node.Y));
+            // }
         }
         return levelConnectData;
     }

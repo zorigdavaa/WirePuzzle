@@ -14,6 +14,7 @@ public class LevelEditor : GenericSingleton<LevelEditor>
     public LEPieces LEPieces;
     const string folder = "Assets/LevelData";
     const string baseName = "Level_";
+    //Current Data Index
     public int CDIndex = 0;
     void Start()
     {
@@ -157,7 +158,15 @@ public class LevelEditor : GenericSingleton<LevelEditor>
         if (LevelData && CurrentLevel)
         {
             LevelConnectData connectData = CurrentLevel.GetConnectData();
-            LevelData.LevelConnectDatas[CDIndex] = connectData;
+            if (LevelData.LevelConnectDatas.Count > CDIndex)
+            {
+                LevelData.LevelConnectDatas[CDIndex] = connectData;
+            }
+            else
+            {
+                LevelData.LevelConnectDatas.Add(connectData);
+            }
+
         }
         CheckLDCButtons();
     }

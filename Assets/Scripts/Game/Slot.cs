@@ -114,5 +114,5 @@ public class Slot : MonoBehaviour
 
 public enum SlotType
 {
-    None, Power, Light, Blocked
+    None, Power, Light, Blocked, Box
 }
