@@ -3,7 +3,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Bulb : MonoBehaviour
+public class Bulb : PuzzleElement
 {
     Light Light;
     public MeshRenderer Renderer;
@@ -35,5 +35,11 @@ public class Bulb : MonoBehaviour
         }
 
 
+    }
+
+    public override void TakeDamage()
+    {
+
+        // throw new NotImplementedException();
     }
 }

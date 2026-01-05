@@ -100,7 +100,7 @@ public class Piece : Mb
         foreach (var item in GetNodes())
         {
 
-            item.GetComponent<Renderer>().material = material;
+            item.transform.GetChild(0).GetComponent<Renderer>().material = material;
         }
     }
 }

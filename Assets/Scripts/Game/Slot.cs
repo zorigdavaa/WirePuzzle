@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Android.Gradle;
 using UnityEngine;
 using ZPackage;
 
@@ -13,8 +14,21 @@ public class Slot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        foreach (var item in TypeModels)
+        {
+            if (item.TryGetComponent<PuzzleElement>(out var puzzleElement))
+            {
+                puzzleElement.OnDestroyed += OnElementDestroyed;
+            }
 
+        }
     }
+
+    private void OnElementDestroyed(object sender, PuzzleElement e)
+    {
+        SetType(SlotType.None);
+    }
+
     public void SetType(SlotType type)
     {
         foreach (var item in TypeModels)
@@ -97,6 +111,10 @@ public class Slot : MonoBehaviour
         else if (type == SlotType.Box)
         {
             SetType(SlotType.None);
+        }
+        else if (GetModel().TryGetComponent<PuzzleElement>(out var puzzleElement))
+        {
+            puzzleElement.TakeDamage();
         }
     }
     public GameObject GetModel()
