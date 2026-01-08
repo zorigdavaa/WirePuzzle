@@ -103,6 +103,39 @@ public class Piece : Mb
             item.transform.GetChild(0).GetComponent<Renderer>().material = material;
         }
     }
+    public GameObject SilHoutte = null;
+    public GameObject GetSilhoutte()
+    {
+        if (SilHoutte == null)
+        {
+            GameObject newSilhoute = new GameObject("Silhoutte");
+            foreach (var item in Nodes)
+            {
+                Node copyNode = Instantiate(item);
+                copyNode.transform.SetParent(newSilhoute.transform);
+                copyNode.transform.localPosition = item.transform.localPosition;
+                SetTransparent(copyNode.transform.GetChild(0).GetComponent<Renderer>().material, 0.5f);
+                Destroy(copyNode);
+            }
+            newSilhoute.transform.SetParent(transform);
+        }
+        return SilHoutte;
+    }
+    public void SetTransparent(Material mat, float alpha)
+    {
+        mat.SetFloat("_Mode", 3); // Transparent
+        // mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+        // mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+        // mat.SetInt("_ZWrite", 0);
+        // mat.DisableKeyword("_ALPHATEST_ON");
+        // mat.EnableKeyword("_ALPHABLEND_ON");
+        // mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+        // mat.renderQueue = 3000;
+
+        Color c = mat.color;
+        c.a = alpha; // 0 = fully transparent, 1 = opaque
+        mat.color = c;
+    }
 }
 public enum PieceType
 {

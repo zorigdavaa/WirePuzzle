@@ -77,10 +77,11 @@ public class PieceController : Mb
             materialIndex++;
         }
         //This one has bug due to destroyed by rocked which is coroutine
-        // if (neededPieces.Count == 0)
-        // {
-        //     Z.GM.GameOver(this, EventArgs.Empty);
-        // }
+        if (neededPieces.Count == 0)
+        {
+            // Z.GM.GameOver(this, EventArgs.Empty);
+            CheckGameOver();
+        }
     }
 
     internal void GotoSlot(Piece selectedObject)
@@ -145,16 +146,22 @@ public class PieceController : Mb
         {
             Populate();
         }
+        CheckGameOver();
+    }
+
+    public void CheckGameOver()
+    {
         if (gameOverCoroutine != null)
         {
             StopCoroutine(gameOverCoroutine);
         }
-        gameOverCoroutine = StartCoroutine(CheckGameOver());
+        gameOverCoroutine = StartCoroutine(CheckGameOverCor());
     }
+
     Coroutine gameOverCoroutine;
-    private IEnumerator CheckGameOver()
+    private IEnumerator CheckGameOverCor()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         var valuesList = CurrentSlotObj.Values.Where(x => x != null).ToList();
         var placeAblePieces = Z.GridController.GetNeededPiece(valuesList);
         if (placeAblePieces.Count == 0)
