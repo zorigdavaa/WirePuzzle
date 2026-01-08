@@ -25,6 +25,7 @@ public class Player : Mb
     Ray ray;
 
     public Piece selectedPiece;
+    bool piecePlaceChecked = false;
     private float pressStartTime;
     [SerializeField] bool isDragging = false;
     [SerializeField] bool pressed = false;
@@ -166,6 +167,23 @@ public class Player : Mb
                     pressed = false;
                     selectedPiece.StartDrag(true);
                 }
+                if (isDragging)
+                {
+                    if (!piecePlaceChecked)
+                    {
+                        piecePlaceChecked = true;
+                        if (gridController.IsPlaceAbleSomeWhere(selectedPiece, out List<GridNode> placeAbleNodes))
+                        {
+
+                            GameObject silh = selectedPiece.GetSilhoutte();
+                            for (int i = 0; i < silh.transform.childCount; i++)
+                            {
+                                silh.transform.GetChild(i).transform.position = placeAbleNodes[i].transform.position;
+                            }
+
+                        }
+                    }
+                }
             }
             else if (isDragging && selectedPiece != null)
             {
@@ -212,6 +230,7 @@ public class Player : Mb
                 pressed = false;
                 isDragging = false;
                 selectedPiece = null;
+                piecePlaceChecked = false;
             }
             if (IsDownMouse2)
             {
@@ -220,7 +239,6 @@ public class Player : Mb
         }
 
     }
-
     private void ClearLine()
     {
         lastSelectedSlot = null;

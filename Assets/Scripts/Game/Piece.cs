@@ -117,20 +117,15 @@ public class Piece : Mb
                 SetTransparent(copyNode.transform.GetChild(0).GetComponent<Renderer>().material, 0.5f);
                 Destroy(copyNode);
             }
-            newSilhoute.transform.SetParent(transform);
+            SilHoutte = newSilhoute;
+            // newSilhoute.transform.SetParent(transform);
         }
         return SilHoutte;
     }
     public void SetTransparent(Material mat, float alpha)
     {
-        mat.SetFloat("_Mode", 3); // Transparent
-        // mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-        // mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-        // mat.SetInt("_ZWrite", 0);
-        // mat.DisableKeyword("_ALPHATEST_ON");
-        // mat.EnableKeyword("_ALPHABLEND_ON");
-        // mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-        // mat.renderQueue = 3000;
+        mat.SetFloat("_Surface", 1); // 0 = Opaque, 1 = Transparent
+        mat.SetFloat("_Blend", 0);   // Alpha blend
 
         Color c = mat.color;
         c.a = alpha; // 0 = fully transparent, 1 = opaque

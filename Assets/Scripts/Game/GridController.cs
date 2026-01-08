@@ -68,6 +68,7 @@ public class GridController : MonoBehaviour
 
     public void Place(Piece selectedPiece, List<Slot> freeSlots)
     {
+        Destroy(selectedPiece.GetSilhoutte());
         List<Node> nodes = selectedPiece.GetNodes();
         for (int i = 0; i < freeSlots.Count; i++)
         {
@@ -228,7 +229,7 @@ public class GridController : MonoBehaviour
         // List<Piece> UnneccessaryPieces = new List<Piece>();
         foreach (var item in piecesPf)
         {
-            if (IsPlaceAbleSomeWhere(item, FreeNodes))
+            if (IsPlaceAbleSomeWhere(item, out List<GridNode> placeAbleNodes, FreeNodes))
             {
                 neededPieces.Add(item);
             }
@@ -266,7 +267,7 @@ public class GridController : MonoBehaviour
         return neededPieces;
     }
 
-    public bool IsPlaceAbleSomeWhere(Piece value, List<GridNode> CheckNodes = null)
+    public bool IsPlaceAbleSomeWhere(Piece piece, out List<GridNode> placeAbleNodes, List<GridNode> CheckNodes = null)
     {
         if (CheckNodes == null)
         {
@@ -276,18 +277,19 @@ public class GridController : MonoBehaviour
                 .ToList();
         }
 
-        var offsets = value.GetNodesAsOffset();
-
+        var offsets = piece.GetNodesAsOffset();
+        placeAbleNodes = new();
         foreach (var node in CheckNodes)
         {
+            placeAbleNodes.Clear();
             Vector2 basePos = new Vector2(node.X, node.Y);
             bool canPlaceHere = true;
-
+            placeAbleNodes.Add(node);
             foreach (var offset in offsets)
             {
                 Vector2 checkPos = basePos + offset;
                 GridNode checkNode = Grid.GetGridObject((int)checkPos.x, (int)checkPos.y);
-
+                placeAbleNodes.Add(checkNode);
                 if (checkNode == null || !checkNode.Slot.IsFree())
                 {
                     canPlaceHere = false;
@@ -296,9 +298,10 @@ public class GridController : MonoBehaviour
             }
 
             if (canPlaceHere)
+            {
                 return true;
+            }
         }
-
         return false;
     }
 
