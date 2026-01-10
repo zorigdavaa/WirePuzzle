@@ -132,7 +132,7 @@ public class Player : Mb
             Z.LS.CurrentLevel.TestGrid(worldMouse);
         };
     }
-
+    float silhTime = 0;
     // Update is called once per frame
     void Update()
     {
@@ -167,24 +167,10 @@ public class Player : Mb
                     pressed = false;
                     selectedPiece.StartDrag(true);
                 }
-                if (isDragging)
-                {
-                    if (!piecePlaceChecked)
-                    {
-                        piecePlaceChecked = true;
-                        if (gridController.IsPlaceAbleSomeWhere(selectedPiece, out List<GridNode> placeAbleNodes))
-                        {
+                // if (isDragging)
+                // {
 
-                            GameObject silh = selectedPiece.GetSilhoutte();
-                            silh.SetActive(true);
-                            for (int i = 0; i < silh.transform.childCount; i++)
-                            {
-                                silh.transform.GetChild(i).transform.position = placeAbleNodes[i].transform.position;
-                            }
-
-                        }
-                    }
-                }
+                // }
             }
             else if (isDragging && selectedPiece != null)
             {
@@ -197,6 +183,32 @@ public class Player : Mb
                     point.y = moveHeight;  // floating while dragging
                     selectedPiece.transform.position = point;
                 }
+                float lastSilh = Time.time - silhTime;
+                if (lastSilh > 0.5f && gridController.IsPlaceAble(selectedPiece, out List<Slot> freeSlots))
+                {
+                    silhTime = Time.time;
+                    GameObject silh = selectedPiece.GetSilhoutte();
+                    silh.SetActive(true);
+                    for (int i = 0; i < silh.transform.childCount; i++)
+                    {
+                        silh.transform.GetChild(i).transform.position = freeSlots[i].transform.position;
+                    }
+                }
+                // if (!piecePlaceChecked)
+                // {
+                //     piecePlaceChecked = true;
+                //     if (gridController.IsPlaceAbleSomeWhere(selectedPiece, out List<GridNode> placeAbleNodes))
+                //     {
+
+                //         GameObject silh = selectedPiece.GetSilhoutte();
+                //         silh.SetActive(true);
+                //         for (int i = 0; i < silh.transform.childCount; i++)
+                //         {
+                //             silh.transform.GetChild(i).transform.position = placeAbleNodes[i].transform.position;
+                //         }
+
+                //     }
+                // }
             }
             if (IsUp)
             {
