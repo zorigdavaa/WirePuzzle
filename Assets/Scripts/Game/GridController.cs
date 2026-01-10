@@ -278,6 +278,7 @@ public class GridController : MonoBehaviour
         }
 
         var offsets = piece.GetNodesAsOffset();
+        // offsets.RemoveAt(0);
         placeAbleNodes = new();
         foreach (var node in CheckNodes)
         {

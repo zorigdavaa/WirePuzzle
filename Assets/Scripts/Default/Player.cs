@@ -176,6 +176,7 @@ public class Player : Mb
                         {
 
                             GameObject silh = selectedPiece.GetSilhoutte();
+                            silh.SetActive(true);
                             for (int i = 0; i < silh.transform.childCount; i++)
                             {
                                 silh.transform.GetChild(i).transform.position = placeAbleNodes[i].transform.position;
@@ -257,6 +258,7 @@ public class Player : Mb
 
     private void PlaceObject()
     {
+        selectedPiece.GetSilhoutte().SetActive(false);
         if (pieceController.HasSlot(selectedPiece))
         {
             pieceController.GotoSlot(selectedPiece);

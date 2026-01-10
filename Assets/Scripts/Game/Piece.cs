@@ -114,7 +114,7 @@ public class Piece : Mb
                 Node copyNode = Instantiate(item);
                 copyNode.transform.SetParent(newSilhoute.transform);
                 copyNode.transform.localPosition = item.transform.localPosition;
-                SetTransparent(copyNode.transform.GetChild(0).GetComponent<Renderer>().material, 0.5f);
+                SetTransparent(copyNode.transform.GetChild(0).GetComponent<Renderer>().material, 0.1f);
                 Destroy(copyNode);
             }
             SilHoutte = newSilhoute;
@@ -126,10 +126,20 @@ public class Piece : Mb
     {
         mat.SetFloat("_Surface", 1); // 0 = Opaque, 1 = Transparent
         mat.SetFloat("_Blend", 0);   // Alpha blend
+        // Disable depth writing
+        mat.SetInt("_ZWrite", 0);
 
-        Color c = mat.color;
-        c.a = alpha; // 0 = fully transparent, 1 = opaque
-        mat.color = c;
+        Color c = mat.GetColor("_BaseColor");
+        c.a = alpha;
+        mat.SetColor("_BaseColor", c);
+        // Enable required keywords
+        mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+        mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+        mat.SetInt("_ZWrite", 0);
+        mat.DisableKeyword("_ALPHATEST_ON");
+        mat.EnableKeyword("_ALPHABLEND_ON");
+        mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+        mat.renderQueue = 3000;
     }
 }
 public enum PieceType

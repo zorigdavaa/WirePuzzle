@@ -50,6 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mp: {x: 0, y: 0, z: 0}
   Type: 0
+  Order: 0
+  SilHoutte: {fileID: 0}
 --- !u!54 &2773096646927528228
 Rigidbody:
   m_ObjectHideFlags: 0
