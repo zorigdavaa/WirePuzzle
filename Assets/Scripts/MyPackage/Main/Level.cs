@@ -184,7 +184,7 @@ public class Level : MonoBehaviour
         foreach (var item in gridController.Slots)
         {
             GridNode node = item.GetComponent<GridNode>();
-            if (item.type != SlotType.None)
+            if (item.type != SlotType.Empty)
             {
                 CellData data = new CellData
                 {
@@ -215,7 +215,7 @@ public class Level : MonoBehaviour
         foreach (var item in gridController.Slots)
         {
             GridNode node = item.GetComponent<GridNode>();
-            node.Slot.SetType(SlotType.None);
+            node.Slot.SetType(SlotType.Empty);
         }
     }
 

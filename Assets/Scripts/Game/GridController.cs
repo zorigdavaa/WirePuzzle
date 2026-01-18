@@ -394,7 +394,7 @@ public class GridController : MonoBehaviour
     {
         foreach (var item in Slots)
         {
-            item.SetType(SlotType.None);
+            item.SetType(SlotType.Empty);
         }
     }
 

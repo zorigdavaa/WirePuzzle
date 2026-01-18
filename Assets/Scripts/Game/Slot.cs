@@ -10,6 +10,7 @@ public class Slot : MonoBehaviour
     public SlotType type;
     public Node Obj; //ISlotObj type
     public List<GameObject> TypeModels;
+    public List<GameObject> ObjModels;
 
     // Start is called before the first frame update
     void Start()
@@ -26,11 +27,25 @@ public class Slot : MonoBehaviour
 
     private void OnElementDestroyed(object sender, PuzzleElement e)
     {
-        SetType(SlotType.None);
+        SetType(SlotType.Empty);
     }
 
     public void SetType(SlotType type)
     {
+        if (type == SlotType.Hidden)
+        {
+            foreach (var item in ObjModels)
+            {
+                item.SetActive(false);
+            }
+        }
+        else
+        {
+            foreach (var item in ObjModels)
+            {
+                item.SetActive(true);
+            }
+        }
         foreach (var item in TypeModels)
         {
             item.gameObject.SetActive(false);
@@ -39,6 +54,7 @@ public class Slot : MonoBehaviour
         {
             DestroyWithNoCoin();
         }
+
         this.type = type;
         GetModel().gameObject.SetActive(true);
     }
@@ -61,7 +77,7 @@ public class Slot : MonoBehaviour
     }
     private static readonly HashSet<SlotType> FreeTypes = new()
     {
-        SlotType.None,
+        SlotType.Empty,
         SlotType.Light,
         SlotType.Power
     };
@@ -97,7 +113,7 @@ public class Slot : MonoBehaviour
         CoinManager.Instance.GetCoin(transform.position);
         yield return new WaitForSeconds(3);
         bulb.TurnOn(false);
-        SetType(SlotType.None);
+        SetType(SlotType.Empty);
     }
 
     public void ScaledDestroy()
@@ -110,7 +126,7 @@ public class Slot : MonoBehaviour
         }
         else if (type == SlotType.Box)
         {
-            SetType(SlotType.None);
+            SetType(SlotType.Empty);
         }
         else if (GetModel().TryGetComponent<PuzzleElement>(out var puzzleElement))
         {
@@ -135,11 +151,16 @@ public class Slot : MonoBehaviour
     public void ChangeTypeToNext()
     {
         int nextType = ((int)type + 1) % Enum.GetNames(typeof(SlotType)).Length;
+        //SKip Hidden type  
+        // if (nextType == (int)SlotType.Hidden)
+        // {
+        //     nextType = (nextType + 1) % Enum.GetNames(typeof(SlotType)).Length;
+        // }
         SetType((SlotType)nextType);
     }
 }
 
 public enum SlotType
 {
-    None, Power, Light, Blocked, Box, Ice
+    Empty, Power, Light, Blocked, Box, Ice, Hidden
 }
