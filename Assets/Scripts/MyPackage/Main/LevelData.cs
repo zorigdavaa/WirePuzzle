@@ -10,7 +10,7 @@ public class LevelData : ScriptableObject
     public List<LevelConnectData> LevelConnectDatas;
     public int X;
     public int Y;
-    public List<Piece> Pieces;
+    public PiecesPreset Pieces;
     public float CamDistance;
     public float PieceScale;
     public int PieceCount;
@@ -43,6 +43,11 @@ public class LevelData : ScriptableObject
     [ContextMenu("Text To Level")]
     public void TextToLevel()
     {
+        if (LevelString == String.Empty || LevelString.Length == 0)
+        {
+            Debug.LogError("No Text");
+            return;
+        }
         string[] rows = LevelString.Split('\n');
         int rowNumber = rows.Length;
         int colNumber = rows[0].Length;

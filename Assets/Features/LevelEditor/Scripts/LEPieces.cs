@@ -18,36 +18,36 @@ public class LEPieces : GenericSingleton<LEPieces>
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Init()
     {
-        if (Z.CurrentLevel.Data.Pieces.Count == 0)
-        {
-            //It need to be Instantiated due to check its position matches
-            foreach (var item in PiecesPf)
-            {
-                Piece instObh = InstantiatePiece(item);
-                instObh.SetColor(pieceMaterials[0]);
+        // if (Z.CurrentLevel.Data.Pieces.Count == 0)
+        // {
+        //     //It need to be Instantiated due to check its position matches
+        //     foreach (var item in PiecesPf)
+        //     {
+        //         Piece instObh = InstantiatePiece(item);
+        //         instObh.SetColor(pieceMaterials[0]);
 
-            }
-        }
-        else
-        {
-            HashSet<Piece> allPieces = new();
-            allPieces.AddRange(Z.CurrentLevel.Data.Pieces);
-            allPieces.AddRange(PiecesPf);
-            foreach (var item in allPieces)
-            {
-                Piece instObh = InstantiatePiece(item);
-                if (Z.CurrentLevel.Data.Pieces.Contains(item))
-                {
-                    instObh.SetColor(pieceMaterials[1]);
-                    instObh.Order = 1;
-                }
-                else
-                {
-                    instObh.SetColor(pieceMaterials[0]);
-                    instObh.Order = 0;
-                }
-            }
-        }
+        //     }
+        // }
+        // else
+        // {
+        //     HashSet<Piece> allPieces = new();
+        //     allPieces.AddRange(Z.CurrentLevel.Data.Pieces);
+        //     allPieces.AddRange(PiecesPf);
+        //     foreach (var item in allPieces)
+        //     {
+        //         Piece instObh = InstantiatePiece(item);
+        //         if (Z.CurrentLevel.Data.Pieces.Contains(item))
+        //         {
+        //             instObh.SetColor(pieceMaterials[1]);
+        //             instObh.Order = 1;
+        //         }
+        //         else
+        //         {
+        //             instObh.SetColor(pieceMaterials[0]);
+        //             instObh.Order = 0;
+        //         }
+        //     }
+        // }
 
     }
 

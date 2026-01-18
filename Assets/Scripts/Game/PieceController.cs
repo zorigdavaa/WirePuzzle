@@ -188,15 +188,15 @@ public class PieceController : Mb
         return singlePiecePF;
     }
 
-    public void SetLevelPieces(List<Piece> pieces)
+    public void SetLevelPieces(PiecesPreset preset)
     {
-        if (pieces.Count == 0)
+        if (preset.Pieces.Length == 0)
         {
             LevelPiecesPf = PiecesPf.Pieces.ToList();
         }
         else
         {
-            LevelPiecesPf = pieces;
+            LevelPiecesPf = preset.Pieces.ToList();
         }
     }
 

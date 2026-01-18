@@ -77,7 +77,7 @@ public class LevelEditor : GenericSingleton<LevelEditor>
         {
             SaveCurrent();
             // LevelData.Pieces = PieceController.LevelPiecesPf;
-            LevelData.Pieces = LEPieces.Instance.GetGreenPieces();
+            // LevelData.Pieces = LEPieces.Instance.GetGreenPieces();
             string path = AssetDatabase.GetAssetPath(LevelData);
             if (string.IsNullOrEmpty(path))
             {
