@@ -31,7 +31,7 @@ public class Node : MonoBehaviour, ISlotObj
             float t = 0f;
             float time = 0f;
             float duration = 1.0f;
-            MeshRenderer render = GetComponent<MeshRenderer>();
+            MeshRenderer render = transform.GetChild(0).GetComponent<MeshRenderer>();
             // Color initColor = render.material.color;
             Color initColor = Color.white;
             Color toColor = Color.yellow;
