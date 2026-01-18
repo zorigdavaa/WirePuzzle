@@ -12,6 +12,8 @@ public class LECanvas : GenericSingleton<LECanvas>
     public Button NextButton;
     public Button SaveCurrent;
     public Button AddCurrent;
+    public Button AddRow;
+    public Button AddColumn;
     public Slider XSlider;
     public Slider YSlider;
     LevelEditor LevelEditor;
@@ -37,6 +39,19 @@ public class LECanvas : GenericSingleton<LECanvas>
             if (gridNode != null)
             {
                 gridNode.Slot.ChangeTypeToNext();
+            }
+        };
+        InputAction XToggle = InputSystem.actions.FindAction("Toggle");
+        XToggle.Enable();
+        XToggle.performed += ctx =>
+        {
+            Vector3 mousePos = Pointer.current.position.ReadValue();
+            mousePos.z = cam.transform.position.y;
+            Vector3 worldMouse = cam.ScreenToWorldPoint(mousePos).SwitchYZ();
+            GridNode gridNode = Z.GridController.Grid.GetGridObject(worldMouse);
+            if (gridNode != null)
+            {
+                gridNode.Slot.Toggle();
             }
         };
         ButtonsListener();
@@ -74,6 +89,14 @@ public class LECanvas : GenericSingleton<LECanvas>
         AddCurrent.onClick.AddListener(() =>
         {
             LevelEditor.AddCurrent();
+        });
+        AddRow.onClick.AddListener(() =>
+        {
+            LevelEditor.AddRow();
+        });
+        AddColumn.onClick.AddListener(() =>
+        {
+            LevelEditor.AddColumn();
         });
     }
 

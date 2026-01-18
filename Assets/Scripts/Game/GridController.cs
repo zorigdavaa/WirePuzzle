@@ -398,6 +398,29 @@ public class GridController : MonoBehaviour
         }
     }
 
+    internal void AddRow()
+    {
+        DestroyCurrentGrid();
+        Y++;
+        CreateGrid();
+    }
+
+    private void DestroyCurrentGrid()
+    {
+        foreach (var item in Slots)
+        {
+            Destroy(item.gameObject);
+        }
+        Slots.Clear();
+    }
+
+    internal void AddColumn()
+    {
+        DestroyCurrentGrid();
+        X++;
+        CreateGrid();
+    }
+
     // private List<Vector3> RetracePath(GridNode startNode, GridNode endNode)
     // {
     //     List<Vector3> path = new List<Vector3>();

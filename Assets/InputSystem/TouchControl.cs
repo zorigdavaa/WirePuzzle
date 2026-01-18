@@ -248,6 +248,15 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Toggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d316f01-7148-4e93-928e-3777aa99d15c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -259,6 +268,17 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""QQ"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b97137bf-3780-46ea-955c-e8109168dd95"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Toggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -279,6 +299,7 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
         // LevelEditor
         m_LevelEditor = asset.FindActionMap("LevelEditor", throwIfNotFound: true);
         m_LevelEditor_QQ = m_LevelEditor.FindAction("QQ", throwIfNotFound: true);
+        m_LevelEditor_Toggle = m_LevelEditor.FindAction("Toggle", throwIfNotFound: true);
     }
 
     ~@TouchControl()
@@ -523,6 +544,7 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_LevelEditor;
     private List<ILevelEditorActions> m_LevelEditorActionsCallbackInterfaces = new List<ILevelEditorActions>();
     private readonly InputAction m_LevelEditor_QQ;
+    private readonly InputAction m_LevelEditor_Toggle;
     /// <summary>
     /// Provides access to input actions defined in input action map "LevelEditor".
     /// </summary>
@@ -538,6 +560,10 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "LevelEditor/QQ".
         /// </summary>
         public InputAction @QQ => m_Wrapper.m_LevelEditor_QQ;
+        /// <summary>
+        /// Provides access to the underlying input action "LevelEditor/Toggle".
+        /// </summary>
+        public InputAction @Toggle => m_Wrapper.m_LevelEditor_Toggle;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -567,6 +593,9 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
             @QQ.started += instance.OnQQ;
             @QQ.performed += instance.OnQQ;
             @QQ.canceled += instance.OnQQ;
+            @Toggle.started += instance.OnToggle;
+            @Toggle.performed += instance.OnToggle;
+            @Toggle.canceled += instance.OnToggle;
         }
 
         /// <summary>
@@ -581,6 +610,9 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
             @QQ.started -= instance.OnQQ;
             @QQ.performed -= instance.OnQQ;
             @QQ.canceled -= instance.OnQQ;
+            @Toggle.started -= instance.OnToggle;
+            @Toggle.performed -= instance.OnToggle;
+            @Toggle.canceled -= instance.OnToggle;
         }
 
         /// <summary>
@@ -685,5 +717,12 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnQQ(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Toggle" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnToggle(InputAction.CallbackContext context);
     }
 }

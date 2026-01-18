@@ -183,4 +183,18 @@ public class LevelEditor : GenericSingleton<LevelEditor>
         }
         CheckLDCButtons();
     }
+    public void AddRow()
+    {
+        if (CurrentLevel)
+        {
+            CurrentLevel.gridController.AddRow();
+        }
+    }
+    public void AddColumn()
+    {
+        if (CurrentLevel)
+        {
+            CurrentLevel.gridController.AddColumn();
+        }
+    }
 }

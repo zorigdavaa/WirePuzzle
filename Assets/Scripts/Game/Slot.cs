@@ -158,6 +158,18 @@ public class Slot : MonoBehaviour
         // }
         SetType((SlotType)nextType);
     }
+
+    public void Toggle()
+    {
+        if (type == SlotType.Hidden)
+        {
+            SetType(SlotType.Empty);
+        }
+        else
+        {
+            SetType(SlotType.Hidden);
+        }
+    }
 }
 
 public enum SlotType
