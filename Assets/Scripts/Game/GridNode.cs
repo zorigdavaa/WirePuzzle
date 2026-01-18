@@ -12,7 +12,7 @@ public class GridNode : MonoBehaviour
     public int HCost { get; set; }
     public int FCost { get { return GCost + HCost; } }
     public Vector3 Position { get { return new Vector3(X, 0, Y); } }
-    public bool IsTraversable { get { return Slot.IsFilled(); } } // You may need to implement this depending on your grid setup
+    public bool IsTraversable { get { return Slot.IsFilled(); } }
     private Slot _slot;
     public Slot Slot
     {
