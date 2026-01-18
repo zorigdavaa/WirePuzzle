@@ -9,7 +9,8 @@ using Random = UnityEngine.Random;
 
 public class PieceController : Mb
 {
-    public List<Piece> PiecesPf;
+    // public List<Piece> PiecesPf;
+    public PiecesPreset PiecesPf;
     public List<Piece> LevelPiecesPf;
     // public List<Piece> PiecesPfCopy;
     public List<GameObject> SlotsParent;
@@ -191,7 +192,7 @@ public class PieceController : Mb
     {
         if (pieces.Count == 0)
         {
-            LevelPiecesPf = PiecesPf;
+            LevelPiecesPf = PiecesPf.Pieces.ToList();
         }
         else
         {
