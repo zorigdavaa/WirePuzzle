@@ -187,7 +187,7 @@ public class PieceController : Mb
         return singlePiecePF;
     }
 
-    internal void SetLevelPieces(List<Piece> pieces)
+    public void SetLevelPieces(List<Piece> pieces)
     {
         if (pieces.Count == 0)
         {
@@ -199,4 +199,19 @@ public class PieceController : Mb
         }
     }
 
+    public List<Piece> GetPieces()
+    {
+        var valuesList = CurrentSlotObj.Values.Where(x => x != null).ToList();
+        return valuesList;
+        // var placeAblePieces = Z.GridController.GetNeededPiece(valuesList);
+        // if (placeAblePieces.Count > 0)
+        // {
+        //     var pieceToSuggest = placeAblePieces[Random.Range(0, placeAblePieces.Count)];
+        //     GotoSlot(pieceToSuggest);
+        // }
+        // else
+        // {
+        //     Debug.LogError("Suggest No PlaceAble");
+        // }
+    }
 }

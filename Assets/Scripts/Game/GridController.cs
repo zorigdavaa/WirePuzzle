@@ -46,9 +46,9 @@ public class GridController : MonoBehaviour
         return insObj;
     }
 
-    public bool IsPlaceAble(Piece selectedPiece, out List<Slot> freeSlots)
+    public bool IsPlaceAble(Piece selectedPiece, out List<GridNode> freeSlots)
     {
-        freeSlots = new List<Slot>();
+        freeSlots = new List<GridNode>();
         foreach (var item in selectedPiece.GetNodes())
         {
             // print(item.transform.position);
@@ -56,7 +56,7 @@ public class GridController : MonoBehaviour
             Slot slot = node?.Slot;
             if (node != null && slot.IsFree())
             {
-                freeSlots.Add(slot);
+                freeSlots.Add(node);
             }
             else
             {
@@ -66,13 +66,13 @@ public class GridController : MonoBehaviour
         return true;
     }
 
-    public void Place(Piece selectedPiece, List<Slot> freeSlots)
+    public void Place(Piece selectedPiece, List<GridNode> freeSlots)
     {
         Destroy(selectedPiece.GetSilhoutte());
         List<Node> nodes = selectedPiece.GetNodes();
         for (int i = 0; i < freeSlots.Count; i++)
         {
-            freeSlots[i].SetObj(nodes[i]);
+            freeSlots[i].Slot.SetObj(nodes[i]);
         }
 
     }

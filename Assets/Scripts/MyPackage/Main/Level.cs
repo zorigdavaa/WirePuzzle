@@ -152,7 +152,7 @@ public class Level : MonoBehaviour
         if (node && node.Slot.IsFree())
         {
             var instPiece = Instantiate(Z.LS.PieceController.GetSinglePiece(), node.transform.position, Quaternion.identity);
-            gridController.Place(instPiece.GetComponent<Piece>(), new List<Slot> { node.Slot });
+            gridController.Place(instPiece.GetComponent<Piece>(), new List<GridNode> { node });
         }
     }
 

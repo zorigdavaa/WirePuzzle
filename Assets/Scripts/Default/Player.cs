@@ -184,15 +184,16 @@ public class Player : Mb
                     selectedPiece.transform.position = point;
                 }
                 float lastSilh = Time.time - silhTime;
-                if (lastSilh > 0.5f && gridController.IsPlaceAble(selectedPiece, out List<Slot> freeSlots))
+                if (lastSilh > 0.5f && gridController.IsPlaceAble(selectedPiece, out List<GridNode> freeSlots))
                 {
                     silhTime = Time.time;
                     GameObject silh = selectedPiece.GetSilhoutte();
-                    silh.SetActive(true);
-                    for (int i = 0; i < silh.transform.childCount; i++)
-                    {
-                        silh.transform.GetChild(i).transform.position = freeSlots[i].transform.position;
-                    }
+                    PlaceSilh(freeSlots, silh);
+                    // silh.SetActive(true);
+                    // for (int i = 0; i < silh.transform.childCount; i++)
+                    // {
+                    //     silh.transform.GetChild(i).transform.position = freeSlots[i].transform.position;
+                    // }
                 }
                 // if (!piecePlaceChecked)
                 // {
@@ -226,7 +227,7 @@ public class Player : Mb
                     // else 
                     if (isDragging)
                     {
-                        if (gridController.IsPlaceAble(selectedPiece, out List<Slot> freeSlots))
+                        if (gridController.IsPlaceAble(selectedPiece, out List<GridNode> freeSlots))
                         {
                             gridController.Place(selectedPiece, freeSlots);
                             Z.LS.CurrentLevel.CheckColumnsRows();
@@ -249,9 +250,33 @@ public class Player : Mb
             {
                 // gridController.Grid.getwo
             }
+            if (Time.time - lastPlaceTime > 10 && lastSuggestTime + 5 < Time.time)
+            {
+                lastSuggestTime = Time.time;
+                List<Piece> pieces = pieceController.GetPieces();
+                foreach (var item in pieces)
+                {
+                    if (gridController.IsPlaceAbleSomeWhere(item, out List<GridNode> placeAbleNodes))
+                    {
+                        GameObject silh = item.GetSilhoutte();
+                        PlaceSilh(placeAbleNodes, silh);
+                        item.HideSilhoutteAfterDelay(2f);
+                    }
+                }
+            }
         }
-
     }
+
+    private void PlaceSilh(List<GridNode> placeAbleNodes, GameObject silh)
+    {
+        silh.SetActive(true);
+        for (int i = 0; i < silh.transform.childCount; i++)
+        {
+            silh.transform.GetChild(i).transform.position = placeAbleNodes[i].transform.position;
+        }
+    }
+
+    float lastSuggestTime = 0;
     private void ClearLine()
     {
         lastSelectedSlot = null;
@@ -267,7 +292,7 @@ public class Player : Mb
         //     }
         // }
     }
-
+    float lastPlaceTime = 0;
     private void PlaceObject()
     {
         selectedPiece.GetSilhoutte().SetActive(false);
@@ -275,6 +300,7 @@ public class Player : Mb
         {
             pieceController.GotoSlot(selectedPiece);
         }
+        lastPlaceTime = Time.time;
         // // Snap to ground
         // Vector3 pos = selectedObject.transform.position;
         // pos.y = 0;

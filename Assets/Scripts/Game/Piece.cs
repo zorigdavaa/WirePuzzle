@@ -141,6 +141,19 @@ public class Piece : Mb
         mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
         mat.renderQueue = 3000;
     }
+
+    public void HideSilhoutteAfterDelay(float v)
+    {
+        StartCoroutine(HideSilhCor(v));
+        IEnumerator HideSilhCor(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            if (SilHoutte != null)
+            {
+                SilHoutte.SetActive(false);
+            }
+        }
+    }
 }
 public enum PieceType
 {
