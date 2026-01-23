@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79ad2a8b752b4db8b3b318c370d4e09, type: 3}
   m_Name: Level_001
   m_EditorClassIdentifier: 
+  LevelString: 
   LevelConnectDatas:
   - cellDatas:
     - Type: 1
@@ -20,7 +21,7 @@ MonoBehaviour:
       Position: {x: 4, y: 4}
   X: 6
   Y: 6
-  Pieces: []
+  Pieces: {fileID: 11400000, guid: 9bfe0c81c77c24468bf2f429ce39cbb7, type: 2}
   CamDistance: 10
   PieceScale: 0.5
   PieceCount: 3

@@ -16,11 +16,11 @@ public class Prefabs : GenericSingleton<Prefabs>
         // Vector3 initialPos;
         // Vector3 tagetPos;
         List<GridNode> DestroyNodes = new();
-        if (type == RowCol.Column)
+        if (type == RowCol.Row)
         {
             // initialPos = grid.GetWorldPosition(item, 0).SwitchYZ();
             // tagetPos = grid.GetWorldPosition(item, grid.GetWidth()).SwitchYZ();
-            for (int i = 0; i < grid.GetWidth(); i++)
+            for (int i = 0; i < grid.GetHeight(); i++)
             {
                 DestroyNodes.Add(grid.GetGridObject(item, i));
             }
@@ -29,7 +29,7 @@ public class Prefabs : GenericSingleton<Prefabs>
         {
             // initialPos = grid.GetWorldPosition(0, item).SwitchYZ();
             // tagetPos = grid.GetWorldPosition(grid.GetHeight(), item).SwitchYZ();
-            for (int i = 0; i < grid.GetHeight(); i++)
+            for (int i = 0; i < grid.GetWidth(); i++)
             {
                 DestroyNodes.Add(grid.GetGridObject(i, item));
             }
@@ -43,6 +43,10 @@ public class Prefabs : GenericSingleton<Prefabs>
         }
         // Debug.Log($"{initialPos}  and {tagetPos}");
         // Vector3 direction = tagetPos - initialPos;
+        if (DestroyNodes.Count == 0)
+        {
+            Debug.LogError("No Nodes to Destroy");
+        }
         Vector3 direction = (DestroyNodes[^1].transform.position - DestroyNodes[0].transform.position).normalized;
         Vector3 initialPos = DestroyNodes[0].transform.position;
         Vector3 tagetPos = DestroyNodes[^1].transform.position;
@@ -55,8 +59,7 @@ public class Prefabs : GenericSingleton<Prefabs>
             float time = 0f;
             float duration = 0.3f;
 
-            DestroyNodes[0].Slot.ScaledDestroy();
-            int nodeIndex = 1;
+            int nodeIndex = 0;
             // Vector3 initial = transform.position;
             while (time < duration)
             {

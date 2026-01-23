@@ -341,7 +341,7 @@ public class GridController : MonoBehaviour
         foreach (var item in xLinesToDestroy)
         {
             Counter++;
-            Prefabs.Instance.CreateFireWork(item, RowCol.Column, Grid, () =>
+            Prefabs.Instance.CreateFireWork(item, RowCol.Row, Grid, () =>
             {
                 Counter--;
             });
@@ -349,7 +349,7 @@ public class GridController : MonoBehaviour
         foreach (var item in yLinesToDestroy)
         {
             Counter++;
-            Prefabs.Instance.CreateFireWork(item, RowCol.Row, Grid, () =>
+            Prefabs.Instance.CreateFireWork(item, RowCol.Column, Grid, () =>
             {
                 Counter--;
             });
