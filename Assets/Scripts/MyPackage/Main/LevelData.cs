@@ -70,7 +70,7 @@ public class LevelData : ScriptableObject
                 {
                     type = SlotType.Light;
                 }
-                else if (c == 'B')
+                else if (c == 'X')
                 {
                     type = SlotType.Blocked;
                 }
@@ -82,7 +82,7 @@ public class LevelData : ScriptableObject
                 {
                     type = SlotType.Hidden;
                 }
-                else if (c == 'X')
+                else if (c == 'O')
                 {
                     type = SlotType.Box;
                 }

@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b79ad2a8b752b4db8b3b318c370d4e09, type: 3}
-  m_Name: Level_006
+  m_Name: Level_008
   m_EditorClassIdentifier: 
-  LevelString: 'H L.L H
+  LevelString: 'H.L.L.H
 
-    H .H. H
+    .......
 
-    ...P...
+    H.HPH.H
 
-    H .H. H
+    .......
 
-    H L.L H'
+    H.L.L.H'
   LevelConnectDatas:
   - cellDatas:
     - Type: 6
@@ -32,19 +32,15 @@ MonoBehaviour:
     - Type: 6
       Position: {x: 6, y: 4}
     - Type: 6
-      Position: {x: 0, y: 3}
+      Position: {x: 0, y: 2}
     - Type: 6
-      Position: {x: 3, y: 3}
-    - Type: 6
-      Position: {x: 6, y: 3}
+      Position: {x: 2, y: 2}
     - Type: 1
       Position: {x: 3, y: 2}
     - Type: 6
-      Position: {x: 0, y: 1}
+      Position: {x: 4, y: 2}
     - Type: 6
-      Position: {x: 3, y: 1}
-    - Type: 6
-      Position: {x: 6, y: 1}
+      Position: {x: 6, y: 2}
     - Type: 6
       Position: {x: 0, y: 0}
     - Type: 2
