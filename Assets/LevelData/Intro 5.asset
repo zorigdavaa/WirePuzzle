@@ -98,6 +98,6 @@ MonoBehaviour:
   X: 10
   Y: 6
   Pieces: {fileID: 11400000, guid: 7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b, type: 2}
-  CamDistance: 10
+  CamDistance: 15
   PieceScale: 0.5
   PieceCount: 3
