@@ -12,50 +12,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79ad2a8b752b4db8b3b318c370d4e09, type: 3}
   m_Name: Intro 5
   m_EditorClassIdentifier: 
-  LevelString: 'XXXX..XXXX
+  LevelString: 'HHHH..HHHH
 
-    XXXX..XXXX
+    HHHH..HHHH
 
     L...P...L.
 
     ..........
 
-    XXXX..XXXX
+    HHHH..HHHH
 
-    XXXX..XXXX'
+    HHHH..HHHH'
   LevelConnectDatas:
   - cellDatas:
-    - Type: 3
+    - Type: 6
       Position: {x: 0, y: 5}
-    - Type: 3
+    - Type: 6
       Position: {x: 1, y: 5}
-    - Type: 3
+    - Type: 6
       Position: {x: 2, y: 5}
-    - Type: 3
+    - Type: 6
       Position: {x: 3, y: 5}
-    - Type: 3
+    - Type: 6
       Position: {x: 6, y: 5}
-    - Type: 3
+    - Type: 6
       Position: {x: 7, y: 5}
-    - Type: 3
+    - Type: 6
       Position: {x: 8, y: 5}
-    - Type: 3
+    - Type: 6
       Position: {x: 9, y: 5}
-    - Type: 3
+    - Type: 6
       Position: {x: 0, y: 4}
-    - Type: 3
+    - Type: 6
       Position: {x: 1, y: 4}
-    - Type: 3
+    - Type: 6
       Position: {x: 2, y: 4}
-    - Type: 3
+    - Type: 6
       Position: {x: 3, y: 4}
-    - Type: 3
+    - Type: 6
       Position: {x: 6, y: 4}
-    - Type: 3
+    - Type: 6
       Position: {x: 7, y: 4}
-    - Type: 3
+    - Type: 6
       Position: {x: 8, y: 4}
-    - Type: 3
+    - Type: 6
       Position: {x: 9, y: 4}
     - Type: 2
       Position: {x: 0, y: 3}
@@ -63,37 +63,37 @@ MonoBehaviour:
       Position: {x: 4, y: 3}
     - Type: 2
       Position: {x: 8, y: 3}
-    - Type: 3
+    - Type: 6
       Position: {x: 0, y: 1}
-    - Type: 3
+    - Type: 6
       Position: {x: 1, y: 1}
-    - Type: 3
+    - Type: 6
       Position: {x: 2, y: 1}
-    - Type: 3
+    - Type: 6
       Position: {x: 3, y: 1}
-    - Type: 3
+    - Type: 6
       Position: {x: 6, y: 1}
-    - Type: 3
+    - Type: 6
       Position: {x: 7, y: 1}
-    - Type: 3
+    - Type: 6
       Position: {x: 8, y: 1}
-    - Type: 3
+    - Type: 6
       Position: {x: 9, y: 1}
-    - Type: 3
+    - Type: 6
       Position: {x: 0, y: 0}
-    - Type: 3
+    - Type: 6
       Position: {x: 1, y: 0}
-    - Type: 3
+    - Type: 6
       Position: {x: 2, y: 0}
-    - Type: 3
+    - Type: 6
       Position: {x: 3, y: 0}
-    - Type: 3
+    - Type: 6
       Position: {x: 6, y: 0}
-    - Type: 3
+    - Type: 6
       Position: {x: 7, y: 0}
-    - Type: 3
+    - Type: 6
       Position: {x: 8, y: 0}
-    - Type: 3
+    - Type: 6
       Position: {x: 9, y: 0}
   X: 10
   Y: 6
