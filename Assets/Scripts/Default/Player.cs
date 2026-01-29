@@ -262,6 +262,7 @@ public class Player : Mb
                         GameObject silh = item.GetSilhoutte();
                         PlaceSilh(placeAbleNodes, silh);
                         item.HideSilhoutteAfterDelay(2f);
+                        break;
                     }
                 }
             }

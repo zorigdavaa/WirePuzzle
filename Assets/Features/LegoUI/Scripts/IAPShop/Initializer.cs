@@ -34,8 +34,10 @@ public class Initializer : MonoBehaviour
 
 }
 
-//Power Up Idead
-//Reset pieces
-// Random change Piece
-// Destroy X
-// Remove All Obj in Grid
+// Color Matching: Perhaps a blue battery can only power a blue bulb, or paths can cross if they are different colors.
+
+// Logic Gates: Add "AND/OR" blocks. For example, a bulb that only lights up if two batteries are connected to it.
+
+// Transformers/Splitters: Blocks that take one signal and split it into two, allowing you to power multiple bulbs at once.
+
+// One-Way Diodes: Blocks that only allow electricity to flow in one direction.

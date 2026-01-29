@@ -75,7 +75,7 @@ MonoBehaviour:
       Position: {x: 6, y: 0}
   X: 7
   Y: 7
-  Pieces: {fileID: 11400000, guid: 362fdc9c858a24c0eaadeecf2c425e04, type: 2}
+  Pieces: {fileID: 11400000, guid: 3b2a1f0e9d8c7b6a5f4e3d2c1b0a9f8e, type: 2}
   CamDistance: 10
   PieceScale: 0.5
   PieceCount: 3
