@@ -11,12 +11,14 @@ public class PieceController : Mb
 {
     // public List<Piece> PiecesPf;
     public PiecesPreset PiecesPf;
+    public List<Piece> SequencePreset;
     public List<Piece> LevelPiecesPf;
     // public List<Piece> PiecesPfCopy;
     public List<GameObject> SlotsParent;
     public List<Transform> pieceSlots;
     public List<Material> pieceMaterials;
     public GameObject singlePiecePF;
+    public int SeqIndex = 0;
     // public RandomBag<Piece> bag;
     public Dictionary<Transform, Piece> CurrentSlotObj = new Dictionary<Transform, Piece>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -57,7 +59,12 @@ public class PieceController : Mb
         List<Piece> neededPieces = Z.GridController.GetNeededPiece(LevelPiecesPf);
         for (int i = 0; i < pieceSlots.Count; i++)
         {
-            if (i < 2 && neededPieces.Count > 0)
+            if (HasNextInSequence())
+            {
+                newItems.Add(SequencePreset[SeqIndex]);
+                SeqIndex++;
+            }
+            else if (i < 2 && neededPieces.Count > 0)
             {
                 newItems.Add(neededPieces[Random.Range(0, neededPieces.Count)]);
             }
@@ -214,5 +221,19 @@ public class PieceController : Mb
         // {
         //     Debug.LogError("Suggest No PlaceAble");
         // }
+    }
+
+    public void SetPiecesSequence(List<Piece> sequencePreset)
+    {
+        SequencePreset = sequencePreset;
+        SeqIndex = 0;
+    }
+    public bool HasNextInSequence()
+    {
+        if (SequencePreset == null || SequencePreset.Count == 0)
+        {
+            return false;
+        }
+        return SeqIndex < SequencePreset.Count;
     }
 }

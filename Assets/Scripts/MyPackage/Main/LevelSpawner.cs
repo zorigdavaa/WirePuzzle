@@ -33,6 +33,7 @@ namespace ZPackage
             // CurrentLevel = Instantiate(level, transform.position, Quaternion.identity, transform).GetComponent<Level>();
             CurrentLevel = Instantiate(BaseLevel, transform.position, Quaternion.identity, transform).GetComponent<Level>();
             PieceController.SetLevelPieces(levelData.Pieces);
+            PieceController.SetPiecesSequence(levelData.SequencePreset);
             CurrentLevel.SetData(levelData);
             Camera.main.transform.position = new Vector3(0, levelData.CamDistance, 0);
         }
