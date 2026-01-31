@@ -223,9 +223,23 @@ public class PieceController : Mb
         // }
     }
 
-    public void SetPiecesSequence(List<Piece> sequencePreset)
+    public void StringToPiecesSeq(string sequence)
     {
-        SequencePreset = sequencePreset;
+        if (sequence != null && sequence.Length > 0)
+        {
+            List<Piece> seqList = new List<Piece>();
+            string[] ids = sequence.Split(',');
+            foreach (string id in ids)
+            {
+                if (int.TryParse(id, out int pieceIndex))
+                {
+                    seqList.Add(PiecesPf.Pieces.FirstOrDefault(p => p.ID == pieceIndex));
+                }
+            }
+            // SetPiecesSequence(seqList);
+            SequencePreset = seqList;
+        }
+        // SequencePreset = sequencePreset;
         SeqIndex = 0;
     }
     public bool HasNextInSequence()

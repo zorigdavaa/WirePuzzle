@@ -8,7 +8,7 @@ public class LevelData : ScriptableObject
     [TextArea(5, 20)]
     public string LevelString;
     public List<LevelConnectData> LevelConnectDatas;
-    public List<Piece> SequencePreset;
+    public string SequencePreset;
     public int X;
     public int Y;
     public PiecesPreset Pieces;

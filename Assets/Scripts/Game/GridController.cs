@@ -79,15 +79,16 @@ public class GridController : MonoBehaviour
     [ContextMenu("Place Slots")]
     public void PlaceSlots()
     {
+#if UNITY_EDITOR
         Slots.Clear();
         // Must use Undo in prefab mode
+
         for (int i = transform.childCount - 1; i >= 0; i--)
         {
             Undo.DestroyObjectImmediate(transform.GetChild(i).gameObject);
         }
         CreateGrid();
 
-#if UNITY_EDITOR
         EditorUtility.SetDirty(gameObject);
 #endif
     }
@@ -398,7 +399,7 @@ public class GridController : MonoBehaviour
         }
     }
 
-    internal void AddRow()
+    public void AddRow()
     {
         DestroyCurrentGrid();
         Y++;
@@ -414,7 +415,7 @@ public class GridController : MonoBehaviour
         Slots.Clear();
     }
 
-    internal void AddColumn()
+    public void AddColumn()
     {
         DestroyCurrentGrid();
         X++;

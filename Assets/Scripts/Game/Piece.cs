@@ -7,6 +7,7 @@ using ZPackage;
 
 public class Piece : Mb
 {
+    public int ID;
     public PieceType Type;
     Coroutine rotCor;
     Transform pieceSlot;

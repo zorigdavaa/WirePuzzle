@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.ComTypes;
+// using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
 
 namespace ZPackage
@@ -19,7 +19,8 @@ namespace ZPackage
                 {
                     return LevelSpawner.Instance.CurrentLevel.gridController;
                 }
-                return LevelEditor.Instance.CurrentLevel.gridController;
+                // return LevelEditor.Instance.CurrentLevel.gridController;
+                return GameObject.FindAnyObjectByType<GridController>();
             }
         }
         public static PieceController PieceController
@@ -30,7 +31,8 @@ namespace ZPackage
                 {
                     return LevelSpawner.Instance.PieceController;
                 }
-                return LevelEditor.Instance.PieceController;
+                // return LevelEditor.Instance.PieceController;
+                return GameObject.FindAnyObjectByType<PieceController>();
             }
         }
         public static Level CurrentLevel
@@ -41,7 +43,8 @@ namespace ZPackage
                 {
                     return LevelSpawner.Instance.CurrentLevel;
                 }
-                return LevelEditor.Instance.CurrentLevel;
+                // return LevelEditor.Instance.CurrentLevel;
+                return GameObject.FindAnyObjectByType<Level>();
             }
         }
         private static Player _player;
