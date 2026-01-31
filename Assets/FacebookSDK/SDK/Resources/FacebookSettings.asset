@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedAppIndex: 0
   clientTokens:
-  - test
+  - 40ba87cc240c6d5320fe40e071a12e3b
   appIds:
-  - test
+  - 889176067037771
   appLabels:
-  - ConnectWire
+  - Connect Wire
   cookie: 1
   logging: 1
   status: 1
