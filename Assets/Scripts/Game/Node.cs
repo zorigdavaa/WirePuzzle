@@ -41,7 +41,9 @@ public class Node : MonoBehaviour, ISlotObj
             Color initColor = Color.white;
             Color toColor = Color.yellow;
             render.material.EnableKeyword("_EMISSION");
+            Color glowColor = Color.cyan * 1f;
 
+            render.material.SetColor("_EmissionColor", glowColor);
             while (time < duration)
             {
                 time += Time.deltaTime;
