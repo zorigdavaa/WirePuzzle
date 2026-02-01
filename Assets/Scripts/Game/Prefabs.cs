@@ -10,7 +10,7 @@ public class Prefabs : GenericSingleton<Prefabs>
     public GameObject FireWork;
     public GameObject CoinPF;
 
-    public void CreateFireWork(int item, RowCol type, Grid<GridNode> grid, Action onComplete = null)
+    public void ShortCircuit(int item, RowCol type, Grid<GridNode> grid, Action onComplete = null, bool withEffect = true)
     {
         Debug.Log("Firework");
         // Vector3 initialPos;
@@ -68,14 +68,17 @@ public class Prefabs : GenericSingleton<Prefabs>
                 fireWork.transform.position = Vector3.Lerp(initialPos, tagetPos, t);
                 // DestroyNodes[0].Slot.ScaledDestroy();
                 // DestroyNodes.RemoveAt(0);
-
-                int targetIndex = Mathf.FloorToInt(t * DestroyNodes.Count);
-
-                while (nodeIndex <= targetIndex && nodeIndex < DestroyNodes.Count)
+                if (withEffect)
                 {
-                    DestroyNodes[nodeIndex].Slot.ScaledDestroy();
-                    nodeIndex++;
+                    int targetIndex = Mathf.FloorToInt(t * DestroyNodes.Count);
+
+                    while (nodeIndex <= targetIndex && nodeIndex < DestroyNodes.Count)
+                    {
+                        DestroyNodes[nodeIndex].Slot.ScaledDestroy();
+                        nodeIndex++;
+                    }
                 }
+
                 yield return null;
             }
             onComplete?.Invoke();
@@ -91,7 +94,6 @@ public class Prefabs : GenericSingleton<Prefabs>
             Destroy(fireWork);
         }
     }
-
 }
 
 public enum RowCol

@@ -30,28 +30,29 @@ public class Node : MonoBehaviour, ISlotObj
     }
     public void Shine()
     {
-        StartCoroutine(LocalCor());
-        IEnumerator LocalCor()
-        {
-            float t = 0f;
-            float time = 0f;
-            float duration = 1.0f;
-            MeshRenderer render = transform.GetChild(0).GetComponent<MeshRenderer>();
-            // Color initColor = render.material.color;
-            Color initColor = Color.white;
-            Color toColor = Color.yellow;
-            render.material.EnableKeyword("_EMISSION");
-            Color glowColor = Color.cyan * 1f;
+        MeshRenderer render = transform.GetChild(0).GetComponent<MeshRenderer>();
+        // Color initColor = render.material.color;
 
-            render.material.SetColor("_EmissionColor", glowColor);
-            while (time < duration)
-            {
-                time += Time.deltaTime;
-                t = time / duration;
-                render.material.color = Color.Lerp(initColor, toColor, t);
-                yield return null;
-            }
-        }
+        render.material.EnableKeyword("_EMISSION");
+        Color glowColor = Color.cyan * 1f;
+
+        render.material.SetColor("_EmissionColor", glowColor);
+        // StartCoroutine(LocalCor());
+        // IEnumerator LocalCor()
+        // {
+        //     // float t = 0f;
+        //     // float time = 0f;
+        //     // float duration = 1.0f;
+        //     // Color initColor = Color.white;
+        //     // Color toColor = Color.yellow;
+        //     // while (time < duration)
+        //     // {
+        //     //     time += Time.deltaTime;
+        //     //     t = time / duration;
+        //     //     render.material.color = Color.Lerp(initColor, toColor, t);
+        //     //     yield return null;
+        //     // }
+        // }
     }
 
 

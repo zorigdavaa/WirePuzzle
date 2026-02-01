@@ -84,6 +84,11 @@ public class Level : MonoBehaviour
             CheckConnected();
         }
     }
+    public bool CheckColumnsRows(List<GridNode> placeAbleNodes)
+    {
+        gridController.ColumnRowCheck(placeAbleNodes);
+        return true;
+    }
 
     public void CheckConnected()
     {
@@ -224,7 +229,7 @@ public class Level : MonoBehaviour
         GridNode node = gridController.Grid.GetGridObject(worldMouse);
         if (node)
         {
-            Prefabs.Instance.CreateFireWork(node.Y, RowCol.Column, gridController.Grid);
+            Prefabs.Instance.ShortCircuit(node.Y, RowCol.Column, gridController.Grid);
             // GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
             // Destroy(cube, 3);
             // Vector3 position = gridController.Grid.GetWorldPosition(node.X, node.Y).SwitchYZ();

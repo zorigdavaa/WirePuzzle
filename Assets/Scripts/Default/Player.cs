@@ -276,6 +276,12 @@ public class Player : Mb
         {
             silh.transform.GetChild(i).transform.position = placeAbleNodes[i].transform.position;
         }
+        //Todo Fake ShortCircuit Effect
+        if (Z.LS.CurrentLevel.CheckColumnsRows(placeAbleNodes))
+        {
+
+        }
+        ;
     }
 
     float lastSuggestTime = 0;

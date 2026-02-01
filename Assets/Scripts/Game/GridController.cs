@@ -342,7 +342,7 @@ public class GridController : MonoBehaviour
         foreach (var item in xLinesToDestroy)
         {
             Counter++;
-            Prefabs.Instance.CreateFireWork(item, RowCol.Row, Grid, () =>
+            Prefabs.Instance.ShortCircuit(item, RowCol.Row, Grid, () =>
             {
                 Counter--;
             });
@@ -350,7 +350,7 @@ public class GridController : MonoBehaviour
         foreach (var item in yLinesToDestroy)
         {
             Counter++;
-            Prefabs.Instance.CreateFireWork(item, RowCol.Column, Grid, () =>
+            Prefabs.Instance.ShortCircuit(item, RowCol.Column, Grid, () =>
             {
                 Counter--;
             });
@@ -358,13 +358,31 @@ public class GridController : MonoBehaviour
         yield return new WaitUntil(() => Counter == 0);
         // onComplete?.Invoke();
     }
+    public bool WillTheseMakesFull(List<GridNode> placeAbleNodes)
+    {
+        HashSet<int> xLinesToDestroy = new HashSet<int>();
+        HashSet<int> yLinesToDestroy = new HashSet<int>();
+        for (int x = 0; x < X; x++)
+        {
+            if (!IsColumnFullWith(x, placeAbleNodes))
+                continue;
+            xLinesToDestroy.Add(x);
+        }
+        for (int y = 0; y < Y; y++)
+        {
+            if (!IsRowFullWith(y, placeAbleNodes))
+                continue;
+            yLinesToDestroy.Add(y);
+        }
+        return xLinesToDestroy.Count > 0 || yLinesToDestroy.Count > 0;
+    }
     public IEnumerator ClearRowAndColumns()
     {
         int Counter = 0;
         for (int i = 0; i < Grid.GetHeight(); i++)
         {
             Counter++;
-            Prefabs.Instance.CreateFireWork(i, RowCol.Column, Grid, () =>
+            Prefabs.Instance.ShortCircuit(i, RowCol.Column, Grid, () =>
             {
                 Counter--;
             });
@@ -382,6 +400,24 @@ public class GridController : MonoBehaviour
         return true;
     }
     bool IsRowFull(int y)
+    {
+        for (int x = 0; x < X; x++)
+        {
+            if (Grid.GetGridObject(x, y).Slot.IsFree())
+                return false;
+        }
+        return true;
+    }
+    bool IsColumnFullWith(int x, List<GridNode> placeAbleNodes)
+    {
+        for (int y = 0; y < Y; y++)
+        {
+            if (Grid.GetGridObject(x, y).Slot.IsFree())
+                return false;
+        }
+        return true;
+    }
+    bool IsRowFullWith(int y, List<GridNode> placeAbleNodes)
     {
         for (int x = 0; x < X; x++)
         {
@@ -421,6 +457,8 @@ public class GridController : MonoBehaviour
         X++;
         CreateGrid();
     }
+
+
 
     // private List<Vector3> RetracePath(GridNode startNode, GridNode endNode)
     // {
