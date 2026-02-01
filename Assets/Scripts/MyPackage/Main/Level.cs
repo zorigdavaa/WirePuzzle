@@ -86,8 +86,7 @@ public class Level : MonoBehaviour
     }
     public bool CheckColumnsRows(List<GridNode> placeAbleNodes)
     {
-        gridController.ColumnRowCheck(placeAbleNodes);
-        return true;
+        return gridController.WillTheseMakesFull(placeAbleNodes);
     }
 
     public void CheckConnected()

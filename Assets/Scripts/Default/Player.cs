@@ -196,6 +196,7 @@ public class Player : Mb
                     //     silh.transform.GetChild(i).transform.position = freeSlots[i].transform.position;
                     // }
                 }
+                lastSuggestTime = Time.time;
                 // if (!piecePlaceChecked)
                 // {
                 //     piecePlaceChecked = true;

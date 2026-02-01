@@ -374,6 +374,14 @@ public class GridController : MonoBehaviour
                 continue;
             yLinesToDestroy.Add(y);
         }
+        foreach (var item in xLinesToDestroy)
+        {
+            Prefabs.Instance.ShortCircuit(item, RowCol.Row, Grid, null, false);
+        }
+        foreach (var item in yLinesToDestroy)
+        {
+            Prefabs.Instance.ShortCircuit(item, RowCol.Column, Grid, null, false);
+        }
         return xLinesToDestroy.Count > 0 || yLinesToDestroy.Count > 0;
     }
     public IEnumerator ClearRowAndColumns()
@@ -412,8 +420,16 @@ public class GridController : MonoBehaviour
     {
         for (int y = 0; y < Y; y++)
         {
-            if (Grid.GetGridObject(x, y).Slot.IsFree())
-                return false;
+            GridNode node = Grid.GetGridObject(x, y);
+            if (node.Slot.IsFree())
+            {
+                if (!placeAbleNodes.Contains(node))
+                {
+
+                    return false;
+                }
+            }
+
         }
         return true;
     }
@@ -421,8 +437,15 @@ public class GridController : MonoBehaviour
     {
         for (int x = 0; x < X; x++)
         {
-            if (Grid.GetGridObject(x, y).Slot.IsFree())
-                return false;
+            GridNode node = Grid.GetGridObject(x, y);
+            if (node.Slot.IsFree())
+            {
+                if (!placeAbleNodes.Contains(node))
+                {
+
+                    return false;
+                }
+            }
         }
         return true;
     }
