@@ -102,6 +102,7 @@ public class Piece : Mb
         {
 
             item.transform.GetChild(0).GetComponent<Renderer>().material = material;
+            // item.Renderer.material = material;
         }
     }
     public GameObject SilHoutte = null;
@@ -116,6 +117,7 @@ public class Piece : Mb
                 copyNode.transform.SetParent(newSilhoute.transform);
                 copyNode.transform.localPosition = item.transform.localPosition;
                 SetTransparent(copyNode.transform.GetChild(0).GetComponent<Renderer>().material, 0.1f);
+                // SetTransparent(copyNode.Renderer.material, 0.1f);
                 Destroy(copyNode);
             }
             SilHoutte = newSilhoute;
@@ -130,9 +132,9 @@ public class Piece : Mb
         // Disable depth writing
         mat.SetInt("_ZWrite", 0);
 
-        Color c = mat.GetColor("_BaseColor");
+        Color c = mat.GetColor("_Color");
         c.a = alpha;
-        mat.SetColor("_BaseColor", c);
+        mat.SetColor("_Color", c);
         // Enable required keywords
         mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
         mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);

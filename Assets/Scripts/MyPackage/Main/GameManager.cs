@@ -148,11 +148,13 @@ namespace ZPackage
         }
         private void CreateGitIgnore()
         {
+#if UNITY_EDITOR
             if (!File.Exists(".gitignore"))
             {
                 print(Directory.GetCurrentDirectory() + ".gitignore File Created");
                 File.WriteAllText(".gitignore", File.ReadAllText(Directory.GetCurrentDirectory() + "/Assets/Scripts/Data/gitignore"));
             }
+#endif
         }
 
         private void NextLevel()

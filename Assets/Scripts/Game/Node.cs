@@ -16,6 +16,11 @@ public class Node : MonoBehaviour, ISlotObj
     }
     public int ModelIndex { get; set; }
     public Slot Slot { get; set; }
+    // public Renderer Renderer { get; set; }
+    // private void Awake()
+    // {
+    //     Renderer = transform.GetChild(0).GetComponent<Renderer>();
+    // }
 
     public void Upgrade()
     {
