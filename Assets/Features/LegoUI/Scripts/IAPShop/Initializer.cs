@@ -34,10 +34,13 @@ public class Initializer : MonoBehaviour
 
 }
 
+// Ideas for future blocks:
+
+// Blocks can have different collectable items that they are levels requirements;
+// E.G **** block can be [star, marble, block, Coin] and star marble coins are collected when the that one is destroed in a level.
+
+// Battery Matching: Perhaps a bulb that only lights up if two batteries are connected to it.
+
 // Color Matching: Perhaps a blue battery can only power a blue bulb, or paths can cross if they are different colors.
-
-// Logic Gates: Add "AND/OR" blocks. For example, a bulb that only lights up if two batteries are connected to it.
-
-// Transformers/Splitters: Blocks that take one signal and split it into two, allowing you to power multiple bulbs at once.
 
 // One-Way Diodes: Blocks that only allow electricity to flow in one direction.
