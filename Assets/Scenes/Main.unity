@@ -2456,6 +2456,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b68bbce4415574ac38d8cc809ef5c7e9, type: 2}
   - {fileID: 11400000, guid: 5b2cb497b4db74be4b83fdad8783627a, type: 2}
   - {fileID: 11400000, guid: 6a48e31a72c3c4c90a7b303e0f95173c, type: 2}
+  - {fileID: 11400000, guid: f8dc0639c91c54ad0bbbfe2d8f16d0a3, type: 2}
   PieceController: {fileID: 0}
   BaseLevel: {fileID: 5477432975358735235, guid: 5bbf9648fc19245bb9e681bd592e8c84, type: 3}
   CurrentLevel: {fileID: 0}
