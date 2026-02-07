@@ -2426,6 +2426,7 @@ MonoBehaviour:
   - {fileID: 8007251741595809806, guid: 74df424c6e254401592506c780177136, type: 3}
   - {fileID: 8007251741595809806, guid: 0c38c028b8fc044c78b38d2e55543b26, type: 3}
   LevelDatas:
+  - {fileID: 11400000, guid: c41d67f767bb441bfbe9a53043ea421d, type: 2}
   - {fileID: 11400000, guid: 6a3141ccedf4e4cf0a29957c82b9065d, type: 2}
   - {fileID: 11400000, guid: a19912eb472ed44a3b7312fe70b35f53, type: 2}
   - {fileID: 11400000, guid: c70c2dff990ce4451962457bfa4113be, type: 2}

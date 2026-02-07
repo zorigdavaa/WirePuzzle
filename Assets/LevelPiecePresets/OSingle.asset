@@ -10,10 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bce8258943b54e008f7d0eb0a0f5843, type: 3}
-  m_Name: IntroPieces
+  m_Name: OSingle
   m_EditorClassIdentifier: 
   Pieces:
-  - {fileID: 4637198259214586481, guid: 13b987bd605d74430a3d9cf6e682e50d, type: 3}
-  - {fileID: 4637198259214586481, guid: 4dada780bea9f43b888bbfc4c24358c2, type: 3}
-  - {fileID: 4637198259214586481, guid: e444358da8c90448ab16e9ff5c533e44, type: 3}
   - {fileID: 4637198259214586481, guid: 738a0c49e978a409ca0ed4f5b971a37d, type: 3}
