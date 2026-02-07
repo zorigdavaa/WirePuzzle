@@ -251,22 +251,40 @@ public class PieceController : Mb
 
     public void StringToPiecesSeq(string sequence)
     {
+        SequencePreset = StringToPieces(sequence);
         if (sequence != null && sequence.Length > 0)
         {
-            List<Piece> seqList = new List<Piece>();
-            string[] ids = sequence.Split(',');
-            foreach (string id in ids)
-            {
-                if (int.TryParse(id, out int pieceIndex))
-                {
-                    seqList.Add(PiecesPf.Pieces.FirstOrDefault(p => p.ID == pieceIndex));
-                }
-            }
-            // SetPiecesSequence(seqList);
-            SequencePreset = seqList;
+            // List<Piece> seqList = new List<Piece>();
+            // string[] ids = sequence.Split(',');
+            // foreach (string id in ids)
+            // {
+            //     if (int.TryParse(id, out int pieceIndex))
+            //     {
+            //         seqList.Add(PiecesPf.Pieces.FirstOrDefault(p => p.ID == pieceIndex));
+            //     }
+            // }
+            // // SetPiecesSequence(seqList);
+            // SequencePreset = seqList;
         }
         // SequencePreset = sequencePreset;
         SeqIndex = 0;
+    }
+    public static List<Piece> StringToPieces(string sequence)
+    {
+        if (sequence == null || sequence.Length == 0)
+        {
+            return new List<Piece>();
+        }
+        List<Piece> seqList = new List<Piece>();
+        string[] ids = sequence.Split(',');
+        foreach (string id in ids)
+        {
+            if (int.TryParse(id, out int pieceIndex))
+            {
+                seqList.Add(GameConfig.Instance.AllPiecesPreset.Pieces.FirstOrDefault(p => p.ID == pieceIndex));
+            }
+        }
+        return seqList;
     }
     public bool HasNextInSequence()
     {

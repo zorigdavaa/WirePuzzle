@@ -55,6 +55,16 @@ public class Piece : Mb
         }
         return Nodes;
     }
+    public List<Transform> GetChilds()
+    {
+        var result = new List<Transform>();
+        foreach (Transform child in transform)
+        {
+            result.Add(child);
+        }
+        return result;
+    }
+
     public List<Vector2> GetNodesAsOffset()
     {
         var nodes = GetNodes();

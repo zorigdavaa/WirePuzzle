@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelString: '......
 
-    X....X
+    I....I
 
     P.OO.L
 
-    X....X
+    I....I
 
     ......'
   LevelConnectDatas:
   - cellDatas:
-    - Type: 3
+    - Type: 5
       Position: {x: 0, y: 3}
-    - Type: 3
+    - Type: 5
       Position: {x: 5, y: 3}
     - Type: 1
       Position: {x: 0, y: 2}
@@ -35,9 +35,9 @@ MonoBehaviour:
       Position: {x: 3, y: 2}
     - Type: 2
       Position: {x: 5, y: 2}
-    - Type: 3
+    - Type: 5
       Position: {x: 0, y: 1}
-    - Type: 3
+    - Type: 5
       Position: {x: 5, y: 1}
   SequencePreset: 
   X: 6
