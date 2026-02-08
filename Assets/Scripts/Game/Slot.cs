@@ -57,6 +57,13 @@ public class Slot : MonoBehaviour
 
         this.type = type;
         GetModel().gameObject.SetActive(true);
+        if (type == SlotType.Filled)
+        {
+            var inst = Instantiate(GameConfig.Instance.SingleNodePF);
+            SetObj(inst);
+            this.type = SlotType.Empty;
+            // GameConfig.Instance.SinglePiecePF.SetInSlot(this);
+        }
     }
 
     public void SetObj(ISlotObj slotObj)
@@ -174,5 +181,5 @@ public class Slot : MonoBehaviour
 
 public enum SlotType
 {
-    Empty, Power, Light, Blocked, Box, Ice, Hidden
+    Empty, Power, Light, Blocked, Box, Ice, Hidden, Filled
 }

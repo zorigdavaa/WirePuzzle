@@ -53,24 +53,6 @@ public class Level : MonoBehaviour
             }
             // ChargerPoses.Add(node.GetComponent<Slot>());
         }
-        // foreach (var item in Data.LevelConnectDatas[Index].ChargerPoses)
-        // {
-        //     GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
-        //     node.GetComponent<Slot>().SetType(SlotType.Power);
-        //     ChargerPoses.Add(node.GetComponent<Slot>());
-        // }
-        // foreach (var item in Data.LevelConnectDatas[Index].ConnectPoses)
-        // {
-        //     GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
-        //     node.GetComponent<Slot>().SetType(SlotType.Light);
-        //     ConnectPoses.Add(node.GetComponent<Slot>());
-        // }
-        // foreach (var item in Data.LevelConnectDatas[Index].Blocked)
-        // {
-        //     GridNode node = gridController.Grid.GetGridObject((int)item.x, (int)item.y);
-        //     node.GetComponent<Slot>().SetType(SlotType.Blocked);
-        //     Blocked.Add(node.GetComponent<Slot>());
-        // }
         ClearCurrentPath();
 
     }

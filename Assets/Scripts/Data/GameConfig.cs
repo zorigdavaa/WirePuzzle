@@ -21,4 +21,7 @@ public class GameConfig : ScriptableObject
     }
 
     public PiecesPreset AllPiecesPreset;
+    public Piece SinglePiecePF;
+    public Node SingleNodePF;
+    public int TutorialLevelCount;
 }

@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   AllPiecesPreset: {fileID: 11400000, guid: c2a18344ab50c49c59ea86f74bc59327, type: 2}
+  SinglePiecePF: {fileID: 4637198259214586481, guid: 738a0c49e978a409ca0ed4f5b971a37d, type: 3}
+  SingleNodePF: {fileID: 8111222674825755656, guid: 5a5624561267c44e191466e914f895b3, type: 3}
+  TutorialLevelCount: 0
