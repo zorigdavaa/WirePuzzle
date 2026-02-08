@@ -95,7 +95,8 @@ public class Player : Mb
         // cam = Camera.main;
         rayMask = LayerMask.GetMask("Piece");
         InitializeKeyActions();
-        // computer = Instantiate(ConnectPF, transform.position, Quaternion.identity).GetComponent<SplineComputer>();
+        computer = Instantiate(ConnectPF, transform.position, Quaternion.identity).GetComponent<SplineComputer>();
+        computer.SetPoints(new SplinePoint[0]);
     }
 
     private void InitializeKeyActions()
@@ -255,17 +256,18 @@ public class Player : Mb
             if (Time.time - lastPlaceTime > 10 && lastSuggestTime + 5 < Time.time)
             {
                 lastSuggestTime = Time.time;
-                List<Piece> pieces = pieceController.GetPieces();
-                foreach (var item in pieces)
-                {
-                    if (gridController.IsPlaceAbleSomeWhere(item, out List<GridNode> placeAbleNodes))
-                    {
-                        GameObject silh = item.GetSilhoutte();
-                        PlaceSilh(placeAbleNodes, silh);
-                        item.HideSilhoutteAfterDelay(2f);
-                        break;
-                    }
-                }
+                TutorialPath(Z.LS.CurrentLevel.GetConnectPath());
+                // List<Piece> pieces = pieceController.GetPieces();
+                // foreach (var item in pieces)
+                // {
+                //     if (gridController.IsPlaceAbleSomeWhere(item, out List<GridNode> placeAbleNodes))
+                //     {
+                //         GameObject silh = item.GetSilhoutte();
+                //         PlaceSilh(placeAbleNodes, silh);
+                //         item.HideSilhoutteAfterDelay(2f);
+                //         break;
+                //     }
+                // }
             }
         }
     }
@@ -314,6 +316,18 @@ public class Player : Mb
         // Vector3 pos = selectedObject.transform.position;
         // pos.y = 0;
         // selectedObject.transform.position = pos;
+    }
+    public void TutorialPath(List<GridNode> path)
+    {
+        StartCoroutine(LocalCor());
+        IEnumerator LocalCor()
+        {
+            computer.SetPoints(path.Select(n => new SplinePoint(n.transform.position)).ToArray());
+            computer.Rebuild();
+            yield return new WaitForSeconds(2);
+            computer.SetPoints(new SplinePoint[0]);
+            computer.Rebuild();
+        }
     }
 
     private void drawLine()

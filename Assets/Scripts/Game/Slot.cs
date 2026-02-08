@@ -88,6 +88,10 @@ public class Slot : MonoBehaviour
         SlotType.Light,
         SlotType.Power
     };
+    private static readonly HashSet<SlotType> BlockedTypes = new()
+    {
+        SlotType.Blocked, SlotType.Hidden
+    };
     public bool IsFree()
     {
         return Obj == null && FreeTypes.Contains(type);
@@ -95,6 +99,10 @@ public class Slot : MonoBehaviour
     public bool IsFilled()
     {
         return Obj != null;
+    }
+    public bool IsPermanentBlocked()
+    {
+        return BlockedTypes.Contains(type);
     }
 
     public void DestoyObjWithShine()

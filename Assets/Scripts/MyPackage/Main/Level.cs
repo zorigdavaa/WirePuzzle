@@ -107,6 +107,28 @@ public class Level : MonoBehaviour
             }
         }
     }
+    public List<GridNode> GetConnectPath()
+    {
+        List<List<GridNode>> paths = new List<List<GridNode>>();
+        foreach (var Light in ConnectPoses)
+        {
+            foreach (var charger in ChargerPoses)
+            {
+                GridNode start = Light.GetComponent<GridNode>();
+                GridNode end = charger.GetComponent<GridNode>();
+
+                // print($"Searching {Light.GetComponent<GridNode>().X} and {Light.GetComponent<GridNode>().Y} to {charger.GetComponent<GridNode>().X} {charger.GetComponent<GridNode>().Y}");
+                var foundPaht = gridController.FindPath(start, end, true);
+                if (foundPaht.Count > 0)
+                {
+                    paths.Add(foundPaht);
+                }
+
+            }
+        }
+        Debug.Log($"Found {paths.Count} paths");
+        return paths.Count > 0 ? paths[paths.Count - 1] : new List<GridNode>();
+    }
 
     private List<List<GridNode>> FindConnection()
     {
@@ -117,15 +139,13 @@ public class Level : MonoBehaviour
             {
                 GridNode start = Light.GetComponent<GridNode>();
                 GridNode end = charger.GetComponent<GridNode>();
-                if (start.IsTraversable && end.IsTraversable)
+                // print($"Searching {Light.GetComponent<GridNode>().X} and {Light.GetComponent<GridNode>().Y} to {charger.GetComponent<GridNode>().X} {charger.GetComponent<GridNode>().Y}");
+                var foundPaht = gridController.FindPath(start, end);
+                if (foundPaht.Count > 0)
                 {
-                    // print($"Searching {Light.GetComponent<GridNode>().X} and {Light.GetComponent<GridNode>().Y} to {charger.GetComponent<GridNode>().X} {charger.GetComponent<GridNode>().Y}");
-                    var foundPaht = gridController.FindPath(Light.GetComponent<GridNode>(), charger.GetComponent<GridNode>());
-                    if (foundPaht.Count > 0)
-                    {
-                        paths.Add(foundPaht);
-                    }
+                    paths.Add(foundPaht);
                 }
+
             }
         }
 

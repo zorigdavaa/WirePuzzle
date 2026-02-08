@@ -13,6 +13,7 @@ public class GridNode : MonoBehaviour
     public int FCost { get { return GCost + HCost; } }
     public Vector3 Position { get { return new Vector3(X, 0, Y); } }
     public bool IsTraversable { get { return Slot.IsFilled(); } }
+    public bool IsPermanentBlocked { get { return Slot.IsPermanentBlocked(); } }
     private Slot _slot;
     public Slot Slot
     {

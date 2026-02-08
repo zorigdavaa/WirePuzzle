@@ -93,7 +93,7 @@ public class GridController : MonoBehaviour
 #endif
     }
 
-    public List<GridNode> GetNeighbors(GridNode currentNode)
+    public List<GridNode> GetNeighbors(GridNode currentNode, bool ignoreTraversible = false)
     {
         List<GridNode> neighbors = new List<GridNode>();
 
@@ -111,12 +111,25 @@ public class GridController : MonoBehaviour
             {
                 GridNode neighbor = Grid.GetGridObject(checkX, checkY);
 
-                // Check if the neighbor is traversable
-                // if (neighbor != null)
-                if (neighbor != null && neighbor.IsTraversable)
+                if (neighbor != null &&
+                    ((ignoreTraversible && !neighbor.IsPermanentBlocked && !IsColumnFull(neighbor.X) && !IsRowFull(neighbor.Y)) ||
+                     (!ignoreTraversible && neighbor.IsTraversable)))
                 {
                     neighbors.Add(neighbor);
                 }
+
+                // Check if the neighbor is traversable
+                // if (neighbor != null)
+                // {
+                //     if (ignoreTraversible && !neighbor.IsPermanentBlocked)
+                //     {
+                //         neighbors.Add(neighbor);
+                //     }
+                //     else if (neighbor.IsTraversable)
+                //     {
+                //         neighbors.Add(neighbor);
+                //     }
+                // }
             }
         }
 
@@ -130,7 +143,7 @@ public class GridController : MonoBehaviour
         return dstX + dstY;
     }
 
-    public List<GridNode> FindPath(GridNode startPos, GridNode targetPos)
+    public List<GridNode> FindPath(GridNode startPos, GridNode targetPos, bool ignoreTraversible = false)
     {
         List<GridNode> path = new List<GridNode>();
         // Create lists for open and closed nodes
@@ -168,7 +181,7 @@ public class GridController : MonoBehaviour
             }
 
             // Get the neighboring nodes of the current node
-            List<GridNode> neighbors = GetNeighbors(currentNode);
+            List<GridNode> neighbors = GetNeighbors(currentNode, ignoreTraversible);
             // Debug.Log(neighbors.Count + " Neighbors Count");
             // Process each neighboring node
             foreach (GridNode neighbor in neighbors)
