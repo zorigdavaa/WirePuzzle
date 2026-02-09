@@ -112,7 +112,7 @@ public class GridController : MonoBehaviour
                 GridNode neighbor = Grid.GetGridObject(checkX, checkY);
 
                 if (neighbor != null &&
-                    ((ignoreTraversible && !neighbor.IsPermanentBlocked && !IsColumnFull(neighbor.X) && !IsRowFull(neighbor.Y)) ||
+                    ((ignoreTraversible && !neighbor.IsPermanentBlocked && !ThisMakesFull(neighbor.X, neighbor.Y)) ||
                      (!ignoreTraversible && neighbor.IsTraversable)))
                 {
                     neighbors.Add(neighbor);
@@ -410,6 +410,36 @@ public class GridController : MonoBehaviour
         }
 
         yield return new WaitUntil(() => Counter == 0);
+    }
+    bool ThisMakesFull(int x, int y)
+    {
+        if (!Grid.GetGridObject(x, y).Slot.IsFree())
+            return false;
+        bool triggerColumnDestroy = true;
+        bool triggerRowDestroy = true;
+        for (int checkX = 0; checkX < X; checkX++)
+        {
+            if (checkX != x && Grid.GetGridObject(checkX, y).Slot.IsFree())
+            {
+                triggerRowDestroy = false;
+            }
+        }
+        if (triggerRowDestroy)
+        {
+            return true;
+        }
+        for (int checkY = 0; checkY < Y; checkY++)
+        {
+            if (checkY != y && Grid.GetGridObject(x, checkY).Slot.IsFree())
+            {
+                triggerColumnDestroy = false;
+            }
+        }
+        if (triggerColumnDestroy)
+        {
+            return true;
+        }
+        return false;
     }
     bool IsColumnFull(int x)
     {
