@@ -118,7 +118,7 @@ public class Level : MonoBehaviour
                 GridNode end = charger.GetComponent<GridNode>();
 
                 // print($"Searching {Light.GetComponent<GridNode>().X} and {Light.GetComponent<GridNode>().Y} to {charger.GetComponent<GridNode>().X} {charger.GetComponent<GridNode>().Y}");
-                var foundPaht = gridController.FindPath(start, end, true);
+                var foundPaht = gridController.FindSafePath(start, end);
                 if (foundPaht.Count > 0)
                 {
                     paths.Add(foundPaht);
