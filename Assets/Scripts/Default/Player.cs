@@ -15,7 +15,7 @@ public class Player : Mb
 {
     GridNode lastSelectedSlot;
     public List<GridNode> selectedSlots;
-    SplineComputer computer;
+    Lightning lightning;
     [SerializeField] GameObject ConnectPF;
     Camera cam;
     LayerMask rayMask;
@@ -95,8 +95,8 @@ public class Player : Mb
         // cam = Camera.main;
         rayMask = LayerMask.GetMask("Piece");
         InitializeKeyActions();
-        computer = Instantiate(ConnectPF, transform.position, Quaternion.identity).GetComponent<SplineComputer>();
-        computer.SetPoints(new SplinePoint[0]);
+        lightning = Instantiate(ConnectPF, transform.position, Quaternion.identity).GetComponent<Lightning>();
+        lightning.SetPostions(new Vector3[0]);
     }
 
     private void InitializeKeyActions()
@@ -292,8 +292,8 @@ public class Player : Mb
     {
         lastSelectedSlot = null;
         selectedSlots.Clear();
-        computer.SetPoints(new SplinePoint[0]);
-        computer.Rebuild();
+        lightning.SetPostions(new Vector3[0]);
+        // lightning.Rebuild();
         // ray = cam.ScreenPointToRay(MP);
         // if (Physics.Raycast(ray, out hit, 30, rayMask))
         // {
@@ -317,50 +317,57 @@ public class Player : Mb
         // pos.y = 0;
         // selectedObject.transform.position = pos;
     }
+    Coroutine tutorialCor;
     public void TutorialPath(List<GridNode> path)
     {
-        StartCoroutine(LocalCor());
+        if (tutorialCor == null)
+        {
+
+            tutorialCor = StartCoroutine(LocalCor());
+        }
         IEnumerator LocalCor()
         {
-            computer.SetPoints(path.Select(n => new SplinePoint(n.transform.position)).ToArray());
-            computer.Rebuild();
+            lightning.SetPostions(path.Select(x => x.transform.position).ToArray());
+            // computer.GetComponent<SplineMesh>().GetChannel(0).count = path.Count;
+            // lightning.Rebuild();
             yield return new WaitForSeconds(2);
-            computer.SetPoints(new SplinePoint[0]);
-            computer.Rebuild();
+            lightning.SetPostions(new Vector3[0]);
+            // lightning.Rebuild();
+            tutorialCor = null;
         }
     }
 
-    private void drawLine()
-    {
-        Vector3 mousePos = MP;
-        mousePos.z = cam.transform.position.y;
-        Vector3 worldMouse = cam.ScreenToWorldPoint(mousePos).SwitchYZ();
-        // print(worldMouse);
-        GridNode foundSlot = gridController.Grid.GetGridObject(worldMouse);
-        if (foundSlot != lastSelectedSlot && foundSlot != null && !selectedSlots.Contains(foundSlot))
-        {
-            if (lastSelectedSlot != null)
-            {
+    // private void drawLine()
+    // {
+    //     Vector3 mousePos = MP;
+    //     mousePos.z = cam.transform.position.y;
+    //     Vector3 worldMouse = cam.ScreenToWorldPoint(mousePos).SwitchYZ();
+    //     // print(worldMouse);
+    //     GridNode foundSlot = gridController.Grid.GetGridObject(worldMouse);
+    //     if (foundSlot != lastSelectedSlot && foundSlot != null && !selectedSlots.Contains(foundSlot))
+    //     {
+    //         if (lastSelectedSlot != null)
+    //         {
 
-                lastSelectedSlot.GetComponent<Renderer>().material.color = Color.gray;
-            }
-            lastSelectedSlot = foundSlot;
-            lastSelectedSlot.GetComponent<Renderer>().material.color = Color.red;
-            // Vector3 lastPos = selectedSlots.Count > 0 ? selectedSlots.Last().transform.position : foundSlot.transform.position;
-            // Vector3 forward = (foundSlot.transform.position - lastPos).normalized;
-            List<SplinePoint> knots = new List<SplinePoint>();
-            SplinePoint knot = new SplinePoint(foundSlot.transform.position);
-            knots.Add(knot);
-            selectedSlots.Add(lastSelectedSlot);
-            foreach (var item in knots)
-            {
-                computer.SetPoint(computer.pointCount, item);
-            }
-            // computer.Spline = spline;
-            computer.GetComponent<SplineMesh>().GetChannel(0).count = computer.pointCount * 4;
-            computer.Rebuild();
-        }
-    }
+    //             lastSelectedSlot.GetComponent<Renderer>().material.color = Color.gray;
+    //         }
+    //         lastSelectedSlot = foundSlot;
+    //         lastSelectedSlot.GetComponent<Renderer>().material.color = Color.red;
+    //         // Vector3 lastPos = selectedSlots.Count > 0 ? selectedSlots.Last().transform.position : foundSlot.transform.position;
+    //         // Vector3 forward = (foundSlot.transform.position - lastPos).normalized;
+    //         List<SplinePoint> knots = new List<SplinePoint>();
+    //         SplinePoint knot = new SplinePoint(foundSlot.transform.position);
+    //         knots.Add(knot);
+    //         selectedSlots.Add(lastSelectedSlot);
+    //         foreach (var item in knots)
+    //         {
+    //             lightning.SetPoint(lightning.pointCount, item);
+    //         }
+    //         // computer.Spline = spline;
+    //         lightning.GetComponent<SplineMesh>().GetChannel(0).count = lightning.pointCount * 4;
+    //         lightning.Rebuild();
+    //     }
+    // }
 
     private bool isTurn(Slot foundSlot, out Vector3 initialDir, out Vector3 currentDir)
     {
