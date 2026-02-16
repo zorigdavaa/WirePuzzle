@@ -3,13 +3,14 @@ using System.Collections.Generic;
 class PathState
 {
     public GridNode Node;
-    public HashSet<(int,int)> Occupied;
+    public ulong Mask;
     public PathState Parent;
 
-    public PathState(GridNode node, HashSet<(int,int)> occ, PathState parent)
+    public PathState(GridNode node, ulong mask, PathState parent)
     {
         Node = node;
-        Occupied = occ;
+        Mask = mask;
         Parent = parent;
     }
 }
+

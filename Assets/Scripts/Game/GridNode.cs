@@ -29,22 +29,4 @@ public class GridNode : MonoBehaviour
 
 
     public Grid<GridNode> OwnGrid { get; internal set; }
-
-    // public PuzzleSlot Slot;
-    // public bool Blocked = false;
-
-    // internal PuzzleSlot GetLeftObj()
-    // {
-    //     // if (OwnGrid == null)
-    //     // {
-    //     //     OwnGrid = transform.parent.parent.GetComponent<Grid>();
-    //     // }
-    //     return OwnGrid.GetGridObject(X - 1, Y).GetComponent<PuzzleSlot>();
-    // }
-    // public GridNode(GridNode parent, int x, int y)
-    // {
-    //     Parent = parent;
-    //     X = x;
-    //     Y = y;
-    // }
 }

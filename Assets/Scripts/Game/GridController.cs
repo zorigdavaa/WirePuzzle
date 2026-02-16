@@ -240,10 +240,15 @@ public class GridController : MonoBehaviour
     {
         Queue<PathState> queue = new Queue<PathState>();
 
-        var startOcc = new HashSet<(int, int)>();
-        startOcc.Add((start.X, start.Y));
+        int startIndex = GetIndex(start.X, start.Y);
+        ulong startMask = 1UL << startIndex;
 
-        queue.Enqueue(new PathState(start, startOcc, null));
+        PathState startState = new PathState(start, startMask, null);
+        queue.Enqueue(startState);
+
+        // 🚨 THIS is what prevents infinite loop
+        HashSet<(int, ulong)> visited = new HashSet<(int, ulong)>();
+        visited.Add((startIndex, startMask));
 
         while (queue.Count > 0)
         {
@@ -254,38 +259,63 @@ public class GridController : MonoBehaviour
 
             foreach (var neighbor in GetNeighbors(state.Node, true))
             {
-                var newOcc = new HashSet<(int, int)>(state.Occupied);
-                newOcc.Add((neighbor.X, neighbor.Y));
+                int idx = GetIndex(neighbor.X, neighbor.Y);
+                ulong newMask = state.Mask | (1UL << idx);
 
-                if (CreatesFullLine(newOcc))
-                    continue; // ❌ illegal branch
+                if (CreatesFullLine(newMask))
+                    continue;
 
-                queue.Enqueue(new PathState(neighbor, newOcc, state));
+                var key = (idx, newMask);
+                if (visited.Contains(key))
+                    continue;
+
+                visited.Add(key);
+                queue.Enqueue(new PathState(neighbor, newMask, state));
             }
         }
 
-        return new List<GridNode>(); // no safe path
+        return new List<GridNode>();
     }
 
-
-    bool CreatesFullLine(HashSet<(int x, int y)> occ)
+    int GetIndex(int x, int y)
     {
+        return y * X + x;
+    }
+
+    bool CreatesFullLine(ulong mask)
+    {
+        // check rows
         for (int y = 0; y < Y; y++)
         {
             bool full = true;
+
             for (int x = 0; x < X; x++)
-                if (!occ.Contains((x, y)))
+            {
+                int idx = GetIndex(x, y);
+                if ((mask & (1UL << idx)) == 0)
+                {
                     full = false;
+                    break;
+                }
+            }
 
             if (full) return true;
         }
 
+        // check columns
         for (int x = 0; x < X; x++)
         {
             bool full = true;
+
             for (int y = 0; y < Y; y++)
-                if (!occ.Contains((x, y)))
+            {
+                int idx = GetIndex(x, y);
+                if ((mask & (1UL << idx)) == 0)
+                {
                     full = false;
+                    break;
+                }
+            }
 
             if (full) return true;
         }
@@ -294,17 +324,23 @@ public class GridController : MonoBehaviour
     }
 
 
-    List<GridNode> RetraceStatePath(PathState end)
+
+    List<GridNode> RetraceStatePath(PathState endState)
     {
         List<GridNode> path = new List<GridNode>();
-        while (end != null)
+
+        PathState current = endState;
+
+        while (current != null)
         {
-            path.Add(end.Node);
-            end = end.Parent;
+            path.Add(current.Node);
+            current = current.Parent;
         }
+
         path.Reverse();
         return path;
     }
+
 
     internal List<Piece> GetNeededPiece(List<Piece> piecesPf)
     {

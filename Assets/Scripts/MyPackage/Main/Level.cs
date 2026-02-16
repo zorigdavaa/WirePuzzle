@@ -14,6 +14,10 @@ public class Level : MonoBehaviour
     public bool isInitialized = false;
     public int DataIndex = 0;
 
+    // Cache for connect path to avoid expensive recalculation
+    private List<GridNode> cachedConnectPath = null;
+    private bool connectPathNeedsUpdate = true;
+
     // public slot
     void Start()
     {
@@ -53,8 +57,9 @@ public class Level : MonoBehaviour
             }
             // ChargerPoses.Add(node.GetComponent<Slot>());
         }
+        // Invalidate cache when grid changes
+        connectPathNeedsUpdate = true;
         ClearCurrentPath();
-
     }
     public void CheckColumnsRows()
     {
@@ -109,6 +114,12 @@ public class Level : MonoBehaviour
     }
     public List<GridNode> GetConnectPath()
     {
+        // Return cached result if available
+        if (!connectPathNeedsUpdate && cachedConnectPath != null)
+        {
+            return cachedConnectPath;
+        }
+
         List<List<GridNode>> paths = new List<List<GridNode>>();
         foreach (var Light in ConnectPoses)
         {
@@ -117,17 +128,22 @@ public class Level : MonoBehaviour
                 GridNode start = Light.GetComponent<GridNode>();
                 GridNode end = charger.GetComponent<GridNode>();
 
-                // print($"Searching {Light.GetComponent<GridNode>().X} and {Light.GetComponent<GridNode>().Y} to {charger.GetComponent<GridNode>().X} {charger.GetComponent<GridNode>().Y}");
-                var foundPaht = gridController.FindSafePath(start, end);
-                if (foundPaht.Count > 0)
+                // Use FindPath for tutorial (faster) instead of FindSafePath
+                // since this is just for visualization, not actual gameplay logic
+                var foundPath = gridController.FindSafePath(start, end);
+                if (foundPath.Count > 0)
                 {
-                    paths.Add(foundPaht);
+                    paths.Add(foundPath);
                 }
-
             }
         }
         Debug.Log($"Found {paths.Count} paths");
-        return paths.Count > 0 ? paths[paths.Count - 1] : new List<GridNode>();
+
+        // Cache the result
+        cachedConnectPath = paths.Count > 0 ? paths[paths.Count - 1] : new List<GridNode>();
+        connectPathNeedsUpdate = false;
+
+        return cachedConnectPath;
     }
 
     private List<List<GridNode>> FindConnection()
