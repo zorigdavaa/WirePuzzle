@@ -2426,6 +2426,9 @@ MonoBehaviour:
   - {fileID: 8007251741595809806, guid: 74df424c6e254401592506c780177136, type: 3}
   - {fileID: 8007251741595809806, guid: 0c38c028b8fc044c78b38d2e55543b26, type: 3}
   LevelDatas:
+  - {fileID: 11400000, guid: c41d67f767bb441bfbe9a53043ea421d, type: 2}
+  - {fileID: 11400000, guid: 0f7aa8346502f4fe5857bc74b78d069d, type: 2}
+  - {fileID: 11400000, guid: 026842aac5a6e41f9aa2e1699a54c843, type: 2}
   - {fileID: 11400000, guid: 6a3141ccedf4e4cf0a29957c82b9065d, type: 2}
   - {fileID: 11400000, guid: a19912eb472ed44a3b7312fe70b35f53, type: 2}
   - {fileID: 11400000, guid: c70c2dff990ce4451962457bfa4113be, type: 2}
@@ -2456,6 +2459,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b68bbce4415574ac38d8cc809ef5c7e9, type: 2}
   - {fileID: 11400000, guid: 5b2cb497b4db74be4b83fdad8783627a, type: 2}
   - {fileID: 11400000, guid: 6a48e31a72c3c4c90a7b303e0f95173c, type: 2}
+  - {fileID: 11400000, guid: f8dc0639c91c54ad0bbbfe2d8f16d0a3, type: 2}
   PieceController: {fileID: 0}
   BaseLevel: {fileID: 5477432975358735235, guid: 5bbf9648fc19245bb9e681bd592e8c84, type: 3}
   CurrentLevel: {fileID: 0}
@@ -2629,7 +2633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mp: {x: 0, y: 0, z: 0}
   selectedSlots: []
-  ConnectPF: {fileID: 8687491582788897390, guid: 6093cd23193a64dcd9ecce9be6af518a, type: 3}
+  ConnectPF: {fileID: 1029807006172210842, guid: 4c4e960fb7cc14f1ebae0184c91aa4fb, type: 3}
   selectedPiece: {fileID: 0}
   isDragging: 0
   pressed: 0

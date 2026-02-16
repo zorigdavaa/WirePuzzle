@@ -12,181 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79ad2a8b752b4db8b3b318c370d4e09, type: 3}
   m_Name: Easy_002
   m_EditorClassIdentifier: 
-  LevelString: '..
+  LevelString: '.P.
 
-    ..
+    ...
 
-    P.
-
-    ..
-
-    X.
-
-    X.
-
-    ..
-
-    L.
-
-    ..'
+    L..'
   LevelConnectDatas:
   - cellDatas:
-    - Type: 6
-      Position: {x: 0, y: 8}
-    - Type: 6
-      Position: {x: 1, y: 8}
-    - Type: 6
-      Position: {x: 2, y: 8}
-    - Type: 6
-      Position: {x: 3, y: 8}
-    - Type: 6
-      Position: {x: 6, y: 8}
-    - Type: 6
-      Position: {x: 7, y: 8}
-    - Type: 6
-      Position: {x: 8, y: 8}
-    - Type: 6
-      Position: {x: 9, y: 8}
-    - Type: 6
-      Position: {x: 0, y: 7}
-    - Type: 6
-      Position: {x: 1, y: 7}
-    - Type: 6
-      Position: {x: 2, y: 7}
-    - Type: 6
-      Position: {x: 3, y: 7}
-    - Type: 6
-      Position: {x: 6, y: 7}
-    - Type: 6
-      Position: {x: 7, y: 7}
-    - Type: 6
-      Position: {x: 8, y: 7}
-    - Type: 6
-      Position: {x: 9, y: 7}
-    - Type: 6
-      Position: {x: 0, y: 6}
-    - Type: 6
-      Position: {x: 1, y: 6}
-    - Type: 6
-      Position: {x: 2, y: 6}
-    - Type: 6
-      Position: {x: 3, y: 6}
     - Type: 1
-      Position: {x: 4, y: 6}
-    - Type: 6
-      Position: {x: 6, y: 6}
-    - Type: 6
-      Position: {x: 7, y: 6}
-    - Type: 6
-      Position: {x: 8, y: 6}
-    - Type: 6
-      Position: {x: 9, y: 6}
-    - Type: 6
-      Position: {x: 0, y: 5}
-    - Type: 6
-      Position: {x: 1, y: 5}
-    - Type: 6
-      Position: {x: 2, y: 5}
-    - Type: 6
-      Position: {x: 3, y: 5}
-    - Type: 6
-      Position: {x: 6, y: 5}
-    - Type: 6
-      Position: {x: 7, y: 5}
-    - Type: 6
-      Position: {x: 8, y: 5}
-    - Type: 6
-      Position: {x: 9, y: 5}
-    - Type: 6
-      Position: {x: 0, y: 4}
-    - Type: 6
-      Position: {x: 1, y: 4}
-    - Type: 6
-      Position: {x: 2, y: 4}
-    - Type: 6
-      Position: {x: 3, y: 4}
-    - Type: 4
-      Position: {x: 4, y: 4}
-    - Type: 6
-      Position: {x: 6, y: 4}
-    - Type: 6
-      Position: {x: 7, y: 4}
-    - Type: 6
-      Position: {x: 8, y: 4}
-    - Type: 6
-      Position: {x: 9, y: 4}
-    - Type: 6
-      Position: {x: 0, y: 3}
-    - Type: 6
-      Position: {x: 1, y: 3}
-    - Type: 6
-      Position: {x: 2, y: 3}
-    - Type: 6
-      Position: {x: 3, y: 3}
-    - Type: 4
-      Position: {x: 4, y: 3}
-    - Type: 6
-      Position: {x: 6, y: 3}
-    - Type: 6
-      Position: {x: 7, y: 3}
-    - Type: 6
-      Position: {x: 8, y: 3}
-    - Type: 6
-      Position: {x: 9, y: 3}
-    - Type: 6
-      Position: {x: 0, y: 2}
-    - Type: 6
       Position: {x: 1, y: 2}
-    - Type: 6
-      Position: {x: 2, y: 2}
-    - Type: 6
-      Position: {x: 3, y: 2}
-    - Type: 6
-      Position: {x: 6, y: 2}
-    - Type: 6
-      Position: {x: 7, y: 2}
-    - Type: 6
-      Position: {x: 8, y: 2}
-    - Type: 6
-      Position: {x: 9, y: 2}
-    - Type: 6
-      Position: {x: 0, y: 1}
-    - Type: 6
-      Position: {x: 1, y: 1}
-    - Type: 6
-      Position: {x: 2, y: 1}
-    - Type: 6
-      Position: {x: 3, y: 1}
     - Type: 2
-      Position: {x: 4, y: 1}
-    - Type: 6
-      Position: {x: 6, y: 1}
-    - Type: 6
-      Position: {x: 7, y: 1}
-    - Type: 6
-      Position: {x: 8, y: 1}
-    - Type: 6
-      Position: {x: 9, y: 1}
-    - Type: 6
       Position: {x: 0, y: 0}
-    - Type: 6
-      Position: {x: 1, y: 0}
-    - Type: 6
-      Position: {x: 2, y: 0}
-    - Type: 6
-      Position: {x: 3, y: 0}
-    - Type: 6
-      Position: {x: 6, y: 0}
-    - Type: 6
-      Position: {x: 7, y: 0}
-    - Type: 6
-      Position: {x: 8, y: 0}
-    - Type: 6
-      Position: {x: 9, y: 0}
-  SequencePreset: 
-  X: 10
-  Y: 9
-  Pieces: {fileID: 11400000, guid: 5d4c3b2a1f0e9d8c7b6a5f4e3d2c1b0a, type: 2}
+  SequencePreset: 1,1,0,1,0,0,1
+  X: 3
+  Y: 3
+  Pieces: {fileID: 11400000, guid: 8f62b3d83e75e4463b67364a5750af4c, type: 2}
   CamDistance: 10
   PieceScale: 0.5
   PieceCount: 3

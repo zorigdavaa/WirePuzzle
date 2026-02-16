@@ -10,15 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b79ad2a8b752b4db8b3b318c370d4e09, type: 3}
-  m_Name: Intro 7
+  m_Name: Easy_004
   m_EditorClassIdentifier: 
-  LevelString: 'P..
-
-    ...
-
-    OO.
-
-    OO.
+  LevelString: '..P
 
     ...
 
@@ -26,21 +20,13 @@ MonoBehaviour:
   LevelConnectDatas:
   - cellDatas:
     - Type: 1
-      Position: {x: 0, y: 5}
-    - Type: 4
-      Position: {x: 0, y: 3}
-    - Type: 4
-      Position: {x: 1, y: 3}
-    - Type: 4
-      Position: {x: 0, y: 2}
-    - Type: 4
-      Position: {x: 1, y: 2}
+      Position: {x: 2, y: 2}
     - Type: 2
       Position: {x: 0, y: 0}
-  SequencePreset: 
+  SequencePreset: 1,1,0,1,0,0,1
   X: 3
-  Y: 6
-  Pieces: {fileID: 11400000, guid: 8f7c3e5d2b1a9f4c6e8a3b2d5f7c1e9a, type: 2}
+  Y: 3
+  Pieces: {fileID: 11400000, guid: 8f62b3d83e75e4463b67364a5750af4c, type: 2}
   CamDistance: 10
   PieceScale: 0.5
   PieceCount: 3

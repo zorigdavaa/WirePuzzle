@@ -87,6 +87,10 @@ public class LevelData : ScriptableObject
                 {
                     type = SlotType.Box;
                 }
+                else if (c == 'Q')
+                {
+                    type = SlotType.Filled;
+                }
                 if (type != SlotType.Empty)
                 {
                     CellData cellData = new CellData();

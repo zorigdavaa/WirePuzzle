@@ -16,9 +16,10 @@ public class MainMenuUI : MonoBehaviour
     private void Awake()
     {
         levelsText = levelsParent.GetComponentsInChildren<TextMeshProUGUI>().ToList();
+        GameManager.Instance.GameStart += OnGameStart;
     }
 
-    private void Start()
+    private void OnGameStart(object sender, EventArgs e)
     {
         if (gameName != null || gameName != "")
         {
@@ -26,6 +27,11 @@ public class MainMenuUI : MonoBehaviour
         }
 
         SetLevels(GameManager.Instance.Level);
+    }
+
+    private void Start()
+    {
+
     }
 
     public void SetGameName(string newGameName)

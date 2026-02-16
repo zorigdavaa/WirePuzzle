@@ -93,7 +93,7 @@ public class GridController : MonoBehaviour
 #endif
     }
 
-    public List<GridNode> GetNeighbors(GridNode currentNode)
+    public List<GridNode> GetNeighbors(GridNode currentNode, bool ignoreTraversible = false)
     {
         List<GridNode> neighbors = new List<GridNode>();
 
@@ -111,12 +111,25 @@ public class GridController : MonoBehaviour
             {
                 GridNode neighbor = Grid.GetGridObject(checkX, checkY);
 
-                // Check if the neighbor is traversable
-                // if (neighbor != null)
-                if (neighbor != null && neighbor.IsTraversable)
+                if (neighbor != null &&
+                    ((ignoreTraversible && !neighbor.IsPermanentBlocked && !ThisMakesFull(neighbor.X, neighbor.Y)) ||
+                     (!ignoreTraversible && neighbor.IsTraversable)))
                 {
                     neighbors.Add(neighbor);
                 }
+
+                // Check if the neighbor is traversable
+                // if (neighbor != null)
+                // {
+                //     if (ignoreTraversible && !neighbor.IsPermanentBlocked)
+                //     {
+                //         neighbors.Add(neighbor);
+                //     }
+                //     else if (neighbor.IsTraversable)
+                //     {
+                //         neighbors.Add(neighbor);
+                //     }
+                // }
             }
         }
 
@@ -219,6 +232,76 @@ public class GridController : MonoBehaviour
             currentNode = currentNode.Parent;
         }
         path.Add(startNode);
+        path.Reverse();
+        return path;
+    }
+
+    public List<GridNode> FindSafePath(GridNode start, GridNode target)
+    {
+        Queue<PathState> queue = new Queue<PathState>();
+
+        var startOcc = new HashSet<(int, int)>();
+        startOcc.Add((start.X, start.Y));
+
+        queue.Enqueue(new PathState(start, startOcc, null));
+
+        while (queue.Count > 0)
+        {
+            PathState state = queue.Dequeue();
+
+            if (state.Node == target)
+                return RetraceStatePath(state);
+
+            foreach (var neighbor in GetNeighbors(state.Node, true))
+            {
+                var newOcc = new HashSet<(int, int)>(state.Occupied);
+                newOcc.Add((neighbor.X, neighbor.Y));
+
+                if (CreatesFullLine(newOcc))
+                    continue; // ❌ illegal branch
+
+                queue.Enqueue(new PathState(neighbor, newOcc, state));
+            }
+        }
+
+        return new List<GridNode>(); // no safe path
+    }
+
+
+    bool CreatesFullLine(HashSet<(int x, int y)> occ)
+    {
+        for (int y = 0; y < Y; y++)
+        {
+            bool full = true;
+            for (int x = 0; x < X; x++)
+                if (!occ.Contains((x, y)))
+                    full = false;
+
+            if (full) return true;
+        }
+
+        for (int x = 0; x < X; x++)
+        {
+            bool full = true;
+            for (int y = 0; y < Y; y++)
+                if (!occ.Contains((x, y)))
+                    full = false;
+
+            if (full) return true;
+        }
+
+        return false;
+    }
+
+
+    List<GridNode> RetraceStatePath(PathState end)
+    {
+        List<GridNode> path = new List<GridNode>();
+        while (end != null)
+        {
+            path.Add(end.Node);
+            end = end.Parent;
+        }
         path.Reverse();
         return path;
     }
@@ -397,6 +480,36 @@ public class GridController : MonoBehaviour
         }
 
         yield return new WaitUntil(() => Counter == 0);
+    }
+    bool ThisMakesFull(int x, int y)
+    {
+        if (!Grid.GetGridObject(x, y).Slot.IsFree())
+            return false;
+        bool triggerColumnDestroy = true;
+        bool triggerRowDestroy = true;
+        for (int checkX = 0; checkX < X; checkX++)
+        {
+            if (checkX != x && Grid.GetGridObject(checkX, y).Slot.IsFree())
+            {
+                triggerRowDestroy = false;
+            }
+        }
+        if (triggerRowDestroy)
+        {
+            return true;
+        }
+        for (int checkY = 0; checkY < Y; checkY++)
+        {
+            if (checkY != y && Grid.GetGridObject(x, checkY).Slot.IsFree())
+            {
+                triggerColumnDestroy = false;
+            }
+        }
+        if (triggerColumnDestroy)
+        {
+            return true;
+        }
+        return false;
     }
     bool IsColumnFull(int x)
     {

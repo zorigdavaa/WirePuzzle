@@ -130,12 +130,12 @@ namespace ZPackage
         private void Start()
         {
             PopulatePlayerPrefs();
-            StartGame();
             QualitySettings.vSyncCount = 0;  // VSync must be disabled
             Application.targetFrameRate = 60;
             CreateGitIgnore();
             // Z.LS.InitializeLevel();
             Z.LS.InitializeLevelWithData();
+            StartGame();
         }
         void PopulatePlayerPrefs()
         {

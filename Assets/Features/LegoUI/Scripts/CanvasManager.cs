@@ -174,7 +174,7 @@ public class CanvasManager : GenericSingleton<CanvasManager>
     public void LevelCompleteUI()
     {
         // int levelCoin = Z.LS.currentLevel.FullBoxes.Count;
-        levelCompleteUI.Activate(1, 10);
+        levelCompleteUI.Activate(GameManager.Instance.Level, 10);
     }
 
     public void OutOfSpaceUI()

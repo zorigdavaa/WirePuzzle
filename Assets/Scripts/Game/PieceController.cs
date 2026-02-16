@@ -51,43 +51,69 @@ public class PieceController : Mb
     }
     int materialIndex = 0;
 
+    /// <summary>
+    /// Populate the next pieces in the slots.
+    /// </summary>
+    /// <remarks>
+    /// This method will populate the next pieces in the slots.
+    /// If there is a next piece in the sequence preset, it will be used.
+    /// If there are needed pieces (i.e. pieces that can be placed in the grid), they will be used.
+    /// Otherwise, a random piece from the level pieces will be used.
+    /// </remarks>
     private void Populate()
     {
-        // var newItems = bag.PopRandomItems(pieceSlots.Count);
+
+        //Get the next random pieces from the bag
+        //List<Piece> newItems = bag.PopRandomItems(pieceSlots.Count);
         var newItems = new List<Piece>();
-        // List<Piece> neededPieces = Z.LS.CurrentLevel.gridController.GetNeededPiece(PiecesPf);
+
+        //Get the needed pieces from the grid
         List<Piece> neededPieces = Z.GridController.GetNeededPiece(LevelPiecesPf);
+
+        //Populate the new pieces
         for (int i = 0; i < pieceSlots.Count; i++)
         {
             if (HasNextInSequence())
             {
+                //If there is a next piece in the sequence preset, use it
                 newItems.Add(SequencePreset[SeqIndex]);
                 SeqIndex++;
             }
             else if (i < 2 && neededPieces.Count > 0)
             {
+                //If there are needed pieces, use one of them
                 newItems.Add(neededPieces[Random.Range(0, neededPieces.Count)]);
             }
             else
             {
+                //Otherwise, use a random piece from the level pieces
                 newItems.Add(LevelPiecesPf[Random.Range(0, LevelPiecesPf.Count)]);
             }
         }
+
+        //Instantiate the new pieces and set their color
         for (int i = 0; i < pieceSlots.Count; i++)
         {
             var newObj = Instantiate(newItems[i], pieceSlots[i].transform.position, Quaternion.identity);
             newObj.gameObject.SetActive(true);
-            // newItems[i].transform.position = pieceSlots[i].transform.position;
+
+            //Set the piece slot for the new object
             CurrentSlotObj[pieceSlots[i]] = newObj;
-            // newObj.SetPieceSlot(pieceSlots[i]);
+
+            //Set the color of the new object
             newObj.SetColor(pieceMaterials[materialIndex % pieceMaterials.Count]);
+
+            //Start the drag of the new object
             newObj.StartDrag(false);
-            materialIndex++;
+
+
         }
-        //This one has bug due to destroyed by rocked which is coroutine
+        //Increment the material index
+        materialIndex++;
+        //Check if the game is over
         if (neededPieces.Count == 0)
         {
-            // Z.GM.GameOver(this, EventArgs.Empty);
+            //Z.GM.GameOver(this, EventArgs.Empty);
             CheckGameOver();
         }
     }
@@ -225,22 +251,40 @@ public class PieceController : Mb
 
     public void StringToPiecesSeq(string sequence)
     {
+        SequencePreset = StringToPieces(sequence);
         if (sequence != null && sequence.Length > 0)
         {
-            List<Piece> seqList = new List<Piece>();
-            string[] ids = sequence.Split(',');
-            foreach (string id in ids)
-            {
-                if (int.TryParse(id, out int pieceIndex))
-                {
-                    seqList.Add(PiecesPf.Pieces.FirstOrDefault(p => p.ID == pieceIndex));
-                }
-            }
-            // SetPiecesSequence(seqList);
-            SequencePreset = seqList;
+            // List<Piece> seqList = new List<Piece>();
+            // string[] ids = sequence.Split(',');
+            // foreach (string id in ids)
+            // {
+            //     if (int.TryParse(id, out int pieceIndex))
+            //     {
+            //         seqList.Add(PiecesPf.Pieces.FirstOrDefault(p => p.ID == pieceIndex));
+            //     }
+            // }
+            // // SetPiecesSequence(seqList);
+            // SequencePreset = seqList;
         }
         // SequencePreset = sequencePreset;
         SeqIndex = 0;
+    }
+    public static List<Piece> StringToPieces(string sequence)
+    {
+        if (sequence == null || sequence.Length == 0)
+        {
+            return new List<Piece>();
+        }
+        List<Piece> seqList = new List<Piece>();
+        string[] ids = sequence.Split(',');
+        foreach (string id in ids)
+        {
+            if (int.TryParse(id, out int pieceIndex))
+            {
+                seqList.Add(GameConfig.Instance.AllPiecesPreset.Pieces.FirstOrDefault(p => p.ID == pieceIndex));
+            }
+        }
+        return seqList;
     }
     public bool HasNextInSequence()
     {
