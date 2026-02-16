@@ -68,7 +68,10 @@ public class GridController : MonoBehaviour
 
     public void Place(Piece selectedPiece, List<GridNode> freeSlots)
     {
-        Destroy(selectedPiece.GetSilhoutte());
+        if (selectedPiece.GetSilhoutteDirect() != null)
+        {
+            Destroy(selectedPiece.GetSilhoutteDirect());
+        }
         List<Node> nodes = selectedPiece.GetNodes();
         for (int i = 0; i < freeSlots.Count; i++)
         {
@@ -146,6 +149,11 @@ public class GridController : MonoBehaviour
     public List<GridNode> FindPath(GridNode startPos, GridNode targetPos)
     {
         List<GridNode> path = new List<GridNode>();
+
+        if (!startPos.IsTraversable || !targetPos.IsTraversable)
+        {
+            return path;
+        }
         // Create lists for open and closed nodes
         List<GridNode> openList = new List<GridNode>();
         HashSet<GridNode> closedSet = new HashSet<GridNode>();
@@ -186,32 +194,22 @@ public class GridController : MonoBehaviour
             // Process each neighboring node
             foreach (GridNode neighbor in neighbors)
             {
-                // Skip this neighbor if it is not traversable or if it is in the closed set
                 if (closedSet.Contains(neighbor))
-                {
                     continue;
-                }
 
-                // Calculate the new tentative G cost for this neighbor
                 int newGCost = currentNode.GCost + GetDistance(currentNode, neighbor);
 
-                // If the new G cost is lower than the neighbor's current G cost or if the neighbor is not in the open list
                 if (newGCost < neighbor.GCost || !openList.Contains(neighbor))
                 {
-                    // Update the neighbor's G cost and H cost
                     neighbor.GCost = newGCost;
                     neighbor.HCost = GetDistance(neighbor, targetPos);
-
-                    // Set the neighbor's parent to the current node
                     neighbor.Parent = currentNode;
 
-                    // If the neighbor is not in the open list, add it
                     if (!openList.Contains(neighbor))
-                    {
                         openList.Add(neighbor);
-                    }
                 }
             }
+
         }
 
         // print("Path not found");
@@ -477,7 +475,7 @@ public class GridController : MonoBehaviour
         yield return new WaitUntil(() => Counter == 0);
         // onComplete?.Invoke();
     }
-    public bool WillTheseMakesFull(List<GridNode> placeAbleNodes)
+    public bool WillTheseMakesFullThenDestroy(List<GridNode> placeAbleNodes)
     {
         HashSet<int> xLinesToDestroy = new HashSet<int>();
         HashSet<int> yLinesToDestroy = new HashSet<int>();

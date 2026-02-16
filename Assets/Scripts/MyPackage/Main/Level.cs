@@ -73,7 +73,7 @@ public class Level : MonoBehaviour
     }
     public bool CheckColumnsRows(List<GridNode> placeAbleNodes)
     {
-        return gridController.WillTheseMakesFull(placeAbleNodes);
+        return gridController.WillTheseMakesFullThenDestroy(placeAbleNodes);
     }
 
     public void CheckConnected()
@@ -173,7 +173,8 @@ public class Level : MonoBehaviour
         GridNode node = gridController.Grid.GetGridObject(position);
         if (node && node.Slot.IsFree())
         {
-            var instPiece = Instantiate(Z.LS.PieceController.GetSinglePiece(), node.transform.position, Quaternion.identity);
+            // var instPiece = Instantiate(Z.LS.PieceController.GetSinglePiece(), node.transform.position, Quaternion.identity);
+            var instPiece = Instantiate(GameConfig.Instance.SinglePiecePF, node.transform.position, Quaternion.identity);
             gridController.Place(instPiece.GetComponent<Piece>(), new List<GridNode> { node });
         }
     }

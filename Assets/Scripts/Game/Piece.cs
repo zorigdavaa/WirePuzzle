@@ -135,6 +135,11 @@ public class Piece : Mb
         }
         return SilHoutte;
     }
+    public GameObject GetSilhoutteDirect()
+    {
+        
+        return SilHoutte;
+    }
     public void SetTransparent(Material mat, float alpha)
     {
         mat.SetFloat("_Surface", 1); // 0 = Opaque, 1 = Transparent

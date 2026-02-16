@@ -117,8 +117,13 @@ public class Slot : MonoBehaviour
             Destroy(Obj.gameObject, 1f);
             Obj.GetComponent<Node>().Shine();
             Obj = null;
+            Debug.Log(GetComponent<GridNode>().X + " " + GetComponent<GridNode>().Y + " destroyed");
         }
-        Debug.Log(GetComponent<GridNode>().X + " " + GetComponent<GridNode>().Y + " destroyed");
+        else
+        {
+
+            Debug.Log(GetComponent<GridNode>().X + " " + GetComponent<GridNode>().Y + " Destroyed but OBj null");
+        }
     }
 
     IEnumerator LightCor()
