@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79ad2a8b752b4db8b3b318c370d4e09, type: 3}
   m_Name: Easy_003
   m_EditorClassIdentifier: 
-  LevelString: '..O
+  LevelString: '..O.
 
-    P.O
+    P.O.
 
-    .QB
+    .QB.
 
-    B.Q
+    B.Q.
 
-    ...
+    ....
 
-    .LO
+    .LO.
 
-    ..O'
+    ..O.'
   LevelConnectDatas:
   - cellDatas:
     - Type: 4
@@ -48,7 +48,7 @@ MonoBehaviour:
     - Type: 4
       Position: {x: 2, y: 0}
   SequencePreset: 
-  X: 3
+  X: 4
   Y: 7
   Pieces: {fileID: 11400000, guid: 5d4c3b2a1f0e9d8c7b6a5f4e3d2c1b0a, type: 2}
   CamDistance: 10
