@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelString: 'IIIIII
 
-    II..II
+    IIP.II
 
-    I.P..I
+    I....I
 
-    I..L.I
+    I...LI
 
     II..II
 
@@ -41,20 +41,20 @@ MonoBehaviour:
       Position: {x: 0, y: 4}
     - Type: 5
       Position: {x: 1, y: 4}
+    - Type: 1
+      Position: {x: 2, y: 4}
     - Type: 5
       Position: {x: 4, y: 4}
     - Type: 5
       Position: {x: 5, y: 4}
     - Type: 5
       Position: {x: 0, y: 3}
-    - Type: 1
-      Position: {x: 2, y: 3}
     - Type: 5
       Position: {x: 5, y: 3}
     - Type: 5
       Position: {x: 0, y: 2}
     - Type: 2
-      Position: {x: 3, y: 2}
+      Position: {x: 4, y: 2}
     - Type: 5
       Position: {x: 5, y: 2}
     - Type: 5
@@ -77,6 +77,7 @@ MonoBehaviour:
       Position: {x: 4, y: 0}
     - Type: 5
       Position: {x: 5, y: 0}
+  SequencePreset: 
   X: 6
   Y: 6
   Pieces: {fileID: 11400000, guid: 8f7c3e5d2b1a9f4c6e8a3b2d5f7c1e9a, type: 2}

@@ -10,39 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b79ad2a8b752b4db8b3b318c370d4e09, type: 3}
-  m_Name: Intro 27
+  m_Name: Bad1
   m_EditorClassIdentifier: 
   LevelString: 'XXXX..XXXX
 
-    XXXX..XXXX
+    XXXXIIXXXX
 
-    L.II..II.L
+    L...II...L
 
-    ....P.....
+    ....PI....
 
-    L.II..II.L
-
-    XXXX..XXXX
+    XXXXIIXXXX
 
     XXXX..XXXX'
   LevelConnectDatas:
   - cellDatas:
-    - Type: 3
-      Position: {x: 0, y: 6}
-    - Type: 3
-      Position: {x: 1, y: 6}
-    - Type: 3
-      Position: {x: 2, y: 6}
-    - Type: 3
-      Position: {x: 3, y: 6}
-    - Type: 3
-      Position: {x: 6, y: 6}
-    - Type: 3
-      Position: {x: 7, y: 6}
-    - Type: 3
-      Position: {x: 8, y: 6}
-    - Type: 3
-      Position: {x: 9, y: 6}
     - Type: 3
       Position: {x: 0, y: 5}
     - Type: 3
@@ -59,32 +41,38 @@ MonoBehaviour:
       Position: {x: 8, y: 5}
     - Type: 3
       Position: {x: 9, y: 5}
-    - Type: 2
+    - Type: 3
       Position: {x: 0, y: 4}
-    - Type: 5
+    - Type: 3
+      Position: {x: 1, y: 4}
+    - Type: 3
       Position: {x: 2, y: 4}
-    - Type: 5
+    - Type: 3
       Position: {x: 3, y: 4}
     - Type: 5
+      Position: {x: 4, y: 4}
+    - Type: 5
+      Position: {x: 5, y: 4}
+    - Type: 3
       Position: {x: 6, y: 4}
-    - Type: 5
+    - Type: 3
       Position: {x: 7, y: 4}
-    - Type: 2
+    - Type: 3
+      Position: {x: 8, y: 4}
+    - Type: 3
       Position: {x: 9, y: 4}
-    - Type: 1
+    - Type: 2
+      Position: {x: 0, y: 3}
+    - Type: 5
       Position: {x: 4, y: 3}
+    - Type: 5
+      Position: {x: 5, y: 3}
     - Type: 2
-      Position: {x: 0, y: 2}
+      Position: {x: 9, y: 3}
+    - Type: 1
+      Position: {x: 4, y: 2}
     - Type: 5
-      Position: {x: 2, y: 2}
-    - Type: 5
-      Position: {x: 3, y: 2}
-    - Type: 5
-      Position: {x: 6, y: 2}
-    - Type: 5
-      Position: {x: 7, y: 2}
-    - Type: 2
-      Position: {x: 9, y: 2}
+      Position: {x: 5, y: 2}
     - Type: 3
       Position: {x: 0, y: 1}
     - Type: 3
@@ -93,6 +81,10 @@ MonoBehaviour:
       Position: {x: 2, y: 1}
     - Type: 3
       Position: {x: 3, y: 1}
+    - Type: 5
+      Position: {x: 4, y: 1}
+    - Type: 5
+      Position: {x: 5, y: 1}
     - Type: 3
       Position: {x: 6, y: 1}
     - Type: 3
@@ -119,8 +111,8 @@ MonoBehaviour:
       Position: {x: 9, y: 0}
   SequencePreset: 
   X: 10
-  Y: 7
+  Y: 6
   Pieces: {fileID: 11400000, guid: 8f7c3e5d2b1a9f4c6e8a3b2d5f7c1e9a, type: 2}
-  CamDistance: 16
+  CamDistance: 15
   PieceScale: 0.5
   PieceCount: 3

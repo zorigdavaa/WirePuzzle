@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79ad2a8b752b4db8b3b318c370d4e09, type: 3}
   m_Name: Intro 17
   m_EditorClassIdentifier: 
-  LevelString: 'P.
+  LevelString: 'P..
 
-    ..
+    ...
 
-    B.
+    B..
 
-    .B
+    .B.
 
-    ..
+    ...
 
-    L.'
+    L..'
   LevelConnectDatas:
   - cellDatas:
     - Type: 1
@@ -33,7 +33,8 @@ MonoBehaviour:
       Position: {x: 1, y: 2}
     - Type: 2
       Position: {x: 0, y: 0}
-  X: 2
+  SequencePreset: 
+  X: 3
   Y: 6
   Pieces: {fileID: 11400000, guid: 8f7c3e5d2b1a9f4c6e8a3b2d5f7c1e9a, type: 2}
   CamDistance: 10

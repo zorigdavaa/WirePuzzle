@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79ad2a8b752b4db8b3b318c370d4e09, type: 3}
   m_Name: Intro 25
   m_EditorClassIdentifier: 
-  LevelString: 'L.XXXX..XX
+  LevelString: 'L.XX.L.
 
-    ..XXXX..XX
+    ..XX...
 
-    ..XXXX..XX
+    .......
 
-    P.......L.
+    P.XX.L.
 
-    ..XXXX..XX
+    .......
 
-    ..XXXX..XX
+    ..XX...
 
-    L.XXXX..XX'
+    L.XX.L.'
   LevelConnectDatas:
   - cellDatas:
     - Type: 2
@@ -33,83 +33,36 @@ MonoBehaviour:
       Position: {x: 2, y: 6}
     - Type: 3
       Position: {x: 3, y: 6}
-    - Type: 3
-      Position: {x: 4, y: 6}
-    - Type: 3
+    - Type: 2
       Position: {x: 5, y: 6}
-    - Type: 3
-      Position: {x: 8, y: 6}
-    - Type: 3
-      Position: {x: 9, y: 6}
     - Type: 3
       Position: {x: 2, y: 5}
     - Type: 3
       Position: {x: 3, y: 5}
-    - Type: 3
-      Position: {x: 4, y: 5}
-    - Type: 3
-      Position: {x: 5, y: 5}
-    - Type: 3
-      Position: {x: 8, y: 5}
-    - Type: 3
-      Position: {x: 9, y: 5}
-    - Type: 3
-      Position: {x: 2, y: 4}
-    - Type: 3
-      Position: {x: 3, y: 4}
-    - Type: 3
-      Position: {x: 4, y: 4}
-    - Type: 3
-      Position: {x: 5, y: 4}
-    - Type: 3
-      Position: {x: 8, y: 4}
-    - Type: 3
-      Position: {x: 9, y: 4}
     - Type: 1
       Position: {x: 0, y: 3}
+    - Type: 3
+      Position: {x: 2, y: 3}
+    - Type: 3
+      Position: {x: 3, y: 3}
     - Type: 2
-      Position: {x: 8, y: 3}
-    - Type: 3
-      Position: {x: 2, y: 2}
-    - Type: 3
-      Position: {x: 3, y: 2}
-    - Type: 3
-      Position: {x: 4, y: 2}
-    - Type: 3
-      Position: {x: 5, y: 2}
-    - Type: 3
-      Position: {x: 8, y: 2}
-    - Type: 3
-      Position: {x: 9, y: 2}
+      Position: {x: 5, y: 3}
     - Type: 3
       Position: {x: 2, y: 1}
     - Type: 3
       Position: {x: 3, y: 1}
-    - Type: 3
-      Position: {x: 4, y: 1}
-    - Type: 3
-      Position: {x: 5, y: 1}
-    - Type: 3
-      Position: {x: 8, y: 1}
-    - Type: 3
-      Position: {x: 9, y: 1}
     - Type: 2
       Position: {x: 0, y: 0}
     - Type: 3
       Position: {x: 2, y: 0}
     - Type: 3
       Position: {x: 3, y: 0}
-    - Type: 3
-      Position: {x: 4, y: 0}
-    - Type: 3
+    - Type: 2
       Position: {x: 5, y: 0}
-    - Type: 3
-      Position: {x: 8, y: 0}
-    - Type: 3
-      Position: {x: 9, y: 0}
-  X: 10
+  SequencePreset: 
+  X: 7
   Y: 7
   Pieces: {fileID: 11400000, guid: 8f7c3e5d2b1a9f4c6e8a3b2d5f7c1e9a, type: 2}
-  CamDistance: 10
+  CamDistance: 11
   PieceScale: 0.5
   PieceCount: 3
