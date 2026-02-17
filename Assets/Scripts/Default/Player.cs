@@ -83,6 +83,19 @@ public class Player : Mb
             return testGridAction;
         }
     }
+    private static InputAction nextLevelAction;
+    public static InputAction NextLevelAction
+    {
+        get
+        {
+            if (nextLevelAction == null)
+            {
+                nextLevelAction = InputSystem.actions.FindAction("NextLevel");
+                nextLevelAction.Enable();
+            }
+            return nextLevelAction;
+        }
+    }
     void OnEnable()
     {
         cam = FindFirstObjectByType<Camera>();
@@ -104,7 +117,7 @@ public class Player : Mb
     private void OnGamePlay(object sender, EventArgs e)
     {
         Debug.Log("Player received GamePlay event");
-        TutorialPath(Z.LS.CurrentLevel.GetConnectPath());
+        // TutorialPath(Z.LS.CurrentLevel.GetConnectPath());
     }
 
     private void InitializeKeyActions()
@@ -140,6 +153,12 @@ public class Player : Mb
             mousePos.z = cam.transform.position.y;
             Vector3 worldMouse = cam.ScreenToWorldPoint(mousePos).SwitchYZ();
             Z.LS.CurrentLevel.TestGrid(worldMouse);
+        };
+        //N
+        NextLevelAction.performed += ctx =>
+        {
+            Debug.Log("Next Level key pressed");
+            Z.GM.LevelComplete(this, 0);
         };
     }
     float silhTime = 0;

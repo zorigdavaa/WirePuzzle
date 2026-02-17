@@ -154,6 +154,15 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextLevel"",
+                    ""type"": ""Button"",
+                    ""id"": ""e72b2ecd-0dab-4c8d-855e-cd6c60db899a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -233,6 +242,17 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
                     ""action"": ""B"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""401197c2-da86-4939-962e-121b0cb70a82"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -296,6 +316,7 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
         m_Player_F = m_Player.FindAction("F", throwIfNotFound: true);
         m_Player_Mouse2 = m_Player.FindAction("Mouse2", throwIfNotFound: true);
         m_Player_B = m_Player.FindAction("B", throwIfNotFound: true);
+        m_Player_NextLevel = m_Player.FindAction("NextLevel", throwIfNotFound: true);
         // LevelEditor
         m_LevelEditor = asset.FindActionMap("LevelEditor", throwIfNotFound: true);
         m_LevelEditor_QQ = m_LevelEditor.FindAction("QQ", throwIfNotFound: true);
@@ -388,6 +409,7 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_F;
     private readonly InputAction m_Player_Mouse2;
     private readonly InputAction m_Player_B;
+    private readonly InputAction m_Player_NextLevel;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -427,6 +449,10 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/B".
         /// </summary>
         public InputAction @B => m_Wrapper.m_Player_B;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/NextLevel".
+        /// </summary>
+        public InputAction @NextLevel => m_Wrapper.m_Player_NextLevel;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -474,6 +500,9 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
             @B.started += instance.OnB;
             @B.performed += instance.OnB;
             @B.canceled += instance.OnB;
+            @NextLevel.started += instance.OnNextLevel;
+            @NextLevel.performed += instance.OnNextLevel;
+            @NextLevel.canceled += instance.OnNextLevel;
         }
 
         /// <summary>
@@ -506,6 +535,9 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
             @B.started -= instance.OnB;
             @B.performed -= instance.OnB;
             @B.canceled -= instance.OnB;
+            @NextLevel.started -= instance.OnNextLevel;
+            @NextLevel.performed -= instance.OnNextLevel;
+            @NextLevel.canceled -= instance.OnNextLevel;
         }
 
         /// <summary>
@@ -702,6 +734,13 @@ public partial class @TouchControl: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnB(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NextLevel" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNextLevel(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "LevelEditor" which allows adding and removing callbacks.
