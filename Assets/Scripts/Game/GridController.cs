@@ -248,8 +248,16 @@ public class GridController : MonoBehaviour
         HashSet<(int, ulong)> visited = new HashSet<(int, ulong)>();
         visited.Add((startIndex, startMask));
 
+        int iterations = 0;
+        const int MAX_ITER = 20000;      // 🔴 Hard safety stop
+
         while (queue.Count > 0)
         {
+            if (++iterations > MAX_ITER)
+            {
+                Debug.LogWarning("Path search stopped: iteration limit");
+                break;
+            }
             PathState state = queue.Dequeue();
 
             if (state.Node == target)

@@ -117,7 +117,7 @@ public class Player : Mb
     private void OnGamePlay(object sender, EventArgs e)
     {
         Debug.Log("Player received GamePlay event");
-        // TutorialPath(Z.LS.CurrentLevel.GetConnectPath());
+        TutorialPath(Z.LS.CurrentLevel.GetConnectPath());
     }
 
     private void InitializeKeyActions()
