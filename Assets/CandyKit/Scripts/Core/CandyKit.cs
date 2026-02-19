@@ -60,8 +60,21 @@ namespace CandyKitSDK
 
                 m_Settings = Resources.Load<CandyKitSettingsScriptableObject>("CandyKit/CandyKitSettings");
 
-                InitializeApplovin();
+                // InitializeApplovin();
+                InitializeGameAnalytics();
+                // if (!CountryCode.IsInNoTenjinCountries())
+                // {
+                // }
+                // InitializeTenjin();
+                // InitializeFirebase();
 
+                // GameObject adHandlerGo = new("CkAdHandler");
+                // m_CkAdHandler = adHandlerGo.AddComponent<CkAdHandler>();
+                // m_CkAdHandler.Initialize(m_Settings);
+
+                GameObject instanceObject = new("CandyKitObject");
+                m_Instance = instanceObject.AddComponent<CandyKitObject>();
+                m_Instance.Initialize(m_ReadinessWaitDuration, m_Settings, OnReady);
                 InitializeUnityGamingService();
                 SetInstallDate();
             }
@@ -371,45 +384,45 @@ namespace CandyKitSDK
             GameObject.DontDestroyOnLoad(gameAnalyticsInitializerObj);
         }
 
-        private static void InitializeApplovin()
-        {
-            MaxSdkCallbacks.OnSdkInitializedEvent += (MaxSdkBase.SdkConfiguration sdkConfiguration) =>
-            {
-                if (m_IsDebug)
-                {
-                    MaxSdk.ShowMediationDebugger();
-                }
-            };
+        // private static void InitializeApplovin()
+        // {
+        //     MaxSdkCallbacks.OnSdkInitializedEvent += (MaxSdkBase.SdkConfiguration sdkConfiguration) =>
+        //     {
+        //         if (m_IsDebug)
+        //         {
+        //             MaxSdk.ShowMediationDebugger();
+        //         }
+        //     };
 
-            MaxSdk.SetSdkKey(m_Settings.MaxSDKKey);
-            MaxSdk.SetUserId("USER_ID");
-            MaxSdk.InitializeSdk();
-            MaxSdkCallbacks.OnSdkInitializedEvent += OnMaxInitialized;
-            // if (MaxSdk.GetSdkConfiguration().ConsentFlowUserGeography == MaxSdkBase.ConsentFlowUserGeography.Gdpr)
-            // {
-            //     MaxSdk.GetSdkConfiguration().conse
-            // }
-            Debug.Log("CK--> Max Init");
-        }
+        //     MaxSdk.SetSdkKey(m_Settings.MaxSDKKey);
+        //     MaxSdk.SetUserId("USER_ID");
+        //     MaxSdk.InitializeSdk();
+        //     MaxSdkCallbacks.OnSdkInitializedEvent += OnMaxInitialized;
+        //     // if (MaxSdk.GetSdkConfiguration().ConsentFlowUserGeography == MaxSdkBase.ConsentFlowUserGeography.Gdpr)
+        //     // {
+        //     //     MaxSdk.GetSdkConfiguration().conse
+        //     // }
+        //     Debug.Log("CK--> Max Init");
+        // }
 
-        private static void OnMaxInitialized(MaxSdkBase.SdkConfiguration configuration)
-        {
-            InitializeGameAnalytics();
-            // if (!CountryCode.IsInNoTenjinCountries())
-            // {
-            // }
-            InitializeTenjin();
-            // InitializeFirebase();
+        // private static void OnMaxInitialized(MaxSdkBase.SdkConfiguration configuration)
+        // {
+        //     InitializeGameAnalytics();
+        //     // if (!CountryCode.IsInNoTenjinCountries())
+        //     // {
+        //     // }
+        //     InitializeTenjin();
+        //     // InitializeFirebase();
 
-            GameObject adHandlerGo = new("CkAdHandler");
-            m_CkAdHandler = adHandlerGo.AddComponent<CkAdHandler>();
-            m_CkAdHandler.Initialize(m_Settings);
+        //     GameObject adHandlerGo = new("CkAdHandler");
+        //     m_CkAdHandler = adHandlerGo.AddComponent<CkAdHandler>();
+        //     m_CkAdHandler.Initialize(m_Settings);
 
-            GameObject instanceObject = new("CandyKitObject");
-            m_Instance = instanceObject.AddComponent<CandyKitObject>();
-            m_Instance.Initialize(m_ReadinessWaitDuration, m_Settings, OnReady);
+        //     GameObject instanceObject = new("CandyKitObject");
+        //     m_Instance = instanceObject.AddComponent<CandyKitObject>();
+        //     m_Instance.Initialize(m_ReadinessWaitDuration, m_Settings, OnReady);
 
-        }
+        // }
 
         private static void InitializeTenjin()
         {
@@ -429,42 +442,42 @@ namespace CandyKitSDK
             gamingServiceObject.Initialize(OnGamingServiceInitializationSuccess, OnGamingServiceInitializationFailed);
         }
 
-//         private static void InitializeFirebase()
-//         {
-// #if !UNITY_EDITOR
-//             Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
-//             {
-//                 var dependencyStatus = task.Result;
-//                 if (dependencyStatus == Firebase.DependencyStatus.Available)
-//                 {
-//                     var app = Firebase.FirebaseApp.DefaultInstance;
-//                     if (MaxSdk.HasUserConsent())
-//                     {
-//                         FirebaseAnalytics.SetConsent
-//                         (
-//                             new Dictionary<ConsentType, ConsentStatus>
-//                             {
-//                                 { ConsentType.AnalyticsStorage, ConsentStatus.Granted },
-//                                 { ConsentType.AdStorage, ConsentStatus.Granted },
-//                                 { ConsentType.AdPersonalization, ConsentStatus.Granted },
-//                                 { ConsentType.AdUserData, ConsentStatus.Granted },
-//                             }
-//                         );
+        //         private static void InitializeFirebase()
+        //         {
+        // #if !UNITY_EDITOR
+        //             Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
+        //             {
+        //                 var dependencyStatus = task.Result;
+        //                 if (dependencyStatus == Firebase.DependencyStatus.Available)
+        //                 {
+        //                     var app = Firebase.FirebaseApp.DefaultInstance;
+        //                     if (MaxSdk.HasUserConsent())
+        //                     {
+        //                         FirebaseAnalytics.SetConsent
+        //                         (
+        //                             new Dictionary<ConsentType, ConsentStatus>
+        //                             {
+        //                                 { ConsentType.AnalyticsStorage, ConsentStatus.Granted },
+        //                                 { ConsentType.AdStorage, ConsentStatus.Granted },
+        //                                 { ConsentType.AdPersonalization, ConsentStatus.Granted },
+        //                                 { ConsentType.AdUserData, ConsentStatus.Granted },
+        //                             }
+        //                         );
 
-//                         // Enable Firebase Analytics
-//                         FirebaseAnalytics.SetAnalyticsCollectionEnabled(true);
-//                         Debug.Log("CK--> Firebase initialized with Google Analytics consent granted.");
-//                     }
+        //                         // Enable Firebase Analytics
+        //                         FirebaseAnalytics.SetAnalyticsCollectionEnabled(true);
+        //                         Debug.Log("CK--> Firebase initialized with Google Analytics consent granted.");
+        //                     }
 
-//                     // Log a message to confirm consent settings
-//                 }
-//                 else
-//                 {
-//                     UnityEngine.Debug.LogError($"CK--> Could not resolve all Firebase dependencies: {dependencyStatus}");
-//                 }
-//             });
-// #endif
-//         }
+        //                     // Log a message to confirm consent settings
+        //                 }
+        //                 else
+        //                 {
+        //                     UnityEngine.Debug.LogError($"CK--> Could not resolve all Firebase dependencies: {dependencyStatus}");
+        //                 }
+        //             });
+        // #endif
+        //         }
 
 
         private static void OnGamingServiceInitializationSuccess()

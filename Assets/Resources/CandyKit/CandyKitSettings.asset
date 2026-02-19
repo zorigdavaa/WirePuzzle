@@ -19,8 +19,8 @@ MonoBehaviour:
   SubmitFpsAverage: 1
   FpsCriticalThreshold: 20
   Android:
-    GameAnalyticsGameKey: 
-    GameAnalyticsGameSecret: 
+    GameAnalyticsGameKey: 1368589e2cddc84cb5aed1d7d7cee6f8
+    GameAnalyticsGameSecret: 1d502135e21725b8a967c0f063b55ecc54092a0c
     TenjinSDKKey: 
     BannerAdUnitId: 
     InterstitialAdUnitId: 

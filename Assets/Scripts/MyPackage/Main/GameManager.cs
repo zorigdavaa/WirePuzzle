@@ -161,14 +161,14 @@ namespace ZPackage
         {
             print(Level);
             Level++;
-            if (Level < 10)
-            {
-                PlayerPrefs.SetInt("nextLevelScore", (int)(Level * 5 + Score * 1.2f + 50));
-            }
-            else
-            {
-                PlayerPrefs.SetInt("nextLevelScore", (int)(Mathf.Sqrt(Level * Score) * 0.3 + Score));
-            }
+            // if (Level < 10)
+            // {
+            //     PlayerPrefs.SetInt("nextLevelScore", (int)(Level * 5 + Score * 1.2f + 50));
+            // }
+            // else
+            // {
+            //     PlayerPrefs.SetInt("nextLevelScore", (int)(Mathf.Sqrt(Level * Score) * 0.3 + Score));
+            // }
         }
         private void StartGame()
         {
@@ -178,7 +178,7 @@ namespace ZPackage
         }
         public async void PlayGame()
         {
-            GAPlayEvent();
+            // GAPlayEvent();
             GamePlay?.Invoke(this, EventArgs.Empty);
             await Task.Yield();
             State = GameState.Playing;
@@ -196,14 +196,14 @@ namespace ZPackage
                 LevelCompleted?.Invoke(sender, eventArgs);
                 State = GameState.LevelCompleted;
                 NextLevel();
-                GALevelCompleteEvent();
+                // GALevelCompleteEvent();
             }
         }
         public void GameOver(object sender, EventArgs e)
         {
             GameOverEvent?.Invoke(sender, e);
             State = GameState.GameOver;
-            GAGameOverEvent();
+            // GAGameOverEvent();
         }
         public void Setting(object sender, EventArgs e)
         {
@@ -230,36 +230,8 @@ namespace ZPackage
         }
         void GAStartEvent()
         {
-#if ANALYTICS_SDKS
-            if (PlayerPrefs.GetInt("LevelZero", 0) == 0)
-            {
-                PlayerPrefs.SetInt("LevelZero", 1);
-                GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, "level_00000");
-                GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, "level_00000");
-            }
-#endif
+            FindAnyObjectByType<CKProgressionEvent>().Init();
         }
-        void GAPlayEvent()
-        {
-#if ANALYTICS_SDKS
-            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, "level_" + Level.ToString("00000"));
-#endif
-        }
-        void GAGameOverEvent()
-        {
-#if ANALYTICS_SDKS
-            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, "level_" + Level.ToString("00000"), Score);
-#endif
-        }
-        void GALevelCompleteEvent()
-        {
-#if ANALYTICS_SDKS
-            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, "level_" + Level.ToString("00000"), Score);
-#endif
-        }
-
-
         #endregion
-
     }
 }
