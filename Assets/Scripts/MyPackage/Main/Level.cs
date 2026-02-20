@@ -112,6 +112,10 @@ public class Level : MonoBehaviour
             }
         }
     }
+    public void DestroyAll()
+    {
+        gridController.ClearRowAndColumns();
+    }
     public List<GridNode> GetConnectPath()
     {
         // Return cached result if available
