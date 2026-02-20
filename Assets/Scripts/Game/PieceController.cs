@@ -276,7 +276,7 @@ public class PieceController : Mb
             return new List<Piece>();
         }
         List<Piece> seqList = new List<Piece>();
-        string[] ids = sequence.Split(',');
+        string[] ids = sequence.Split('.');
         foreach (string id in ids)
         {
             if (int.TryParse(id, out int pieceIndex))

@@ -31,7 +31,7 @@ MonoBehaviour:
       Position: {x: 1, y: 2}
     - Type: 2
       Position: {x: 0, y: 0}
-  SequencePreset: 0,1,0,1,1,0,1,0,0,1,1,0
+  SequencePreset: 6.6.30.31.3.1.0.6.2
   X: 3
   Y: 5
   Pieces: {fileID: 11400000, guid: 7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b, type: 2}

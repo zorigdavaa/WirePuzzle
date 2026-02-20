@@ -56,6 +56,10 @@ public class LevelDataEditor : Editor
     }
     void DrawPiecePreview(Piece piece)
     {
+        if (!piece)
+        {
+            return;
+        }
         var nodes = piece.GetChilds();
         if (nodes == null) return;
 
