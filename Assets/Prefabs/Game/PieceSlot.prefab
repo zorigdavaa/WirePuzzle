@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 863592464475527039}
-  m_Layer: 0
+  - component: {fileID: 5137315529365481599}
+  m_Layer: 6
   m_Name: PieceSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,6 +35,27 @@ Transform:
   - {fileID: 7565263845852880210}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5137315529365481599
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501433077735032985}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.4, y: 0.2, z: 1.4}
+  m_Center: {x: 0, y: -0.25, z: 0}
 --- !u!1 &8541461657464853399
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,7 +67,7 @@ GameObject:
   - component: {fileID: 1738063021053236232}
   - component: {fileID: 6582880924877534405}
   - component: {fileID: 4093076146275662484}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,6 +211,10 @@ PrefabInstance:
       value: Cube1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ab190dd332437418784c6e37de68d89a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ab190dd332437418784c6e37de68d89a, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -273,6 +299,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f14e847943c4845999c4e303eb3d8c88, type: 3}
       propertyPath: m_Name
       value: Plate2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f14e847943c4845999c4e303eb3d8c88, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

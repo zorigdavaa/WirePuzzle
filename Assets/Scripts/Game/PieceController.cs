@@ -147,6 +147,14 @@ public class PieceController : Mb
         //     }
         // }
     }
+    public Piece GetPieceBySlot(Transform slot)
+    {
+        if (CurrentSlotObj.ContainsKey(slot))
+        {
+            return CurrentSlotObj[slot];
+        }
+        return null;
+    }
 
     internal bool HasSlot(Piece selectedObject)
     {

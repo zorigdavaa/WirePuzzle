@@ -106,7 +106,7 @@ public class Player : Mb
         gridController = FindAnyObjectByType<GridController>();
         pieceController = FindAnyObjectByType<PieceController>();
         // cam = Camera.main;
-        rayMask = LayerMask.GetMask("Piece");
+        rayMask = LayerMask.GetMask("PieceSlot");
         InitializeKeyActions();
         lightning = Instantiate(ConnectPF, transform.position, Quaternion.identity).GetComponent<Lightning>();
         lightning.SetPostions(new Vector3[0]);
@@ -177,11 +177,16 @@ public class Player : Mb
                 ray = cam.ScreenPointToRay(MP);
                 if (Physics.Raycast(ray, out hit, 30, rayMask))
                 {
-                    if (hit.collider.attachedRigidbody != null && hit.collider.attachedRigidbody.GetComponent<Piece>())
-                    {
+                    // if (hit.collider.attachedRigidbody != null && hit.collider.attachedRigidbody.GetComponent<Piece>())
+                    // {
 
-                        selectedPiece = hit.collider.attachedRigidbody.GetComponent<Piece>();
-                    }
+                    //     selectedPiece = hit.collider.attachedRigidbody.GetComponent<Piece>();
+                    // }
+                    // if (pieceController.ha)
+                    // {
+
+                    // }
+                    selectedPiece = pieceController.GetPieceBySlot(hit.collider.transform);
                 }
             }
             // Holding logic
