@@ -49,6 +49,7 @@ MonoBehaviour:
       Position: {x: 5, y: 1}
     - Type: 2
       Position: {x: 4, y: 0}
+  SequencePreset: 8.6.16.25.16.7.26.1.0
   X: 6
   Y: 4
   Pieces: {fileID: 11400000, guid: 8f7c3e5d2b1a9f4c6e8a3b2d5f7c1e9a, type: 2}

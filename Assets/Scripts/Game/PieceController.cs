@@ -30,6 +30,7 @@ public class PieceController : Mb
         foreach (Transform item in SlotsParent[Z.CurrentLevel.Data.PieceCount - 3].transform)
         {
             pieceSlots.Add(item);
+            CurrentSlotObj[item] = null;
             item.transform.GetChild(0).gameObject.SetActive(false);
         }
         // foreach (var item in pieceSlots)
@@ -66,12 +67,12 @@ public class PieceController : Mb
         //Get the next random pieces from the bag
         //List<Piece> newItems = bag.PopRandomItems(pieceSlots.Count);
         var newItems = new List<Piece>();
-
+        int neededCount = CurrentSlotObj.Values.Count(x => x == null);
         //Get the needed pieces from the grid
         List<Piece> neededPieces = Z.GridController.GetNeededPiece(LevelPiecesPf);
 
         //Populate the new pieces
-        for (int i = 0; i < pieceSlots.Count; i++)
+        for (int i = 0; i < neededCount; i++)
         {
             if (HasNextInSequence())
             {
@@ -90,15 +91,22 @@ public class PieceController : Mb
                 newItems.Add(LevelPiecesPf[Random.Range(0, LevelPiecesPf.Count)]);
             }
         }
-
-        //Instantiate the new pieces and set their color
-        for (int i = 0; i < pieceSlots.Count; i++)
+        var emptySlots = new List<Transform>();
+        foreach (var kvp in CurrentSlotObj)
         {
-            var newObj = Instantiate(newItems[i], pieceSlots[i].transform.position, Quaternion.identity);
+            if (kvp.Value == null)
+            {
+                emptySlots.Add(kvp.Key);
+            }
+        }
+        //Instantiate the new pieces and set their color
+        for (int i = 0; i < emptySlots.Count; i++)
+        {
+            var newObj = Instantiate(newItems[i], emptySlots[i].transform.position, Quaternion.identity);
             newObj.gameObject.SetActive(true);
 
             //Set the piece slot for the new object
-            CurrentSlotObj[pieceSlots[i]] = newObj;
+            CurrentSlotObj[emptySlots[i]] = newObj;
 
             //Set the color of the new object
             newObj.SetColor(pieceMaterials[materialIndex % pieceMaterials.Count]);
@@ -184,10 +192,10 @@ public class PieceController : Mb
         {
             CurrentSlotObj[foundKey] = null;
         }
-        if (CurrentSlotObj.Values.Count(x => x == null) == CurrentSlotObj.Keys.Count)
-        {
-            Populate();
-        }
+        // if (CurrentSlotObj.Values.Count(x => x == null) == CurrentSlotObj.Keys.Count)
+        // {
+        // }
+        Populate();
         CheckGameOver();
     }
 

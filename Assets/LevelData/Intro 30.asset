@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79ad2a8b752b4db8b3b318c370d4e09, type: 3}
   m_Name: Intro 30
   m_EditorClassIdentifier: 
-  LevelString: 'XXXX..XXXX
+  LevelString: 'XX..XX..XX
 
     L...II...L
 
@@ -24,7 +24,7 @@ MonoBehaviour:
 
     L...II...L
 
-    XXXX..XXXX'
+    XX..XX..XX'
   LevelConnectDatas:
   - cellDatas:
     - Type: 3
@@ -32,13 +32,9 @@ MonoBehaviour:
     - Type: 3
       Position: {x: 1, y: 6}
     - Type: 3
-      Position: {x: 2, y: 6}
+      Position: {x: 4, y: 6}
     - Type: 3
-      Position: {x: 3, y: 6}
-    - Type: 3
-      Position: {x: 6, y: 6}
-    - Type: 3
-      Position: {x: 7, y: 6}
+      Position: {x: 5, y: 6}
     - Type: 3
       Position: {x: 8, y: 6}
     - Type: 3
@@ -112,21 +108,17 @@ MonoBehaviour:
     - Type: 3
       Position: {x: 1, y: 0}
     - Type: 3
-      Position: {x: 2, y: 0}
+      Position: {x: 4, y: 0}
     - Type: 3
-      Position: {x: 3, y: 0}
-    - Type: 3
-      Position: {x: 6, y: 0}
-    - Type: 3
-      Position: {x: 7, y: 0}
+      Position: {x: 5, y: 0}
     - Type: 3
       Position: {x: 8, y: 0}
     - Type: 3
       Position: {x: 9, y: 0}
-  SequencePreset: 
+  SequencePreset: 0.4.0.30.4.0.31.0.0.31.30
   X: 10
   Y: 7
-  Pieces: {fileID: 11400000, guid: 8f7c3e5d2b1a9f4c6e8a3b2d5f7c1e9a, type: 2}
+  Pieces: {fileID: 11400000, guid: 2a1f0e9d8c7b6a5f4e3d2c1b0a9f8e7d, type: 2}
   CamDistance: 16
   PieceScale: 0.5
   PieceCount: 3

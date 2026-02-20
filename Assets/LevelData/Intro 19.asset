@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79ad2a8b752b4db8b3b318c370d4e09, type: 3}
   m_Name: Intro 19
   m_EditorClassIdentifier: 
-  LevelString: 'L.XXXX.P
+  LevelString: 'L..XX..P
 
-    ..XXXX..
+    ...XX...
 
-    ..XXXX..
+    ..X..X..
 
     ........
 
@@ -26,32 +26,20 @@ MonoBehaviour:
     - Type: 2
       Position: {x: 0, y: 4}
     - Type: 3
-      Position: {x: 2, y: 4}
-    - Type: 3
       Position: {x: 3, y: 4}
     - Type: 3
       Position: {x: 4, y: 4}
-    - Type: 3
-      Position: {x: 5, y: 4}
     - Type: 1
       Position: {x: 7, y: 4}
-    - Type: 3
-      Position: {x: 2, y: 3}
     - Type: 3
       Position: {x: 3, y: 3}
     - Type: 3
       Position: {x: 4, y: 3}
     - Type: 3
-      Position: {x: 5, y: 3}
-    - Type: 3
       Position: {x: 2, y: 2}
     - Type: 3
-      Position: {x: 3, y: 2}
-    - Type: 3
-      Position: {x: 4, y: 2}
-    - Type: 3
       Position: {x: 5, y: 2}
-  SequencePreset: 
+  SequencePreset: 10.27.11.33.16.15.32.4.3
   X: 8
   Y: 5
   Pieces: {fileID: 11400000, guid: 8f7c3e5d2b1a9f4c6e8a3b2d5f7c1e9a, type: 2}

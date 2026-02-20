@@ -88,7 +88,7 @@ public class LevelDataEditor : Editor
         {
             Vector2 p = new Vector2(node.localPosition.x, node.localPosition.z);
             p -= min;               // normalize
-            // p.y = size.y - p.y - 1; // flip Y for GUI
+            p.y = size.y - p.y - 1; // flip Y for GUI
 
             Rect r = new Rect(
                 rect.x + p.x * cellSize + padding,

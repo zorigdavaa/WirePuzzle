@@ -12,35 +12,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79ad2a8b752b4db8b3b318c370d4e09, type: 3}
   m_Name: Intro 18
   m_EditorClassIdentifier: 
-  LevelString: 'P..
+  LevelString: 'P..I
 
-    II.
+    II.I
 
-    II.
+    II.I
 
-    II.
+    II.I
 
-    L..'
+    L..I'
   LevelConnectDatas:
   - cellDatas:
     - Type: 1
       Position: {x: 0, y: 4}
     - Type: 5
+      Position: {x: 3, y: 4}
+    - Type: 5
       Position: {x: 0, y: 3}
     - Type: 5
       Position: {x: 1, y: 3}
+    - Type: 5
+      Position: {x: 3, y: 3}
     - Type: 5
       Position: {x: 0, y: 2}
     - Type: 5
       Position: {x: 1, y: 2}
     - Type: 5
+      Position: {x: 3, y: 2}
+    - Type: 5
       Position: {x: 0, y: 1}
     - Type: 5
       Position: {x: 1, y: 1}
+    - Type: 5
+      Position: {x: 3, y: 1}
     - Type: 2
       Position: {x: 0, y: 0}
-  SequencePreset: 
-  X: 3
+    - Type: 5
+      Position: {x: 3, y: 0}
+  SequencePreset: 9.9.9.14.13.3.3.20.2
+  X: 4
   Y: 5
   Pieces: {fileID: 11400000, guid: 8f7c3e5d2b1a9f4c6e8a3b2d5f7c1e9a, type: 2}
   CamDistance: 10
