@@ -40,4 +40,8 @@ public class PowerUpUI : MonoBehaviour
     {
         PowerUpHandler.Instance.BuyPowerUp(powerUp);
     }
+    public void BuyPowerUpWithAd()
+    {
+        PowerUpHandler.Instance.BuyPowerUp(powerUp);
+    }
 }

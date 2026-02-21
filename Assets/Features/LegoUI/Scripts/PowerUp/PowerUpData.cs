@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PowerUp", menuName = "Scriptable Objects/PowerUp")]
+// [CreateAssetMenu(fileName = "PowerUp", menuName = "ScriptableObjects/PowerUp")]
 [Serializable]
 public abstract class PowerUpData : ScriptableObject
 {
@@ -13,6 +13,5 @@ public abstract class PowerUpData : ScriptableObject
     [Header("Cost")]
     public int unlockCoinCost;
     public int addCoinCost;
-
-    public abstract void ApplyEffect();
+    public abstract void ApplyEffect(GameObject target, object context = null);
 }

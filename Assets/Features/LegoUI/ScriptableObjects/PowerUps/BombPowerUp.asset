@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cbce5f91785c4a0c8ecb99caf2793be, type: 3}
+  m_Name: BombPowerUp
+  m_EditorClassIdentifier: 
+  Name: Bomb
+  Description: Destroy near blocks
+  Icon: {fileID: 21300000, guid: 4bd65acd38dcb4c928125d622e661eda, type: 3}
+  unlockCoinCost: 50
+  addCoinCost: 50
+  BombPrefab: {fileID: 8932287396273317717, guid: c59457a8c26c647fb84c796b1c367622, type: 3}

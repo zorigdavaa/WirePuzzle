@@ -43,7 +43,7 @@ public class PowerUp : MonoBehaviour
         OnPowerUpUse += UpdateCountUI;
         OnPowerUpUnlock += UpdateUnlockUI;
 
-        isLocked = PlayerPrefs.GetInt($"{name}-powerup", 0) == 1;
+        isLocked = PlayerPrefs.GetInt($"{name}-powerup", 0) == 0;
         count = PlayerPrefs.GetInt($"{name}-count", 0);
     }
     public virtual void Start()
@@ -95,7 +95,7 @@ public class PowerUp : MonoBehaviour
         {
             count--;
 
-            powerUpData.ApplyEffect();
+            powerUpData.ApplyEffect(gameObject);
 
             OnPowerUpUse?.Invoke();
 

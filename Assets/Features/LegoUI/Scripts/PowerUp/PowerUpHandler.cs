@@ -35,9 +35,12 @@ public class PowerUpHandler : MonoBehaviour
     {
         if (state == GameState.Playing)
         {
-            CheckPowerUpTutorial();
+            CheckPowerUpLevelUnlock();
+            // CheckPowerUpTutorial();
         }
     }
+
+
 
     public void UnlockPowerUp(PowerUp powerUp)
     {
@@ -57,6 +60,16 @@ public class PowerUpHandler : MonoBehaviour
             Debug.Log($"Bought powerup: {powerUp.name}");
         }
     }
+    public void BuyPowerUpWithAd(PowerUp powerUp)
+    {
+        if (GameManager.Instance.Coin >= powerUp.addCoinCost)
+        {
+            CanvasManager.Instance.RemoveCoin(powerUp.addCoinCost);
+            powerUp.AddCountPowerUp();
+            powerUp.powerUpBuyUI.gameObject.SetActive(false);
+            Debug.Log($"Bought powerup: {powerUp.name}");
+        }
+    }
 
     public void InitializePowerUpUIs()
     {
@@ -66,13 +79,27 @@ public class PowerUpHandler : MonoBehaviour
         }
     }
 
-    public void CheckPowerUpTutorial()
+    // public void CheckPowerUpTutorial()
+    // {
+    //     for (int i = 0; i < unlockLoseRequirement.Length; i++)
+    //     {
+    //         if (unlockLoseRequirement[i] <= PlayerPrefs.GetInt("loseTime", 0))
+    //         {
+    //             // Tutorial.instance.PowerUpTutorial();
+    //         }
+    //     }
+    // }
+    private void CheckPowerUpLevelUnlock()
     {
-        for (int i = 0; i < unlockLoseRequirement.Length; i++)
+        foreach (var item in unlockLevelRequirement)
         {
-            if (unlockLoseRequirement[i] <= PlayerPrefs.GetInt("loseTime", 0))
+            if (item <= GameManager.Instance.Level)
             {
-                // Tutorial.instance.PowerUpTutorial();
+                var index = Array.IndexOf(unlockLevelRequirement, item);
+                if (index >= 0 && index < powerUps.Length)
+                {
+                    powerUps[index].Unlock();
+                }
             }
         }
     }
