@@ -114,7 +114,7 @@ public class Level : MonoBehaviour
     }
     public void DestroyAll()
     {
-        gridController.ClearRowAndColumns();
+        StartCoroutine(gridController.ClearRowAndColumns());
     }
     public List<GridNode> GetConnectPath()
     {

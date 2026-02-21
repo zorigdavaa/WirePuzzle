@@ -514,6 +514,7 @@ public class GridController : MonoBehaviour
         int Counter = 0;
         for (int i = 0; i < Grid.GetHeight(); i++)
         {
+            Debug.Log("Clearing Row " + i);
             Counter++;
             Prefabs.Instance.ShortCircuit(i, RowCol.Column, Grid, () =>
             {
