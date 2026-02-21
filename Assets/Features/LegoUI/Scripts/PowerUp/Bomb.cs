@@ -5,8 +5,9 @@ using UnityEngine;
 public class Bomb : PowerUpData
 {
     public GameObject BombPrefab;
-    public override void ApplyEffect(GameObject gameObject, object context = null)
+    public override void ApplyEffect(GameObject dd, object context = null)
     {
-        Instantiate(BombPrefab, gameObject.transform.position, Quaternion.identity);
+        // dd.
+        Instantiate(BombPrefab, dd.transform.position, Quaternion.identity);
     }
 }

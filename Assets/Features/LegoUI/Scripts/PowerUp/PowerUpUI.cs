@@ -22,7 +22,7 @@ public class PowerUpUI : MonoBehaviour
             Initialize(powerUp);
         }
 
-        adBuyButton.onClick.AddListener(BuyPowerUp);
+        adBuyButton.onClick.AddListener(BuyPowerUpWithAd);
         coinBuyButton.onClick.AddListener(BuyPowerUp);
     }
 
@@ -42,6 +42,7 @@ public class PowerUpUI : MonoBehaviour
     }
     public void BuyPowerUpWithAd()
     {
-        PowerUpHandler.Instance.BuyPowerUp(powerUp);
+        Debug.Log($"Attempting to buy {powerUp.name} with ad...");
+        PowerUpHandler.Instance.BuyPowerUpWithAd(powerUp);
     }
 }

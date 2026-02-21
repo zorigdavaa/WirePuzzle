@@ -62,13 +62,17 @@ public class PowerUpHandler : MonoBehaviour
     }
     public void BuyPowerUpWithAd(PowerUp powerUp)
     {
-        if (GameManager.Instance.Coin >= powerUp.addCoinCost)
+        CandyKitSDK.CandyKit.ShowRewardedVideo("ss", (success) =>
         {
-            CanvasManager.Instance.RemoveCoin(powerUp.addCoinCost);
-            powerUp.AddCountPowerUp();
+            if (success)
+            {
+                powerUp.AddCountPowerUp();
+                Debug.Log($"Bought powerup: {powerUp.name}");
+            }
             powerUp.powerUpBuyUI.gameObject.SetActive(false);
-            Debug.Log($"Bought powerup: {powerUp.name}");
-        }
+        });
+
+
     }
 
     public void InitializePowerUpUIs()

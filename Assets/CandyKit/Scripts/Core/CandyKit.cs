@@ -345,6 +345,7 @@ namespace CandyKitSDK
 
             if (!m_IsInitialized)
             {
+                Debug.LogWarning("CK--> ShowRewardedVideo called before initialization. Granting reward by default.");
                 callback(true);
                 return;
             }
