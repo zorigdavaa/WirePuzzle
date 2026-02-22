@@ -188,6 +188,14 @@ public class Player : Mb
                     // }
                     selectedPiece = pieceController.GetPieceBySlot(hit.collider.transform);
                 }
+                if (onSelect != null)
+                {
+                    // if (gridController.Grid.GetWorldPosition(MP.x, MP.y))
+                    // {
+                        
+                    // }
+                    // onSelect = null;
+                }
             }
             // Holding logic
             else if (pressed && selectedPiece != null)
@@ -302,6 +310,11 @@ public class Player : Mb
                 }
             }
         }
+    }
+    Action<Transform> onSelect;
+    public void RequestSelected(Action<Transform> onSelect)
+    {
+        this.onSelect = onSelect;
     }
 
     private void PlaceSilh(List<GridNode> placeAbleNodes, GameObject silh)

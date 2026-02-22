@@ -94,6 +94,10 @@ public class Prefabs : GenericSingleton<Prefabs>
             Destroy(fireWork);
         }
     }
+    public void RunCoroutine(IEnumerator coroutine)
+    {
+        StartCoroutine(coroutine);
+    }
 }
 
 public enum RowCol
