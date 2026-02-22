@@ -190,11 +190,16 @@ public class Player : Mb
                 }
                 if (onSelect != null)
                 {
-                    // if (gridController.Grid.GetWorldPosition(MP.x, MP.y))
-                    // {
-                        
-                    // }
-                    // onSelect = null;
+                    Vector3 mousePos = MP;
+                    mousePos.z = cam.transform.position.y;
+                    Vector3 worldMouse = cam.ScreenToWorldPoint(mousePos).SwitchYZ();
+                    var gridObj = gridController.Grid.GetGridObject(worldMouse);
+                    Debug.Log("Grid Object at mouse position: " + gridObj);
+                    if (gridObj)
+                    {
+                        onSelect.Invoke(gridObj.transform);
+                        onSelect = null;
+                    }
                 }
             }
             // Holding logic

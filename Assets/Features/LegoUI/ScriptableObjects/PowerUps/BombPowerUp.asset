@@ -18,3 +18,4 @@ MonoBehaviour:
   unlockCoinCost: 50
   addCoinCost: 50
   BombPrefab: {fileID: 8932287396273317717, guid: c59457a8c26c647fb84c796b1c367622, type: 3}
+  TutorialPrefab: {fileID: 8355602978762949759, guid: fb02784921490459583d5c742f4ef546, type: 3}
