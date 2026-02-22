@@ -96,13 +96,18 @@ public class GridController : MonoBehaviour
 #endif
     }
 
-    public List<GridNode> GetNeighbors(GridNode currentNode, bool ignoreTraversible = false)
+    public List<GridNode> GetNeighbors(GridNode currentNode, bool ignoreTraversible = false, bool EightDirections = false)
     {
         List<GridNode> neighbors = new List<GridNode>();
 
         // Define the offsets for left, right, up, and down
         int[] xOffset = { -1, 1, 0, 0 };
         int[] yOffset = { 0, 0, 1, -1 };
+        if (EightDirections)
+        {
+            xOffset = new int[] { -1, 1, 0, 0, -1, -1, 1, 1 };
+            yOffset = new int[] { 0, 0, 1, -1, 1, -1, 1, -1 };
+        }
 
         for (int i = 0; i < xOffset.Length; i++)
         {

@@ -197,7 +197,7 @@ public class Player : Mb
                     Debug.Log("Grid Object at mouse position: " + gridObj);
                     if (gridObj)
                     {
-                        onSelect.Invoke(gridObj.transform);
+                        onSelect.Invoke(gridObj);
                         onSelect = null;
                     }
                 }
@@ -316,8 +316,8 @@ public class Player : Mb
             }
         }
     }
-    Action<Transform> onSelect;
-    public void RequestSelected(Action<Transform> onSelect)
+    Action<GridNode> onSelect;
+    public void RequestSelected(Action<GridNode> onSelect)
     {
         this.onSelect = onSelect;
     }
