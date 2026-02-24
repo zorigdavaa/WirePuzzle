@@ -13,7 +13,7 @@ public class Level : MonoBehaviour
     // public List<Slot> Blocked;
     public bool isInitialized = false;
     public int DataIndex = 0;
-
+    public int MoveCount = 0;
     // Cache for connect path to avoid expensive recalculation
     private List<GridNode> cachedConnectPath = null;
     private bool connectPathNeedsUpdate = true;
@@ -195,6 +195,7 @@ public class Level : MonoBehaviour
     public void SetData(LevelData levelData)
     {
         Data = levelData;
+        MoveCount = levelData.MoveCount;
         gridController = transform.GetComponentInChildren<GridController>();
         gridController.Init(Data.X, Data.Y);
         SetGridByData();
