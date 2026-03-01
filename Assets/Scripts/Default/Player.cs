@@ -280,6 +280,7 @@ public class Player : Mb
                             gridController.Place(selectedPiece, freeSlots);
                             Z.LS.CurrentLevel.CheckColumnsRows();
                             pieceController.NotifyPlaced(selectedPiece);
+                            Z.LS.CurrentLevel.NotifyPiecePlaced(selectedPiece);
                             Destroy(selectedPiece.gameObject);
                         }
                         else

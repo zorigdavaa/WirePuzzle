@@ -47,9 +47,11 @@ MonoBehaviour:
       Position: {x: 1, y: 0}
     - Type: 3
       Position: {x: 2, y: 0}
+  SequencePreset: 
   X: 5
   Y: 5
   Pieces: {fileID: 11400000, guid: 4c3b2a1f0e9d8c7b6a5f4e3d2c1b0a9f, type: 2}
   CamDistance: 10
   PieceScale: 0.5
   PieceCount: 3
+  MoveCount: 10

@@ -259,4 +259,13 @@ public class Level : MonoBehaviour
             // cube.transform.position = position;
         }
     }
+
+    public void NotifyPiecePlaced(Piece selectedPiece)
+    {
+        MoveCount--;
+        if (MoveCount <= 0)
+        {
+            Z.GM.GameOver(this, EventArgs.Empty);
+        }
+    }
 }

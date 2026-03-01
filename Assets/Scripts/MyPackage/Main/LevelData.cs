@@ -15,7 +15,7 @@ public class LevelData : ScriptableObject
     public float CamDistance;
     public float PieceScale;
     public int PieceCount;
-    public int MoveCount;
+    public int MoveCount = 10;
 
     public void DefaultValues()
     {
