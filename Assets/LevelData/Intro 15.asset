@@ -64,4 +64,4 @@ MonoBehaviour:
   CamDistance: 11
   PieceScale: 0.5
   PieceCount: 3
-  MoveCount: 10
+  MoveCount: 25
