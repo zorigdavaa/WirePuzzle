@@ -99,6 +99,7 @@ public class Level : MonoBehaviour
             // SetGridByData();
         }
     }
+    
     public void ClearCurrentPath()
     {
         gridController.ColumnRowCheck();
@@ -115,6 +116,12 @@ public class Level : MonoBehaviour
     public void DestroyAll()
     {
         StartCoroutine(gridController.ClearRowAndColumns());
+    }
+
+    public void ResetMoveCount()
+    {
+        MoveCount = 10;
+        CanvasManager.Instance.UpdateMoveCountText(MoveCount);
     }
     public List<GridNode> GetConnectPath()
     {

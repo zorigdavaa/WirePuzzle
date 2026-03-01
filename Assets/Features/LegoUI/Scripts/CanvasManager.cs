@@ -302,7 +302,8 @@ public class CanvasManager : GenericSingleton<CanvasManager>
     public void DeactivateAllGameOver(object sender, EventArgs e)
     {
         // Debug.Log("Deactivating all game over screens");
-        Z.LS.CurrentLevel.DestroyAll();
+        // Z.LS.CurrentLevel.DestroyAll();
+        Z.LS.CurrentLevel.ResetMoveCount();
         if (outOfSpaceGameOver != null)
             outOfSpaceGameOver.SetActive(false);
 
