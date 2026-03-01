@@ -33,6 +33,7 @@ public class CanvasManager : GenericSingleton<CanvasManager>
     [Header("HUD elements")]
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI coinText;
+    public TextMeshProUGUI moveCountText;
     public HealthManager healthManager;
 
     [Header("Level Complete")]
@@ -169,6 +170,13 @@ public class CanvasManager : GenericSingleton<CanvasManager>
     private void UpdateCoinText()
     {
         coinText.text = GameManager.Instance.Coin.ToString();
+    }
+
+    /// <summary>Updates the move count HUD text.</summary>
+    public void UpdateMoveCountText(int count)
+    {
+        if (moveCountText != null)
+            moveCountText.text = count.ToString() + " Moves";
     }
 
     public void LevelCompleteUI()

@@ -196,6 +196,7 @@ public class Level : MonoBehaviour
     {
         Data = levelData;
         MoveCount = levelData.MoveCount;
+        CanvasManager.Instance.UpdateMoveCountText(MoveCount);
         gridController = transform.GetComponentInChildren<GridController>();
         gridController.Init(Data.X, Data.Y);
         SetGridByData();
@@ -263,6 +264,7 @@ public class Level : MonoBehaviour
     public void NotifyPiecePlaced(Piece selectedPiece)
     {
         MoveCount--;
+        CanvasManager.Instance.UpdateMoveCountText(MoveCount);
         if (MoveCount <= 0)
         {
             Z.GM.GameOver(this, EventArgs.Empty);
