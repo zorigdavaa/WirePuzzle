@@ -19,12 +19,12 @@ public class CKILRD
     // }
     public static void ListenImpressionForTenjin()
     {
-#if !UNITY_EDITOR
-        if (CandyKit.m_Tenjin)
-        {
-            CandyKit.m_Tenjin.GetInstance().SubscribeAppLovinImpressions();
-        }
-#endif
+// #if !UNITY_EDITOR
+//         if (CandyKit.m_Tenjin)
+//         {
+//             CandyKit.m_Tenjin.GetInstance().SubscribeAppLovinImpressions();
+//         }
+// #endif
     }
 
 }

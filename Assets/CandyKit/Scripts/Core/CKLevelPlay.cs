@@ -45,7 +45,7 @@ public class CKLevelPlay : MonoBehaviour
 #endif
         LevelPlay.OnImpressionDataReady += ImpressionDataReadyEvent;
         // Analytics integrations
-        GameAnalyticsILRD.SubscribeIronSourceImpressions();
+        // GameAnalyticsILRD.SubscribeIronSourceImpressions();
         // CKILRD.ListenImpressionForTenjinIronSource();
         CreateRewardedAd();
         LoadRewardedAd();

@@ -219,10 +219,10 @@ public class CkIAPManager : MonoBehaviour, IDetailedStoreListener
         string gpSig = (string)gpDetails["signature"];
 
         // Send revenue data
-        CandyKit.m_Tenjin?.TenjinCompletedPurchase(productId, currencyCode, 1, unitPrice, transactionId, gpJson, gpSig);
+        // CandyKit.m_Tenjin?.TenjinCompletedPurchase(productId, currencyCode, 1, unitPrice, transactionId, gpJson, gpSig);
         GameAnalytics.NewBusinessEventGooglePlay(currencyCode, (int)GPrice, product.metadata.localizedTitle, productId, "Home Screen", gpJson, gpSig);
 #elif UNITY_IOS
-        CandyKit.m_Tenjin?.TenjinCompletedPurchase(productId, currencyCode, 1, unitPrice, transactionId, payload);
+        // CandyKit.m_Tenjin?.TenjinCompletedPurchase(productId, currencyCode, 1, unitPrice, transactionId, payload);
         GameAnalytics.NewBusinessEventIOS(currencyCode, (int)GPrice, product.metadata.localizedTitle, productId, "Home Screen", payload);
 #endif
 
