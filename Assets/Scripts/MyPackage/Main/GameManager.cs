@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using CandyKitSDK;
 #if ANALYTICS_SDKS
 using GameAnalyticsSDK;
 #endif
@@ -196,6 +197,7 @@ namespace ZPackage
                 LevelCompleted?.Invoke(sender, eventArgs);
                 State = GameState.LevelCompleted;
                 NextLevel();
+                CandyKit.ShowInterstitial("LevelCOmplete");
                 // GALevelCompleteEvent();
             }
         }
