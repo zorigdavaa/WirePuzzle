@@ -26,7 +26,8 @@ MonoBehaviour:
     InterstitialAdUnitId: 
     RewardedVideoAdUnitId: 
     NoAdsProductID: 
-    ckProducts: []
+    ckProducts:
+    - {fileID: 11400000, guid: 169c60515f1333a4cbae06f488f9556a, type: 2}
   iOS:
     GameAnalyticsGameKey: 
     GameAnalyticsGameSecret: 

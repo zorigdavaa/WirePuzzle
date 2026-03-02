@@ -25,7 +25,6 @@ public class IAPShopHandler : MonoBehaviour
     //
     public void Buy(CkProduct product)
     {
-        CanvasManager.Instance.SetActiveLoadingScreen(true);
         if (CandyKit.m_IAPManager == null)
         {
             Debug.Log($"NO IAP MANAGER");
@@ -36,6 +35,7 @@ public class IAPShopHandler : MonoBehaviour
             Debug.Log($"IAP MANAGER NO INITIALIZED");
             return;
         }
+        CanvasManager.Instance.SetActiveLoadingScreen(true);
 
         CkProduct succesfulProduct = null;
         CandyKit.BuyProduct(product.ID, (success) =>

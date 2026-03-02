@@ -115,21 +115,21 @@ public static class CKCV
 
     public static void SendConversionValue()
     {
-        if (CandyKit.m_Tenjin)
-        {
-            // int adValue = m_CkAdHandler.GetAdConversionValue();
-            (int cv, string coarse) cv = GetConversionValue();
-            // int iapValue = m_IAPManager.GetIAPConversionValue();
-            Debug.Log("CK--> tenjin sending " + cv.cv + " and course" + cv.coarse);
-            CandyKit.m_Tenjin.SendConversionValue(cv.cv, cv.coarse);
-            float Score = GetScore();
-            Debug.Log("Score is " + Score);
-            TenjinRevenueScore(Score);
-        }
-        else
-        {
-            Debug.LogError("Tenjin SKAD not Initialized");
-        }
+        // if (CandyKit.m_Tenjin)
+        // {
+        //     // int adValue = m_CkAdHandler.GetAdConversionValue();
+        //     (int cv, string coarse) cv = GetConversionValue();
+        //     // int iapValue = m_IAPManager.GetIAPConversionValue();
+        //     Debug.Log("CK--> tenjin sending " + cv.cv + " and course" + cv.coarse);
+        //     CandyKit.m_Tenjin.SendConversionValue(cv.cv, cv.coarse);
+        //     float Score = GetScore();
+        //     Debug.Log("Score is " + Score);
+        //     TenjinRevenueScore(Score);
+        // }
+        // else
+        // {
+        //     Debug.LogError("Tenjin SKAD not Initialized");
+        // }
     }
     public static float GetRevenue()
     {
@@ -174,15 +174,15 @@ public static class CKCV
     }
     public static void TenjinRevenueStep(int steppedConversion)
     {
-        int oldStepValue = PlayerPrefs.GetInt(CkConstants.RevenueStep, 0);
-        if (steppedConversion > oldStepValue)
-        {
-            int valueDif = steppedConversion - oldStepValue;
-            CandyKit.m_Tenjin?.SentStepEvent(valueDif);
-            Debug.Log("CK--> Sent event " + valueDif);
-            PlayerPrefs.SetInt(CkConstants.RevenueStep, steppedConversion);
-            // m_Tenjin.SendConversionValue(conversionValue);
-        }
+        // int oldStepValue = PlayerPrefs.GetInt(CkConstants.RevenueStep, 0);
+        // if (steppedConversion > oldStepValue)
+        // {
+        //     int valueDif = steppedConversion - oldStepValue;
+        //     CandyKit.m_Tenjin?.SentStepEvent(valueDif);
+        //     Debug.Log("CK--> Sent event " + valueDif);
+        //     PlayerPrefs.SetInt(CkConstants.RevenueStep, steppedConversion);
+        //     // m_Tenjin.SendConversionValue(conversionValue);
+        // }
     }
 
     public static void TenjinRevenueScore(float score)

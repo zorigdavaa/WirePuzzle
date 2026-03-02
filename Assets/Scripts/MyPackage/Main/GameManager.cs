@@ -227,6 +227,7 @@ namespace ZPackage
         public void Revive()
         {
             OnRevive?.Invoke(this, EventArgs.Empty);
+            PlayGame();
         }
         void GAStartEvent()
         {

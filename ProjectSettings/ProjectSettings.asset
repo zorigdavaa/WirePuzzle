@@ -832,7 +832,7 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    Android: DREAMTECK_SPLINES;UNITY_POST_PROCESSING_STACK_V2;DOTWEEN;CANDYKIT;gameanalytics_max_enabled;tenjin_applovin_enabled
+    Android: DREAMTECK_SPLINES;UNITY_POST_PROCESSING_STACK_V2;DOTWEEN;CANDYKIT;tenjin_applovin_enabled;LEVELPLAY_DEPENDENCIES_INSTALLED
     EmbeddedLinux: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
     GameCoreScarlett: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
     GameCoreXboxOne: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
@@ -848,7 +848,7 @@ PlayerSettings:
     WebGL: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
     Windows Store Apps: DOTWEEN
     XboxOne: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
-    iPhone: DOTWEEN;gameanalytics_max_enabled;tenjin_applovin_enabled
+    iPhone: DOTWEEN;tenjin_applovin_enabled
     tvOS: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
   additionalCompilerArguments: {}
   platformArchitecture: {}

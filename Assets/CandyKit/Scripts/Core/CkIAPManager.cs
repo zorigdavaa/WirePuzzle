@@ -4,9 +4,10 @@ using UnityEngine.Purchasing;
 using CandyKitSDK;
 using UnityEngine.Purchasing.Extension;
 using GameAnalyticsSDK;
-using AppLovinMax.ThirdParty.MiniJson;
+// using AppLovinMax.ThirdParty.MiniJson;
 using UnityEngine.Purchasing.Security;
 using System;
+using UnityEngine.Purchasing.MiniJSON;
 
 public class CkIAPManager : MonoBehaviour, IDetailedStoreListener
 {

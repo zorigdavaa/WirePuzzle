@@ -67,10 +67,10 @@ MonoBehaviour:
       Position: {x: 5, y: 0}
     - Type: 3
       Position: {x: 6, y: 0}
-  SequencePreset: 13.16.7.14.25.3.10.8.2
+  SequencePreset: 13.16.7.1.25.3.0.8.2
   X: 7
   Y: 7
-  Pieces: {fileID: 11400000, guid: 8f7c3e5d2b1a9f4c6e8a3b2d5f7c1e9a, type: 2}
+  Pieces: {fileID: 11400000, guid: 3b2a1f0e9d8c7b6a5f4e3d2c1b0a9f8e, type: 2}
   CamDistance: 12
   PieceScale: 0.5
   PieceCount: 3

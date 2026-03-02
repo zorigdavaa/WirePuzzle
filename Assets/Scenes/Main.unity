@@ -527,6 +527,10 @@ PrefabInstance:
       propertyPath: m_ReferenceResolution.y
       value: 1920
       objectReference: {fileID: 0}
+    - target: {fileID: 1723971723496907469, guid: 6e54607c8a1a09b4a9dacfe7a4833eb7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2025100004124827856, guid: 6e54607c8a1a09b4a9dacfe7a4833eb7, type: 3}
       propertyPath: m_Name
       value: Lego-UI-Canvas
@@ -567,6 +571,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 2401569552091894990, guid: 6e54607c8a1a09b4a9dacfe7a4833eb7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3024821822252081232, guid: 6e54607c8a1a09b4a9dacfe7a4833eb7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
@@ -601,6 +609,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4023968826795117211, guid: 6e54607c8a1a09b4a9dacfe7a4833eb7, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4158398442371715085, guid: 6e54607c8a1a09b4a9dacfe7a4833eb7, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4452822509761571027, guid: 6e54607c8a1a09b4a9dacfe7a4833eb7, type: 3}

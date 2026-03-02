@@ -5,6 +5,8 @@ using UnityEngine.Events;
 using System.Collections.Generic;
 using System;
 using Object = UnityEngine.Object;
+using Unity.Services.LevelPlay;
+
 
 
 
@@ -22,7 +24,8 @@ namespace CandyKitSDK
         public static bool m_IsDebug = false;
         public static bool m_IsInitialized = false;
         public static CandyKitObject m_Instance;
-        public static CkAdHandler m_CkAdHandler;
+        // public static CkAdHandler m_CkAdHandler;
+        public static CKLevelPlay m_CkAdHandler;
         public static CkIAPManager m_IAPManager;
         public static CkTenjinObject m_Tenjin;
         private static CandyKitSettingsScriptableObject m_Settings;
@@ -38,7 +41,7 @@ namespace CandyKitSDK
                 return m_Settings;
             }
         }
-
+        public delegate void CkRewardedAdCallback(bool isSuccess);
         public delegate void OnCandyKitReady();
         private static event OnCandyKitReady OnReady;
 
@@ -60,6 +63,7 @@ namespace CandyKitSDK
 
                 m_Settings = Resources.Load<CandyKitSettingsScriptableObject>("CandyKit/CandyKitSettings");
 
+                InitializeLevelPlay();
                 // InitializeApplovin();
                 InitializeGameAnalytics();
                 // if (!CountryCode.IsInNoTenjinCountries())
@@ -68,13 +72,7 @@ namespace CandyKitSDK
                 // InitializeTenjin();
                 // InitializeFirebase();
 
-                // GameObject adHandlerGo = new("CkAdHandler");
-                // m_CkAdHandler = adHandlerGo.AddComponent<CkAdHandler>();
-                // m_CkAdHandler.Initialize(m_Settings);
 
-                GameObject instanceObject = new("CandyKitObject");
-                m_Instance = instanceObject.AddComponent<CandyKitObject>();
-                m_Instance.Initialize(m_ReadinessWaitDuration, m_Settings, OnReady);
                 InitializeUnityGamingService();
                 SetInstallDate();
             }
@@ -258,7 +256,7 @@ namespace CandyKitSDK
                 return;
             }
 
-            // m_Instance.ckIAPManager.RestorePurchase(onPurchaseCompleted);
+            // m_Instance.ckIAPManager.RestorePurchase();
             m_IAPManager.RestorePurchase();
         }
 
@@ -329,10 +327,11 @@ namespace CandyKitSDK
 
         public static bool IsRewardedAdReady()
         {
-            if (!MaxSdk.IsInitialized())
-                return false;
+            // if (!MaxSdk.IsInitialized())
+            //     return false;
 
             return m_CkAdHandler.IsRewardedAdReady();
+            // return false;
         }
 
         public static void ShowRewardedVideo(string placement, CkRewardedAdCallback callback)
@@ -361,6 +360,7 @@ namespace CandyKitSDK
             }
 
             return m_CkAdHandler.GetBannerHeight();
+            // return 150f;
         }
 
         #endregion
@@ -383,6 +383,29 @@ namespace CandyKitSDK
             GameObject gameAnalyticsInitializerObj = new("CkGAHandler");
             gameAnalyticsInitializerObj.AddComponent<CkGameAnalyticsInitializer>().Initialize();
             GameObject.DontDestroyOnLoad(gameAnalyticsInitializerObj);
+        }
+
+        private static void InitializeLevelPlay()
+        {
+            LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
+            LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
+            LevelPlay.Init(m_Settings.MaxSDKKey);
+        }
+
+        private static void SdkInitializationFailedEvent(LevelPlayInitError error)
+        {
+            Application.Quit();
+        }
+
+        private static void SdkInitializationCompletedEvent(LevelPlayConfiguration configuration)
+        {
+            GameObject adHandlerGo = new("CkAdHandler");
+            m_CkAdHandler = adHandlerGo.AddComponent<CKLevelPlay>();
+            m_CkAdHandler.Initialize(m_Settings);
+
+            GameObject instanceObject = new("CandyKitObject");
+            m_Instance = instanceObject.AddComponent<CandyKitObject>();
+            m_Instance.Initialize(m_ReadinessWaitDuration, m_Settings, OnReady);
         }
 
         // private static void InitializeApplovin()
@@ -427,13 +450,13 @@ namespace CandyKitSDK
 
         private static void InitializeTenjin()
         {
-            if (!m_Tenjin)
-            {
-                GameObject tenjinGO = new GameObject("CkTenjinObject");
-                Object.DontDestroyOnLoad(tenjinGO);
-                m_Tenjin = tenjinGO.AddComponent<CkTenjinObject>();
-                m_Tenjin.Initialize(m_Settings);
-            }
+            // if (!m_Tenjin)
+            // {
+            //     GameObject tenjinGO = new GameObject("CkTenjinObject");
+            //     Object.DontDestroyOnLoad(tenjinGO);
+            //     m_Tenjin = tenjinGO.AddComponent<CkTenjinObject>();
+            //     m_Tenjin.Initialize(m_Settings);
+            // }
         }
 
         private static void InitializeUnityGamingService()
@@ -501,7 +524,7 @@ namespace CandyKitSDK
         }
         internal static void MaxDebugger()
         {
-            MaxSdk.ShowMediationDebugger();
+            // MaxSdk.ShowMediationDebugger();
         }
         public static string GetGAABTestingValue()
         {
