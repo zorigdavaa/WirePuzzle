@@ -11,11 +11,30 @@ public class Prefabs : GenericSingleton<Prefabs>
     public GameObject FireWork;
     public GameObject CoinPF;
     public GameObject Lightning;
+    private Lightning lightningInstance;
     public GameObject ConnectFiller;
+    private Lightning ConnectFillerInstance;
 
     void Start()
     {
         cam = Camera.main;
+    }
+    public Lightning GetConnectFiller()
+    {
+        if (ConnectFillerInstance == null)
+        {
+            ConnectFillerInstance = Instantiate(ConnectFiller, Vector3.zero, Quaternion.identity, transform).GetComponent<Lightning>();
+        }
+        return ConnectFillerInstance;
+    }
+
+    public Lightning GetLightning()
+    {
+        if (lightningInstance == null)
+        {
+            lightningInstance = Instantiate(Lightning, Vector3.zero, Quaternion.identity, transform).GetComponent<Lightning>();
+        }
+        return lightningInstance;
     }
 
     public void ShortCircuit(int item, RowCol type, Grid<GridNode> grid, Action onComplete = null, bool withEffect = true)

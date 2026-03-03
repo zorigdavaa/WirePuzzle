@@ -15,7 +15,7 @@ public class Player : Mb
 {
     GridNode lastSelectedSlot;
     public List<GridNode> selectedSlots;
-    Lightning lightning;
+
     // [SerializeField] GameObject ConnectPF;
     Camera cam;
     LayerMask rayMask;
@@ -108,8 +108,8 @@ public class Player : Mb
         // cam = Camera.main;
         rayMask = LayerMask.GetMask("PieceSlot");
         InitializeKeyActions();
-        lightning = Instantiate(Prefabs.Instance.Lightning, transform.position, Quaternion.identity).GetComponent<Lightning>();
-        lightning.SetPostions(new Vector3[0]);
+        // lightning = Instantiate(Prefabs.Instance.Lightning, transform.position, Quaternion.identity).GetComponent<Lightning>();
+        Prefabs.Instance.GetLightning().SetPostions(new Vector3[0]);
         GameManager.Instance.GamePlay += OnGamePlay;
 
     }
@@ -343,7 +343,7 @@ public class Player : Mb
     {
         lastSelectedSlot = null;
         selectedSlots.Clear();
-        lightning.SetPostions(new Vector3[0]);
+        Prefabs.Instance.GetLightning().SetPostions(new Vector3[0]);
         // lightning.Rebuild();
         // ray = cam.ScreenPointToRay(MP);
         // if (Physics.Raycast(ray, out hit, 30, rayMask))
@@ -378,11 +378,11 @@ public class Player : Mb
         }
         IEnumerator LocalCor()
         {
-            lightning.SetPostions(path.Select(x => x.transform.position).ToArray());
+            Prefabs.Instance.GetLightning().SetPostions(path.Select(x => x.transform.position).ToArray());
             // computer.GetComponent<SplineMesh>().GetChannel(0).count = path.Count;
             // lightning.Rebuild();
             yield return new WaitForSeconds(2);
-            lightning.SetPostions(new Vector3[0]);
+            Prefabs.Instance.GetLightning().SetPostions(new Vector3[0]);
             // lightning.Rebuild();
             tutorialCor = null;
         }
