@@ -16,7 +16,7 @@ public class Player : Mb
     GridNode lastSelectedSlot;
     public List<GridNode> selectedSlots;
     Lightning lightning;
-    [SerializeField] GameObject ConnectPF;
+    // [SerializeField] GameObject ConnectPF;
     Camera cam;
     LayerMask rayMask;
     GridController gridController;
@@ -108,7 +108,7 @@ public class Player : Mb
         // cam = Camera.main;
         rayMask = LayerMask.GetMask("PieceSlot");
         InitializeKeyActions();
-        lightning = Instantiate(ConnectPF, transform.position, Quaternion.identity).GetComponent<Lightning>();
+        lightning = Instantiate(Prefabs.Instance.Lightning, transform.position, Quaternion.identity).GetComponent<Lightning>();
         lightning.SetPostions(new Vector3[0]);
         GameManager.Instance.GamePlay += OnGamePlay;
 

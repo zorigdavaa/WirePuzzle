@@ -89,8 +89,8 @@ namespace ZPackage
             {
 
                 coin = value;
+                Z.CanM.UpdateCoinText();
                 PlayerPrefs.SetInt("coin", value);
-                // Z.CanM.HudCoin(value.ToString());
             }
         }
         private int score;

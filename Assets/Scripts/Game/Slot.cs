@@ -130,7 +130,7 @@ public class Slot : MonoBehaviour
     {
         Bulb bulb = GetModel().GetComponent<Bulb>();
         bulb.TurnOn(true);
-        CoinManager.Instance.GetCoin(transform.position);
+        Prefabs.Instance.GetCoin(transform.position);
         yield return new WaitForSeconds(3);
         bulb.TurnOn(false);
         SetType(SlotType.Empty);

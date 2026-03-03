@@ -2394,51 +2394,8 @@ MonoBehaviour:
   mp: {x: 0, y: 0, z: 0}
   FireWork: {fileID: 2058194415668385605, guid: 2907aed3fb823453799b4568fb645f2a, type: 3}
   CoinPF: {fileID: 5076642301061011366, guid: 787b15b9028cc6745a08b25a6b26da90, type: 3}
---- !u!1 &1308671105
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1308671106}
-  - component: {fileID: 1308671107}
-  m_Layer: 0
-  m_Name: CoinManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1308671106
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308671105}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1308671107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308671105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 463f59ef7654e46338d461c29c4c716c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mp: {x: 0, y: 0, z: 0}
+  Lightning: {fileID: 1029807006172210842, guid: 4c4e960fb7cc14f1ebae0184c91aa4fb, type: 3}
+  ConnectFiller: {fileID: 1029807006172210842, guid: 992230d11a2b447e59123cb01654ef15, type: 3}
 --- !u!1 &1317399480
 GameObject:
   m_ObjectHideFlags: 0
@@ -2929,7 +2886,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mp: {x: 0, y: 0, z: 0}
   selectedSlots: []
-  ConnectPF: {fileID: 1029807006172210842, guid: 4c4e960fb7cc14f1ebae0184c91aa4fb, type: 3}
   selectedPiece: {fileID: 0}
   isDragging: 0
   pressed: 0
@@ -3215,7 +3171,6 @@ SceneRoots:
   - {fileID: 998107824}
   - {fileID: 1924241068}
   - {fileID: 1317399482}
-  - {fileID: 1308671106}
   - {fileID: 1285662951}
   - {fileID: 195204389}
   - {fileID: 460588308}

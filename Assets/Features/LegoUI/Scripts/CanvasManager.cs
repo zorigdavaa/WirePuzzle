@@ -138,13 +138,13 @@ public class CanvasManager : GenericSingleton<CanvasManager>
     public void AddCoin(int amount)
     {
         GameManager.Instance.Coin += amount;
-        UpdateCoinText();
+        // UpdateCoinText();
         PlayerPrefs.SetInt("PlayerCoin", Coin);
     }
     public void RemoveCoin(int amount)
     {
         GameManager.Instance.Coin = Mathf.Max(0, GameManager.Instance.Coin - amount);
-        UpdateCoinText();
+        // UpdateCoinText();
         PlayerPrefs.SetInt("PlayerCoin", Coin);
     }
 
@@ -167,7 +167,7 @@ public class CanvasManager : GenericSingleton<CanvasManager>
         healthManager.SetHealth(amount);
     }
 
-    private void UpdateCoinText()
+    public void UpdateCoinText()
     {
         coinText.text = GameManager.Instance.Coin.ToString();
     }

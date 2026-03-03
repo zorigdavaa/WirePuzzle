@@ -98,7 +98,7 @@ MonoBehaviour:
   SequencePreset: 0.3.6.3.17.2.1.30.6
   X: 10
   Y: 6
-  Pieces: {fileID: 11400000, guid: 7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b, type: 2}
+  Pieces: {fileID: 11400000, guid: 8f7c3e5d2b1a9f4c6e8a3b2d5f7c1e9a, type: 2}
   CamDistance: 15
   PieceScale: 0.5
   PieceCount: 3

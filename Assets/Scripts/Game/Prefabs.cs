@@ -7,8 +7,16 @@ using Random = UnityEngine.Random;
 
 public class Prefabs : GenericSingleton<Prefabs>
 {
+    Camera cam;
     public GameObject FireWork;
     public GameObject CoinPF;
+    public GameObject Lightning;
+    public GameObject ConnectFiller;
+
+    void Start()
+    {
+        cam = Camera.main;
+    }
 
     public void ShortCircuit(int item, RowCol type, Grid<GridNode> grid, Action onComplete = null, bool withEffect = true)
     {
@@ -97,6 +105,42 @@ public class Prefabs : GenericSingleton<Prefabs>
     public void RunCoroutine(IEnumerator coroutine)
     {
         StartCoroutine(coroutine);
+    }
+    public void GetCoin(Vector3 worldPos)
+    {
+        GameObject Coin = Instantiate(Prefabs.Instance.CoinPF, worldPos + Vector3.up, Quaternion.identity, transform);
+        StartCoroutine(LocalCor(Coin));
+
+    }
+    IEnumerator LocalCor(GameObject coin)
+    {
+        float t = 0f;
+        float time = 0f;
+        float duration = 1.0f;
+        Vector3 initial = coin.transform.position;
+        // Use the UI Camera (often the same as Main Camera, but check your Canvas)
+        // 1. Get the screen position of the UI element (use null for Overlay)
+        Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(null, Z.CanM.coinText.transform.position);
+
+        // 2. Define how far in front of the camera the 3D target should be
+        float distanceFromCamera = 10f;
+
+        // 3. Create a Vector3 for ScreenToWorldPoint (x, y, and z as depth)
+        Vector3 screenPosWithDepth = new Vector3(screenPos.x, screenPos.y, distanceFromCamera);
+
+        // 4. Convert that screen point to a position in the 3D world
+        Vector3 targetWorldPos = cam.ScreenToWorldPoint(screenPosWithDepth);
+
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            t = time / duration;
+            coin.transform.position = Vector3.Lerp(initial, targetWorldPos, t);
+            yield return null;
+        }
+        Destroy(coin);
+        Z.GM.Coin++;
     }
 }
 
