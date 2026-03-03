@@ -114,8 +114,8 @@ public class Slot : MonoBehaviour
                 // GetModel().GetComponent<Bulb>().TurnOn();
                 StartCoroutine(LightCor());
             }
-            Destroy(Obj.gameObject, 1f);
             Obj.GetComponent<Node>().Shine();
+            Destroy(Obj.gameObject, 1f);
             Obj = null;
             Debug.Log(GetComponent<GridNode>().X + " " + GetComponent<GridNode>().Y + " destroyed");
         }

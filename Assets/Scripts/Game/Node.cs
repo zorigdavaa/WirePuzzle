@@ -31,12 +31,13 @@ public class Node : MonoBehaviour, ISlotObj
     public void Shine()
     {
         MeshRenderer render = transform.GetChild(0).GetComponent<MeshRenderer>();
-        // Color initColor = render.material.color;
 
         render.material.EnableKeyword("_EMISSION");
-        Color glowColor = Color.cyan * 1f;
 
+        Color glowColor = Color.cyan * 1.2f;
         render.material.SetColor("_EmissionColor", glowColor);
+        render.material.SetColor("_Color", glowColor);
+        // Color initColor = render.material.color;
         // StartCoroutine(LocalCor());
         // IEnumerator LocalCor()
         // {
