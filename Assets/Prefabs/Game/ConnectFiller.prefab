@@ -47,9 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 723057130825990315}
   switchDistance: 0.25
-  offsetSpeed: 0.5
+  offsetSpeed: 1
   mat: {fileID: 0}
-  switchSpeed: 10
+  switchSpeed: 1
 --- !u!1 &7656852594438541905
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +106,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c02dec9cab83844c685f94194d3702fd, type: 2}
+  - {fileID: 2100000, guid: 55e5ab68aac81447191d198c8f6310a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -150,7 +150,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 1, b: 0.7987695, a: 1}
+      key0: {r: 0.55299723, g: 1, b: 0, a: 1}
       key1: {r: 0, g: 0.97912884, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 1}
@@ -178,7 +178,7 @@ LineRenderer:
       m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 11
+    numCornerVertices: 90
     numCapVertices: 1
     alignment: 0
     textureMode: 2

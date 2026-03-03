@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using ZPackage;
 using Random = UnityEngine.Random;
@@ -160,6 +161,17 @@ public class Prefabs : GenericSingleton<Prefabs>
         }
         Destroy(coin);
         Z.GM.Coin++;
+    }
+
+    public void ConnectAnimation(List<GridNode> path)
+    {
+        StartCoroutine(LocalCor());
+        IEnumerator LocalCor()
+        {
+            GetConnectFiller().SetPostions(path.Select(x => x.transform.position).ToArray());
+            yield return new WaitForSeconds(1f);
+            GetConnectFiller().SetPostions(new Vector3[0]);
+        }
     }
 }
 

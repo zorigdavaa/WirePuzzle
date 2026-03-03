@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using ZPackage;
 
@@ -91,6 +92,7 @@ public class Level : MonoBehaviour
                 node.GetComponent<Slot>().DestoyObjWithShine();
 
             }
+            Prefabs.Instance.ConnectAnimation(path);
         }
 
         if (paths.Count > 0 && ConnectPoses.Count == 0)
@@ -99,7 +101,7 @@ public class Level : MonoBehaviour
             // SetGridByData();
         }
     }
-    
+
     public void ClearCurrentPath()
     {
         gridController.ColumnRowCheck();
