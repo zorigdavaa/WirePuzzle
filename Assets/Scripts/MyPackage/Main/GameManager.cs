@@ -197,7 +197,10 @@ namespace ZPackage
                 LevelCompleted?.Invoke(sender, eventArgs);
                 State = GameState.LevelCompleted;
                 NextLevel();
-                CandyKit.ShowInterstitial("LevelCOmplete");
+                if (Level % 3 == 0)
+                {
+                    CandyKit.ShowInterstitial("LevelCOmplete");
+                }
                 // GALevelCompleteEvent();
             }
         }
