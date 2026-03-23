@@ -125,6 +125,12 @@ public class Level : MonoBehaviour
         MoveCount = 10;
         CanvasManager.Instance.UpdateMoveCountText(MoveCount);
     }
+
+    public bool IsTutorialLevel()
+    {
+        int tutorialLevelCount = Mathf.Max(1, GameConfig.Instance != null ? GameConfig.Instance.TutorialLevelCount : 1);
+        return GameManager.Instance != null && GameManager.Instance.Level <= tutorialLevelCount;
+    }
     public List<GridNode> GetConnectPath()
     {
         // Return cached result if available
@@ -272,6 +278,15 @@ public class Level : MonoBehaviour
 
     public void NotifyPiecePlaced(Piece selectedPiece)
     {
+        if (IsTutorialLevel())
+        {
+            if (Z.Player != null)
+            {
+                Z.Player.TutorialPath(GetConnectPath());
+            }
+            return;
+        }
+
         MoveCount--;
         CanvasManager.Instance.UpdateMoveCountText(MoveCount);
         if (MoveCount <= 0)

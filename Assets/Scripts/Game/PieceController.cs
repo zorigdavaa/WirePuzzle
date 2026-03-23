@@ -68,13 +68,36 @@ public class PieceController : Mb
         //List<Piece> newItems = bag.PopRandomItems(pieceSlots.Count);
         var newItems = new List<Piece>();
         int neededCount = CurrentSlotObj.Values.Count(x => x == null);
+        bool isTutorialLevel = Z.CurrentLevel != null && Z.CurrentLevel.IsTutorialLevel();
+        if (isTutorialLevel)
+        {
+            neededCount = Mathf.Min(neededCount, 1);
+        }
+
         //Get the needed pieces from the grid
         List<Piece> neededPieces = Z.GridController.GetNeededPiece(LevelPiecesPf);
+        List<GridNode> tutorialPath = isTutorialLevel ? Z.LS.CurrentLevel.GetConnectPath() : null;
+        Piece tutorialPiece = null;
+        if (isTutorialLevel)
+        {
+            tutorialPiece = neededPieces.FirstOrDefault(piece =>
+                Z.GridController.TryGetPlacementOnPath(piece, tutorialPath, out _));
+
+            if (tutorialPiece == null && neededPieces.Count > 0)
+            {
+                tutorialPiece = neededPieces[0];
+            }
+        }
 
         //Populate the new pieces
         for (int i = 0; i < neededCount; i++)
         {
-            if (HasNextInSequence())
+            if (isTutorialLevel && tutorialPiece != null)
+            {
+                // Tutorial levels should always present one guaranteed-valid piece.
+                newItems.Add(tutorialPiece);
+            }
+            else if (HasNextInSequence())
             {
                 //If there is a next piece in the sequence preset, use it
                 newItems.Add(SequencePreset[SeqIndex]);
@@ -99,6 +122,14 @@ public class PieceController : Mb
                 emptySlots.Add(kvp.Key);
             }
         }
+        if (isTutorialLevel && emptySlots.Count > 1)
+        {
+            emptySlots = emptySlots.Take(1).ToList();
+        }
+        if (newItems.Count < emptySlots.Count)
+        {
+            emptySlots = emptySlots.Take(newItems.Count).ToList();
+        }
         //Instantiate the new pieces and set their color
         for (int i = 0; i < emptySlots.Count; i++)
         {
@@ -119,10 +150,15 @@ public class PieceController : Mb
         //Increment the material index
         materialIndex++;
         //Check if the game is over
-        if (neededPieces.Count == 0)
+        if (!isTutorialLevel && neededPieces.Count == 0)
         {
             //Z.GM.GameOver(this, EventArgs.Empty);
             CheckGameOver();
+        }
+
+        if (isTutorialLevel && Z.Player != null && Z.IsPlaying)
+        {
+            Z.Player.TutorialPath(Z.LS.CurrentLevel.GetConnectPath());
         }
     }
 
@@ -201,6 +237,11 @@ public class PieceController : Mb
 
     public void CheckGameOver()
     {
+        if (Z.CurrentLevel != null && Z.CurrentLevel.IsTutorialLevel())
+        {
+            return;
+        }
+
         if (gameOverCoroutine != null)
         {
             StopCoroutine(gameOverCoroutine);

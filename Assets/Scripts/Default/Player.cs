@@ -167,6 +167,11 @@ public class Player : Mb
     {
         if (IsPlaying)
         {
+            if (Z.CurrentLevel != null && Z.CurrentLevel.IsTutorialLevel())
+            {
+                UpdateTutorialDropHint();
+            }
+
             // Old();
             if (IsDown)
             {
@@ -323,19 +328,45 @@ public class Player : Mb
         this.onSelect = onSelect;
     }
 
-    private void PlaceSilh(List<GridNode> placeAbleNodes, GameObject silh)
+    private void PlaceSilh(List<GridNode> placeAbleNodes, GameObject silh, bool triggerFakeShortCircuit = true)
     {
         silh.SetActive(true);
         for (int i = 0; i < silh.transform.childCount; i++)
         {
             silh.transform.GetChild(i).transform.position = placeAbleNodes[i].transform.position;
         }
-        //Todo Fake ShortCircuit Effect
-        if (Z.LS.CurrentLevel.CheckColumnsRows(placeAbleNodes))
+        // Only the real pre-place silhouette should preview the short-circuit effect.
+        if (triggerFakeShortCircuit && Z.LS.CurrentLevel.CheckColumnsRows(placeAbleNodes))
         {
-
+`
         }
         ;
+    }
+
+    private void UpdateTutorialDropHint()
+    {
+        Piece tutorialPiece = selectedPiece != null ? selectedPiece : pieceController.GetPieces().FirstOrDefault();
+        if (tutorialPiece == null)
+        {
+            return;
+        }
+
+        List<GridNode> tutorialPath = Z.LS.CurrentLevel.GetConnectPath();
+        bool foundPlacementOnPath = gridController.TryGetPlacementOnPath(tutorialPiece, tutorialPath, out List<GridNode> placeAbleNodes);
+
+        if (!foundPlacementOnPath)
+        {
+            foundPlacementOnPath = gridController.IsPlaceAbleSomeWhere(tutorialPiece, out placeAbleNodes);
+        }
+
+        if (foundPlacementOnPath)
+        {
+            PlaceSilh(placeAbleNodes, tutorialPiece.GetSilhoutte(), false);
+        }
+        else if (tutorialPiece.GetSilhoutteDirect() != null)
+        {
+            tutorialPiece.GetSilhoutteDirect().SetActive(false);
+        }
     }
 
     float lastSuggestTime = 0;

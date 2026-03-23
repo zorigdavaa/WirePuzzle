@@ -437,6 +437,23 @@ public class GridController : MonoBehaviour
         return false;
     }
 
+    public bool TryGetPlacementOnPath(Piece piece, IEnumerable<GridNode> preferredPath, out List<GridNode> placeAbleNodes)
+    {
+        var preferredFreeNodes = preferredPath?
+            .Where(node => node != null && node.Slot != null && node.Slot.IsFree())
+            .Distinct()
+            .ToList();
+
+        if (preferredFreeNodes != null && preferredFreeNodes.Count > 0 &&
+            IsPlaceAbleSomeWhere(piece, out placeAbleNodes, preferredFreeNodes))
+        {
+            return true;
+        }
+
+        placeAbleNodes = new List<GridNode>();
+        return false;
+    }
+
     public IEnumerator ColumnRowCheck()
     {
         // HashSet<GridNode> destroyedNodes = new HashSet<GridNode>();
