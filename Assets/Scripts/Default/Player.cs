@@ -338,7 +338,7 @@ public class Player : Mb
         // Only the real pre-place silhouette should preview the short-circuit effect.
         if (triggerFakeShortCircuit && Z.LS.CurrentLevel.CheckColumnsRows(placeAbleNodes))
         {
-`
+
         }
         ;
     }

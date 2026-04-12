@@ -648,6 +648,14 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5113067120422929940, guid: 6e54607c8a1a09b4a9dacfe7a4833eb7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113067120422929940, guid: 6e54607c8a1a09b4a9dacfe7a4833eb7, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113067120422929940, guid: 6e54607c8a1a09b4a9dacfe7a4833eb7, type: 3}
       propertyPath: m_TargetGraphic
       value: 
       objectReference: {fileID: 1732236681}
@@ -739,6 +747,14 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 6996760463233047818, guid: 6e54607c8a1a09b4a9dacfe7a4833eb7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6996760463233047818, guid: 6e54607c8a1a09b4a9dacfe7a4833eb7, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6996760463233047818, guid: 6e54607c8a1a09b4a9dacfe7a4833eb7, type: 3}
       propertyPath: m_TargetGraphic
       value: 
@@ -2985,6 +3001,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
